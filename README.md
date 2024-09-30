@@ -1,4 +1,4 @@
-# Ecommerce Project
+# E-commerce Project
 
 ## Overview
 
