@@ -1,3 +1,6 @@
+# FILE: /project/urls.py
+
+
 """
 URL configuration for project project.
 
@@ -27,3 +30,5 @@ if settings.DEBUG: ##
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)), ##
     ] + urlpatterns
+
+# https://linktr.ee/edsoncopque
