@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'debug_toolbar', ##
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,15 @@ MESSAGE_TAGS = { ##
     constants.SUCCESS: 'alert-success',
     constants.WARNING: 'alert-warning',
 }
+
+# Session in days: 60s * 60m * 24h * 1d
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 ##
+
+# Save earch request
+SESSION_SAVE_EVERY_REQUEST = False ##
+
+# Serializer - JSON Standard
+# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer' ##
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
