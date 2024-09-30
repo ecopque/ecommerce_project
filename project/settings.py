@@ -157,7 +157,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://linktr.ee/edsoncopque
 
 # ------------------------------------------------------------------
-
 #1: Esta linha importa o módulo constants do pacote django.contrib.messages. Ele contém as constantes usadas para definir as tags de nível de mensagem, como DEBUG, ERROR, INFO, SUCCESS, etc. Essas constantes são utilizadas para associar mensagens a classes CSS no frontend. Este módulo é parte da biblioteca de mensagens do Django.
 #2: Adiciona o pacote debug_toolbar às aplicações instaladas do Django. O Django Debug Toolbar é uma ferramenta usada em desenvolvimento para inspecionar e debugar a execução de código no Django, mostrando informações como consultas SQL executadas, tempos de resposta, entre outros detalhes. Essa linha comunica que o Django está usando esse pacote como parte de suas INSTALLED_APPS.
 #3: Adiciona o middleware do debug_toolbar, que intercepta as requisições e permite que o Debug Toolbar funcione, exibindo uma barra de ferramentas de depuração no navegador durante o desenvolvimento.
