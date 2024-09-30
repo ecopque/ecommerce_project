@@ -152,5 +152,6 @@ GitHub.sublime-settings
 gunicorn.env
 nginx-http.env
 nginx-https.env
+/files_lesson
 
 # https://linktr.ee/edsoncopque
