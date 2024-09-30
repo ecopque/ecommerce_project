@@ -61,7 +61,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], ##
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -144,6 +144,10 @@ SESSION_SAVE_EVERY_REQUEST = False ##
 
 # Serializer - JSON Standard
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer' ##
+
+INTERNAL_IPS = [ ##
+    '127.0.0.1',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
