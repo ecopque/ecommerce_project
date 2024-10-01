@@ -1,4 +1,4 @@
-# FILE: product/models.py
+# FILE: /product/models.py
 
 from django.db import models
 
