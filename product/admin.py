@@ -2,7 +2,8 @@
 
 from django.contrib import admin
 # IMPORT⬇: /product/models.py
-from .models import Product
+from product.models import Product
 
+admin.site.register(Product) ##
 
 # https://linktr.ee/edsoncopque
