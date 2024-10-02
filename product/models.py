@@ -1,6 +1,10 @@
 # FILE: /product/models.py
 
 from django.db import models
+from PIL import Image ##
+import os
+from django.conf import settings ##
+
 
 class Product(models.Model): ##
     name = models.CharField(max_length=255)
