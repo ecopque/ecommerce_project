@@ -16,8 +16,20 @@ class Product(models.Model): ##
         ),
     )
 
+    @staticmethod ##
+    def resize_image(img, new_width=800): ##
+        print(img.name)
+
+    def save(self, *args, **kwargs): ##
+        super().save(*args, **kwargs) ##
+
+        max_image_size = 800
+        if self.image: ##
+            self.resize_image(self.image, max_image_size) ##
+
     def __str__(self):
         return self.name ##
+    
 
 
 # https://linktr.ee/edsoncopque
