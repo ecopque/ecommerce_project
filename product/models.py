@@ -51,7 +51,7 @@ class Product(models.Model): ##
 
 class Variation(models.Model): ##
     product = models.ForeignKey(Product, on_delete=models.CASCADE) ##
-    name = models.CharField(max_length=50, bank=True, null=True) ##
+    name = models.CharField(max_length=50, blank=True, null=True) ##
     price = models.FloatField() ##
     promotional_price = models.FloatField(default=0) ##
     stock = models.PositiveBigIntegerField(default=1) ##
