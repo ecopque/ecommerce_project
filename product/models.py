@@ -50,6 +50,10 @@ class Product(models.Model): ##
         return self.name ##
 
 class Variation(models.Model): ##
+    class Meta:
+        verbose_name = 'Variation'
+        verbose_name_plural = 'Variations'
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE) ##
     name = models.CharField(max_length=50, blank=True, null=True) ##
     price = models.FloatField() ##
