@@ -22,7 +22,8 @@ class Product(models.Model): ##
 
     @staticmethod ##
     def resize_image(img, new_width=800): ##
-        print(img.name)
+        img_full_path = os.path.join(settings.MEDIA_ROOT, img.name) ##
+        print(img_full_path)
 
     def save(self, *args, **kwargs): ##
         super().save(*args, **kwargs) ##
