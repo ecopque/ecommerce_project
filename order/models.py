@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#URL⬇: http://127.0.0.1:8000/admin/order/order/add/
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) ##
     total = models.FloatField() ##
@@ -20,6 +21,7 @@ class Order(models.Model):
     def __str__(self):
         return f'Order number {self.pk}.' ##
 
+#URL⬇: http://127.0.0.1:8000/admin/order/orderitem/add/
 class OrderItem(models.Model): ##
     order = models.ForeignKey(Order, on_delete=models.CASCADE) ##
     product_name = models.CharField(max_length=255) ##
