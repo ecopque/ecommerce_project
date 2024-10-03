@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar', #2:
     'product', #14:
-    'order', ##
+    'order', #15:
 ]
 
 MIDDLEWARE = [
@@ -111,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' # 'pt-BR' ##
+LANGUAGE_CODE = 'en-us' # 'pt-BR'
 
-TIME_ZONE = 'UTC' # 'America/Sao_paulo' ##
+TIME_ZONE = 'UTC' # 'America/Sao_paulo'
 
 USE_I18N = True
 
@@ -155,7 +155,7 @@ INTERNAL_IPS = [ #13:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+#15: Estes são nomes dos aplicativos, que foi adicionado à lista INSTALLED_APPS. Isso significa que o Django reconhecerá e ativará estes apps, permitindo que suas funcionalidades (modelos, views, etc.) sejam integradas ao projeto.
 # ------------------------------------------------------------------
 #14: Adiciona o aplicativo product à lista INSTALLED_APPS no arquivo settings.py, o que indica que este aplicativo deve ser carregado e utilizado pelo projeto Django.
 # ------------------------------------------------------------------
