@@ -17,5 +17,14 @@ class Order(models.Model):
         )
     ) ##
 
+class OrderItem(models.Model): ##
+    order = models.ForeignKey(Order, on_delete=models.CASCADE) ##
+    product_name = models.CharField(max_length=255) ##
+    product_id = models.PositiveBigIntegerField() ##
+    variation = models.CharField(max_length=255) ##
+    variation_id = models.PositiveBigIntegerField() ##
+    price = models.FloatField()
+    price_promotional = models.FloatField(default=0) ##
+
 
 # https://linktr.ee/edsoncopque
