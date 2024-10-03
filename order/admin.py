@@ -12,6 +12,7 @@ admin.site.register(Order, OrderAdmin) #5:
 admin.site.register(OrderItem) #6:
 
 
+# ------------------------------------------------------------------
 #1: Esta classe define um TabularInline, que permite a edição de múltiplos objetos OrderItem diretamente na página de administração de um Order. Isso cria uma interface mais prática para gerenciar itens de pedidos no Django Admin.
 #2: Especifica que o modelo que será gerido por este TabularInline é o OrderItem. Ele vincula o comportamento do inline ao modelo correto.
 #3: Esta classe personaliza a administração do modelo Order no Django Admin. Através da adição de inlines, ela possibilita a edição de itens do pedido na mesma página de administração do pedido.
