@@ -155,6 +155,8 @@ INTERNAL_IPS = [ #13:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# ------------------------------------------------------------------
 #15: Estes são nomes dos aplicativos, que foi adicionado à lista INSTALLED_APPS. Isso significa que o Django reconhecerá e ativará estes apps, permitindo que suas funcionalidades (modelos, views, etc.) sejam integradas ao projeto.
 # ------------------------------------------------------------------
 #14: Adiciona o aplicativo product à lista INSTALLED_APPS no arquivo settings.py, o que indica que este aplicativo deve ser carregado e utilizado pelo projeto Django.
