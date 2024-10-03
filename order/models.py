@@ -17,6 +17,9 @@ class Order(models.Model):
         )
     ) ##
 
+    def __str__(self):
+        return f'Order number {self.pk}.' ##
+
 class OrderItem(models.Model): ##
     order = models.ForeignKey(Order, on_delete=models.CASCADE) ##
     product_name = models.CharField(max_length=255) ##
@@ -25,6 +28,15 @@ class OrderItem(models.Model): ##
     variation_id = models.PositiveBigIntegerField() ##
     price = models.FloatField()
     price_promotional = models.FloatField(default=0) ##
+    quantity = models.PositiveBigIntegerField() ##
+    image = models.CharField(max_length=2000) ##
+
+    def __str__(self):
+        return f'Order Item {self.order}.' ##
+    
+    class Meta:
+        verbose_name = 'Order item'
+        verbose_name_plural = 'Order items'
 
 
 # https://linktr.ee/edsoncopque
