@@ -154,8 +154,8 @@ INTERNAL_IPS = [ #13:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# https://linktr.ee/edsoncopque
 
+# ------------------------------------------------------------------
 #14: Adiciona o aplicativo product à lista INSTALLED_APPS no arquivo settings.py, o que indica que este aplicativo deve ser carregado e utilizado pelo projeto Django.
 # ------------------------------------------------------------------
 #1: Esta linha importa o módulo constants do pacote django.contrib.messages. Ele contém as constantes usadas para definir as tags de nível de mensagem, como DEBUG, ERROR, INFO, SUCCESS, etc. Essas constantes são utilizadas para associar mensagens a classes CSS no frontend. Este módulo é parte da biblioteca de mensagens do Django.
@@ -171,3 +171,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #11: Indica que as sessões não serão salvas a cada requisição. Se fosse True, o Django salvaria a sessão em cada requisição, mesmo que ela não tenha sido modificada, o que poderia gerar overhead desnecessário.
 #12: Esta linha comentada especifica o tipo de serializador que seria usado para armazenar as sessões. O PickleSerializer serializa os dados da sessão usando o Python pickle. Se fosse ativada, essa configuração indicaria que as sessões seriam armazenadas de forma serializada (pickle), mas foi desativada por segurança e desempenho.
 #13: Define uma lista de IPs que são considerados internos, o que normalmente se refere ao ambiente de desenvolvimento local. O IP 127.0.0.1 é o endereço de loopback (localhost).
+
+# https://linktr.ee/edsoncopque

@@ -16,9 +16,9 @@ class ProductAdmin(admin.ModelAdmin): #4:
 admin.site.register(Product, ProductAdmin) #6:
 admin.site.register(Variation) #7:
 
-string = 'That\'s a nice idea'
-# https://linktr.ee/edsoncopque
 
+string = 'That\'s a nice idea'
+# ------------------------------------------------------------------
 #1: Define uma classe de configuração do Django admin para exibir variações dentro da página de edição de um produto. TabularInline permite editar múltiplas variações diretamente na página do produto.
 #2: Especifica que o modelo Variation será exibido dentro do admin como parte de um produto.
 #3: Define que, ao editar um produto, três linhas extras para variações serão exibidas por padrão no Django Admin.
@@ -26,3 +26,5 @@ string = 'That\'s a nice idea'
 #5: Adiciona a configuração VariationInLine à página de administração do produto, permitindo editar variações diretamente na página de um produto.
 #6: Registra o modelo Product no Django Admin utilizando a classe ProductAdmin para customizar a interface de administração.
 #7: Registra o modelo Variation no Django Admin para que possa ser gerenciado separadamente se necessário.
+
+# https://linktr.ee/edsoncopque

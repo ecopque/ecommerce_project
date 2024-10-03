@@ -62,9 +62,9 @@ class Variation(models.Model): #17:
 
     def __str__(self):
         return self.name or self.product.name #23:
-    
-# https://linktr.ee/edsoncopque
 
+
+# ------------------------------------------------------------------
 #1: Este código importa a biblioteca PIL (Python Imaging Library), especificamente o módulo Image. Este módulo é utilizado para manipulação de imagens, como abrir, redimensionar e salvar imagens. Ele será utilizado na função resize_image para redimensionar a imagem do produto.
 #2: Importa o módulo settings de Django, que contém todas as configurações do projeto. Será usado para acessar o caminho das mídias (imagens) através da variável MEDIA_ROOT, localizada no arquivo settings.py.
 #3: Define a classe Product, que herda de models.Model. Isso cria um modelo de banco de dados que representa os produtos na aplicação. Cada instância dessa classe será um produto.
@@ -88,3 +88,5 @@ class Variation(models.Model): #17:
 #21: Define o campo promotional_price como um preço promocional da variação, com valor padrão de 0.
 #22: Define o campo stock, que armazena a quantidade de variações em estoque. Ele é um número inteiro positivo, com valor padrão de 1.
 #23: No método __str__ da classe Variation, retorna o nome da variação (se existir) ou o nome do produto ao qual a variação pertence.
+
+# https://linktr.ee/edsoncopque
