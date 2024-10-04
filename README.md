@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the **Ecommerce Project**. This project is currently under construction, and it aims to deliver a complete e-commerce solution built with Django. The development process is ongoing, and updates will be made daily to improve and expand the functionalities.
+Welcome to the **E-commerce Project**. This project is currently under construction, and it aims to deliver a complete e-commerce solution built with Django. The development process is ongoing, and updates will be made daily to improve and expand the functionalities.
 
 ## Current Status
 
