@@ -4,9 +4,9 @@ import re
 
 def validator_cpf(cpf):
    cpf_user = str(cpf)
-   cpf_user = re.sub(r'[^0-9]', '') ##
+   cpf_user = re.sub(r'[^0-9]', '', cpf_user) ##
 
-   if not cpf or len(cpf_user) != 11: ##
+   if not cpf_user or len(cpf_user) != 11: ##
       return False
    
    new_cpf = cpf_user[:-2] ##
@@ -16,6 +16,7 @@ def validator_cpf(cpf):
    for index in range(19):
       if index > 8: ##
          index -= 9 ##
+      
       total += int(new_cpf[index]) * reverse ##
 
       reverse -= 1 ##

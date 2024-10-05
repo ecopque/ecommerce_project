@@ -2,6 +2,9 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
+import re
+from utils.validator_cpf import validator_cpf
 
 #URL⬇: http://127.0.0.1:8000/admin/client_profile/client_profile/add/
 class Client_Profile(models.Model): ##
@@ -55,13 +58,21 @@ class Client_Profile(models.Model): ##
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
     
-    def clean(self):
-        pass
+    def clean(self): ##
+        error_messages = {} ##
+
+        if not validator_cpf(self.cpf): ##
+            error_messages['cpf'] = 'Enter a valid CPF.'
+
+        if re.search(r'[^0-9]', self.cep) or len(self.cep) < 8: ##
+            error_messages['cep'] = 'Enter a valid CEP.'
+
+        if error_messages: ##
+            raise ValidationError(error_messages) ##
 
     class Meta:
         verbose_name = 'Client Profile'
         verbose_name_plural = 'Client Profiles'
-
 
 
 # https://linktr.ee/edsoncopque
