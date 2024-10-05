@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar', #2:
     'product', #14:
     'order', #15:
+    'client_profile', ##
 ]
 
 MIDDLEWARE = [

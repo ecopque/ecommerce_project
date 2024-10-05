@@ -1,3 +1,4 @@
 from django.contrib import admin
+from client_profile.models import Client_Profile
 
-# Register your models here.
+admin.site.register(Client_Profile) ##
