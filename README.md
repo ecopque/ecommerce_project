@@ -1,4 +1,4 @@
-![LastCommit-Ecommerce_Project](https://img.shields.io/github/last-commit/ecopque/ecommerce_project?logo=&logoColor=white&label=/ecommerce_project&color=9bf12&&style=flat)&nbsp;
+![LastCommit-Ecommerce_Project](https://img.shields.io/github/last-commit/ecopque/ecommerce_project?logo=&logoColor=white&label=/ecommerce_project&color=9bf12&&style=flat)
 # E-commerce Project
 
 ## Overview
