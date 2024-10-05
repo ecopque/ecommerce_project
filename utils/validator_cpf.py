@@ -9,14 +9,14 @@ def validator_cpf(cpf):
    if not cpf or len(cpf_user) != 11: ##
       return False
    
-   new_cpf = cpf_user[:-2] ##
-   reverse = 10
+   new_cpf = cpf_user[:-2] #1: ##
+   reverse = 10 #2:
    total = 0
 
    for index in range(19):
-      if index > 8:
-         index -= 9 ##
-      total += int(new_cpf[index]) * reverse ##
+      if index > 8: #3:
+         index -= 9 #4: ##
+      total += int(new_cpf[index]) * reverse #5: ##
 
       reverse -= 1 ##
       if reverse < 2:
@@ -34,8 +34,14 @@ def validator_cpf(cpf):
    else:
       return False
 
-        
 
+
+#1: Elimina os dois últimos dígitos do CPF;
+#2: Contador reverso;
+#3: Primeiro índice vai de 0 a 9;
+#4: São os primeiros 9 dígitos do cpf;
+
+# ------------------------------------------------------------------
 # # URL: https://github.com/ecopque/cpf_validator
 # entrada = input('Digite um CPF: ')
 # cpf_usuario = re.sub(r'[^0-9]', '', entrada) # peneira
