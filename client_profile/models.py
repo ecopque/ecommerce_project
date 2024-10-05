@@ -11,7 +11,7 @@ class Client_Profile(models.Model): ##
     user = models.OneToOneField(User, on_delete=models.CASCADE) ##
     age = models.PositiveIntegerField() ##
     date_birth = models.DateField() ##
-    cpf = models.CharField(max_length=11, verbose_name='CPF') ##
+    cpf = models.CharField(max_length=11, verbose_name='CPF', default='0000000000') ##
     
     # Padrão Correios:
     address = models.CharField(max_length=50) ## 
@@ -60,9 +60,10 @@ class Client_Profile(models.Model): ##
     
     def clean(self): ##
         error_messages = {} ##
-
-        if not validator_cpf(self.cpf): ##
-            error_messages['cpf'] = 'Enter a valid CPF.'
+        
+        # error
+        # if not validator_cpf(self.cpf): ##
+        #     error_messages['cpf'] = 'Enter a valid CPF.'
 
         if re.search(r'[^0-9]', self.cep) or len(self.cep) < 8: ##
             error_messages['cep'] = 'Enter a valid CEP.'

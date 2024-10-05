@@ -1,5 +1,5 @@
 # FILE: /utils/validator_cpf.py
-
+# 22:03
 import re
 
 def validator_cpf(cpf):
@@ -17,6 +17,7 @@ def validator_cpf(cpf):
       if index > 8: ##
          index -= 9 ##
       
+      #???
       total += int(new_cpf[index]) * reverse ##
 
       reverse -= 1 ##
