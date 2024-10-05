@@ -1,2 +1,0 @@
-# FILE: /utils/validatorcpf.py
-
