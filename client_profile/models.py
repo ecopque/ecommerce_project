@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Client_Profile(models.Model): ##
-    user = models.OneToOneField(User, on_delete=models.CASCATE) ##
+    user = models.OneToOneField(User, on_delete=models.CASCADE) ##
     age = models.PositiveIntegerField() ##
     date_birth = models.DateField() ##
     cpf = models.CharField(max_length=11) ##
