@@ -76,6 +76,7 @@ class Client_Profile(models.Model):
         verbose_name_plural = 'Client Profiles'
 
 
+# ------------------------------------------------------------------
 #1: Quando você usa o Django Admin para adicionar ou editar instâncias do seu modelo, você verá os valores legíveis (neste caso, "Acre" e "Alagoas"). Isso é fornecido pela tupla que você definiu, onde o primeiro elemento (ex: 'AC') é o valor que será armazenado no banco de dados e o segundo elemento (ex: 'Acre') é o texto que será exibido na interface. O Django armazenará o valor da primeira parte da tupla (ou seja, 'AC' para Acre e 'AL' para Alagoas) no banco de dados. Portanto, na tabela correspondente ao modelo Client_Profile, você verá os códigos de estado ('AC', 'AL', etc.) armazenados no campo state.
 #2: O método clean é chamado automaticamente pelo Django quando o objeto está sendo validado. Serve para realizar validações personalizadas, além das já feitas pelos campos padrão. Indica o início do método e a criação do dicionário error_messages, que armazenará quaisquer mensagens de erro relacionadas à validação do CPF, CEP ou outros campos.
 #3: Aqui, o código valida o campo cep. O padrão re.search(r'[^0-9]', self.cep) verifica se há algum caractere que não seja um número no CEP, enquanto len(self.cep) < 8 assegura que o CEP tenha o comprimento correto (8 dígitos). Se qualquer uma dessas condições for verdadeira, uma mensagem de erro é adicionada a error_messages. O ## marca a finalização da expressão de validação.
