@@ -4,6 +4,7 @@ from django.db import models
 from PIL import Image #1:
 import os
 from django.conf import settings #2:
+from django.utils.text import slugify ##
 
 
 class Product(models.Model): #3:
@@ -11,7 +12,7 @@ class Product(models.Model): #3:
     short_description = models.TextField(max_length=255)
     long_description = models.TextField()
     image = models.ImageField(upload_to='product_images/%Y/%m', blank=True, null=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True) ##
     marketing_price = models.FloatField()
     price_promotional_marketing = models.FloatField(default=0)
     type = models.CharField(default='V', max_length=1, choices=(
@@ -40,6 +41,9 @@ class Product(models.Model): #3:
         print('Image has been resized.')
 
     def save(self, *args, **kwargs): #12:
+        if not self.slug: ##
+            slug2 = f'{slugify(self.name)}-{self.pk} ' ##
+            self.slug = slug2 ##
         super().save(*args, **kwargs) #13:
 
         max_image_size = 800
