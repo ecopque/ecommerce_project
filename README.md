@@ -31,6 +31,9 @@ This project is still in its early stages, and many features are yet to be imple
 4. Order and checkout system
 5. Payment integration
 
+## Note
+To validate the CPF (Cadastro de Pessoa Física), i used this program from my repository: https://github.com/ecopque/cpf_validator
+
 ## How to Contribute
 
 Since the project is still being developed, contributions are welcome once the core structure is established. Stay tuned for future updates on how to contribute.
