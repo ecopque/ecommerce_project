@@ -3,11 +3,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#URL⬇: http://127.0.0.1:8000/admin/client_profile/client_profile/add/
 class Client_Profile(models.Model): ##
     user = models.OneToOneField(User, on_delete=models.CASCADE) ##
     age = models.PositiveIntegerField() ##
     date_birth = models.DateField() ##
-    cpf = models.CharField(max_length=11) ##
+    cpf = models.CharField(max_length=11, verbose_name='CPF') ##
     
     # Padrão Correios:
     address = models.CharField(max_length=50) ## 
