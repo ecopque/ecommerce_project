@@ -9,9 +9,13 @@ class VariationInLine(admin.TabularInline): #1:
     model = Variation #2:
     extra = 3 #3:
 
-#URL⬇: http://127.0.0.1:8000/admin/product/product/add/
+# URL⬇: http://127.0.0.1:8000/admin/product/product/add/
 class ProductAdmin(admin.ModelAdmin): #4:
     inlines = [VariationInLine] #5:
+
+    # URL⬇: http://127.0.0.1:8000/admin/product/product/
+    # IMPORT⬇: /product/models.py
+    list_display = ['name', 'marketing_price', 'get_formatted_price', 'price_promotional_marketing', 'type'] ##
 
 admin.site.register(Product, ProductAdmin) #6:
 admin.site.register(Variation) #7:

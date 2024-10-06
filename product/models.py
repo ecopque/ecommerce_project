@@ -4,7 +4,7 @@ from django.db import models
 from PIL import Image #1:
 import os
 from django.conf import settings #2:
-from django.utils.text import slugify ##
+from django.utils.text import slugify #24:
 
 
 class Product(models.Model): #3:
@@ -12,7 +12,7 @@ class Product(models.Model): #3:
     short_description = models.TextField(max_length=255)
     long_description = models.TextField()
     image = models.ImageField(upload_to='product_images/%Y/%m', blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True, null=True) ##
+    slug = models.SlugField(unique=True, blank=True, null=True) #25:
     marketing_price = models.FloatField()
     price_promotional_marketing = models.FloatField(default=0)
     type = models.CharField(default='V', max_length=1, choices=(
@@ -20,6 +20,10 @@ class Product(models.Model): #3:
         ('S', 'Simple'),
         ),
     )
+
+    def get_formatted_price(self): #26:
+        return f'R${self.marketing_price:.2f}'.replace('.', ',') #27:
+    get_formatted_price.short_description = 'Preço BR' #28:
 
     @staticmethod #4:
     def resize_image(img, new_width=800): #4:
@@ -41,9 +45,9 @@ class Product(models.Model): #3:
         print('Image has been resized.')
 
     def save(self, *args, **kwargs): #12:
-        if not self.slug: ##
-            slug2 = f'{slugify(self.name)}' ##
-            self.slug = slug2 ##
+        if not self.slug: #29:
+            slug2 = f'{slugify(self.name)}' #30:
+            self.slug = slug2 #31:
         super().save(*args, **kwargs) #13:
 
         max_image_size = 800
@@ -66,8 +70,17 @@ class Variation(models.Model): #17:
 
     def __str__(self):
         return self.name or self.product.name #23:
+    
 
-
+# ------------------------------------------------------------------
+#24: A função slugify converte um texto em um slug, que é uma versão simplificada e segura de uma string para ser usada em URLs. Normalmente, remove caracteres especiais e substitui espaços por hífens, além de transformar todas as letras em minúsculas.
+#25: O campo slug define um slug único para o produto. Um slug é usado para criar URLs amigáveis ao usuário e otimizadas para SEO. Este campo pode ser preenchido automaticamente, mas é opcional (blank=True, null=True).
+#26: Este método formata o preço (marketing_price) para o formato brasileiro de moeda (R$), substituindo o ponto decimal por uma vírgula, o que é uma prática comum no Brasil.
+#27: Aqui, o preço é formatado para duas casas decimais com a string f'R${self.marketing_price:.2f}' e o ponto decimal é substituído por uma vírgula usando o método replace.
+#28: Esta linha define um nome substituto.
+#29: No método save, verifica se o campo slug está vazio (None ou ''). Se estiver, significa que o produto não tem um slug ainda, e ele será gerado na próxima linha.
+#30: Aqui, a função slugify transforma o nome do produto (self.name) em um slug e atribui o resultado à variável slug2.
+#31: A variável slug2, que contém o slug gerado na linha anterior, é atribuída ao campo slug do produto.
 # ------------------------------------------------------------------
 #1: Este código importa a biblioteca PIL (Python Imaging Library), especificamente o módulo Image. Este módulo é utilizado para manipulação de imagens, como abrir, redimensionar e salvar imagens. Ele será utilizado na função resize_image para redimensionar a imagem do produto.
 #2: Importa o módulo settings de Django, que contém todas as configurações do projeto. Será usado para acessar o caminho das mídias (imagens) através da variável MEDIA_ROOT, localizada no arquivo settings.py.
