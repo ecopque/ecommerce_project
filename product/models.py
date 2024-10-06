@@ -42,7 +42,7 @@ class Product(models.Model): #3:
 
     def save(self, *args, **kwargs): #12:
         if not self.slug: ##
-            slug2 = f'{slugify(self.name)}-{self.pk} ' ##
+            slug2 = f'{slugify(self.name)}' ##
             self.slug = slug2 ##
         super().save(*args, **kwargs) #13:
 
