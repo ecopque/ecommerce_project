@@ -6,7 +6,6 @@ import os
 from django.conf import settings #2:
 from django.utils.text import slugify #24:
 
-
 class Product(models.Model): #3:
     name = models.CharField(max_length=255)
     short_description = models.TextField(max_length=255)
