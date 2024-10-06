@@ -4,7 +4,6 @@ from django.contrib import admin
 # IMPORT⬇: /product/models.py
 from product.models import Product, Variation
 
-
 class VariationInLine(admin.TabularInline): #1:
     model = Variation #2:
     extra = 3 #3:
