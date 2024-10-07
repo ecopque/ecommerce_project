@@ -46,4 +46,4 @@ Feel free to reach out if you have any suggestions or questions regarding this p
 - Link: https://linktr.ee/edsoncopque
 - GitHub: [ecopque](https://github.com/ecopque)
 
-Thank you for checking out this project! Stay tuned for daily updates as the Ecommerce Project evolves.
+Thank you for checking out this project! Stay tuned for daily updates as the E-commerce Project evolves.
