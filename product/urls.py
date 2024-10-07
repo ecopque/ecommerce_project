@@ -15,3 +15,6 @@ urlpatterns = [
     path('cart/', views.Cart.as_view(), name='cart'), ##
     path('finish/', views.Finish.as_view(), name='finish'), ##
 ]
+
+
+# https://linktr.ee/edsoncopque

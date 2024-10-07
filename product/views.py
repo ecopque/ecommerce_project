@@ -21,3 +21,6 @@ class Cart(View): ##
 
 class Finish(View): ##
     ...
+
+
+# https://linktr.ee/edsoncopque
