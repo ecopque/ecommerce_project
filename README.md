@@ -33,7 +33,7 @@ This project is still in its early stages, and many features are yet to be imple
 5. Payment integration
 
 ## Note
-To validate the CPF (Cadastro de Pessoa Física), i used these programs from my repositories: https://github.com/ecopque/cpf_generator and https://github.com/ecopque/cpf_validator
+To validate the CPF (Cadastro de Pessoa Física), I will use these programs from my repositories: https://github.com/ecopque/cpf_generator and https://github.com/ecopque/cpf_validator
 
 ## How to Contribute
 
