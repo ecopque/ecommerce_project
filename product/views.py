@@ -15,3 +15,9 @@ class AddToCart(View): ##
 
 class RemoveFromCart(View): ##
     ...
+
+class Cart(View): ##
+    ...
+
+class Finish(View): ##
+    ...
