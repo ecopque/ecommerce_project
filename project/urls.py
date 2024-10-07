@@ -7,9 +7,13 @@ from django.conf.urls.static import static #1:
 
 urlpatterns = [
     # URL⬇: 
-    # IMPORT⬇: 
+    # IMPORT⬇: /product/urls.py
     path('', include('product.urls')), ##
+    # URL⬇: 
+    # IMPORT⬇: /client_profile/urls.py
     path('client_profile/', include('client_profile.urls')), ##
+    # URL⬇: 
+    # IMPORT⬇: /order/urls.py
     path('order/', include('order.urls')), ##
 
     path('admin/', admin.site.urls),
