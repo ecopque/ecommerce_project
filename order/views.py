@@ -12,3 +12,6 @@ class Close_Order(View):
 
 class Details(View):
     ...
+
+
+# https://linktr.ee/edsoncopque
