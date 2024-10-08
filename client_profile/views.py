@@ -1,3 +1,20 @@
-from django.shortcuts import render
+#FILE: /client_profile/views.py
 
-# Create your views here.
+from django.shortcuts import render
+from django.views.generic import ListView
+from django.views import View
+
+class Create(ListView):
+    ...
+
+class Update(View):
+    ...
+
+class Login(View):
+    ...
+
+class Logout(View):
+    ...
+
+
+# https://linktr.ee/edsoncopque
