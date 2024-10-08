@@ -21,7 +21,7 @@ if settings.DEBUG: #3:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)), #5:
     ] + urlpatterns
-    
+
 
 # ------------------------------------------------------------------
 #6: Essa linha define que o URL padrão do projeto será tratado pelo módulo de URLs do aplicativo product. O include indica que todas as URLs do aplicativo product serão inseridas na URL raiz do projeto. Ele delega as requisições à URL raiz ('/') para o arquivo /product/urls.py.
