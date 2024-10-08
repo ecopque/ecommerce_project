@@ -1,5 +1,8 @@
 <!-- # FILE: /templates/partials/_footer.html -->
 
+
+{% load static %}
+
 <footer class="container-fluid bg-primary">
     <div class="container text-light">
         <div class="row">
@@ -17,10 +20,11 @@
     </div>
 </footer>
 
-<script src="assets/bootstrap/js/jquery-3.2.1.slim.min.js"></script>
-<script src="assets/bootstrap/js/popper.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script defer src="assets/font-awesome/js/all.js"></script>
-<script src="assets/custom/js/scripts.js"></script>
+<script src="{% static 'assets/bootstrap/js/jquery-3.2.1.slim.min.js' %}"></script>
+<script src="{% static 'ssets/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script defer src="{% static 'assets/font-awesome/js/all.js' %}"></script>
+<script src="{% static 'assets/custom/js/scripts.js' %}"></script>
+
 
 <!-- # https://linktr.ee/edsoncopque -->
