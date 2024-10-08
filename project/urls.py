@@ -6,15 +6,12 @@ from django.conf import settings
 from django.conf.urls.static import static #1:
 
 urlpatterns = [
-    # URL⬇: 
     # IMPORT⬇: /product/urls.py
-    path('', include('product.urls')), ##
-    # URL⬇: 
+    path('', include('product.urls')), #6:
     # IMPORT⬇: /client_profile/urls.py
-    path('client_profile/', include('client_profile.urls')), ##
-    # URL⬇: 
+    path('client_profile/', include('client_profile.urls')),
     # IMPORT⬇: /order/urls.py
-    path('order/', include('order.urls')), ##
+    path('order/', include('order.urls')),
 
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #2:
@@ -24,8 +21,10 @@ if settings.DEBUG: #3:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)), #5:
     ] + urlpatterns
+    
 
-
+# ------------------------------------------------------------------
+#6: Essa linha define que o URL padrão do projeto será tratado pelo módulo de URLs do aplicativo product. O include indica que todas as URLs do aplicativo product serão inseridas na URL raiz do projeto. Ele delega as requisições à URL raiz ('/') para o arquivo /product/urls.py.
 # ------------------------------------------------------------------
 #1: Importa a função static de django.conf.urls. Ela é usada para servir arquivos de mídia em um ambiente de desenvolvimento.
 #2: Configura o Django para servir arquivos de mídia durante o desenvolvimento. O argumento settings.MEDIA_URL define a URL para acessar os arquivos, e settings.MEDIA_ROOT aponta para o diretório físico onde eles são armazenados. Isso só deve ser usado em desenvolvimento, pois o Django não serve arquivos de mídia em produção.
