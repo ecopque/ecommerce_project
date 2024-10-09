@@ -23,6 +23,10 @@ class Product(models.Model): #3:
     def get_formatted_price(self): #26:
         return f'R${self.marketing_price:.2f}'.replace('.', ',') #27:
     get_formatted_price.short_description = 'Preço BR' #28:
+    
+    def get_formatted_price2(self): ##
+        return f'R${self.price_promotional_marketing:.2f}'.replace('.', ',') ##
+    get_formatted_price2.short_description = 'Preço BR' ##
 
     @staticmethod #4:
     def resize_image(img, new_width=800): #4:
