@@ -1,12 +1,13 @@
 <!-- # FILE: /product/templates/product/list.html -->
 
 {% extends 'base.html' %} <!-- ## -->
+{% load omfilters %} <!-- ## -->
 
 {% block content %} <!-- ## -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card-columns">
-            <!-- # IMPORT⬇: /product/views.py -> /product/models.py-->
+            <!-- # IMPORT⬇: /product/views.py -> /product/models.py -->
             {% for product in products %} <!-- ## -->
             <div class="card">
                 
@@ -28,8 +29,9 @@
                                 {{product.get_formatted_price}} <!-- ## -->
                             </span>
                         {% else %}
+                            <!-- # IMPORT⬇: /product/views.py -> /product/models.py -> /product/templatetags/omfilters.py/ -->
                             <span class="product-price">
-                                {{product.get_formatted_price}} <!-- ## -->
+                                {{product.marketing_price|format_price}} <!-- ## -->
                             </span>
                         {% endif %}
                     </div>
