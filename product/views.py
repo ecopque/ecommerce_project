@@ -26,7 +26,8 @@ class Cart(View):
 
 class Finish(View):
     ...
-    
+
+
 
 # ------------------------------------------------------------------
 #1: Importa a classe ListView de django.views.generic.list. ListView é uma class-based view que renderiza uma lista de objetos. Essa classe é usada para facilitar a exibição de listas no Django.
