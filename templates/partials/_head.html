@@ -1,12 +1,17 @@
 <!-- # FILE: /templates/partials/_head.html -->
 
-{% load static %} <!-- ## -->
+{% load static %} <!-- #1: -->
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}"> <!-- ## -->
-<link rel="stylesheet" href="{% static 'assets/custom/css/style.css' %}"> <!-- ## -->
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}"> <!-- #2: -->
+<link rel="stylesheet" href="{% static 'assets/custom/css/style.css' %}"> <!-- #3: -->
 
+
+<!-- ########################################################### -->
+<!-- #1: Carrega a tag static do Django, que é usada para referenciar arquivos estáticos (CSS, JavaScript, imagens) no template. Lógica: O Django utiliza essa tag para resolver o caminho correto dos arquivos estáticos, facilitando o gerenciamento desses recursos em diferentes ambientes (desenvolvimento e produção). -->
+ <!-- #2: Carrega o arquivo CSS do Bootstrap da pasta de arquivos estáticos. Lógica: Garante que o framework de estilo Bootstrap seja aplicado ao projeto. -->
+<!-- #3: Carrega o arquivo CSS personalizado da pasta de arquivos estáticos. Lógica: Aplica os estilos customizados ao projeto, permitindo a personalização da interface além do Boots -->
 
 <!-- # https://linktr.ee/edsoncopque -->
