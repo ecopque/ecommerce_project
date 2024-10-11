@@ -49,9 +49,9 @@
     </div>
 </div>
 
-<div class="row mt-3"> <!-- ## -->
+<div class="row mt-3"> <!-- #14: -->
     <div class="col">
-        {% include 'partials/_pagination.html' %} <!-- ## -->
+        {% include 'partials/_pagination.html' %} <!-- #15: -->
 
 {% endblock %}
 
@@ -72,5 +72,7 @@ Lógica: A navegação para páginas específicas de produtos é feita através 
 <!--#11: Exibe o preço regular formatado através da função get_formatted_price do modelo Product. Lógica: Aplica a formatação do preço normal antes de exibi-lo. -->
 <!--#12: Aplica o filtro format_price ao campo marketing_price do produto, formatando o valor no template. Módulo requisitado: O filtro format_price é definido no módulo /product/templatetags/omfilters.py, e o filtro, por sua vez, usa a função format_pricevrs de /utils/utils.py. -->
 <!--#13: Cria um botão que direciona o usuário para a página de detalhes do produto, novamente usando o slug como identificador. Lógica: Permite a navegação para a página de cada produto. -->
+<!-- #14: Cria uma linha com espaçamento na parte inferior do layout para agrupar o conteúdo paginado. Lógica: Controla o layout visual da seção de paginação. -->
+ <!-- #:15: Inclui o template _pagination.html que contém o código de navegação da paginação. Módulo requisitado: Requisita o arquivo /templates/partials/_pagination.html. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
