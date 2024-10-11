@@ -1,44 +1,44 @@
 <!-- # FILE: /product/templates/product/list.html -->
 
-{% extends 'base.html' %} <!-- ## -->
-{% load omfilters %} <!-- ## -->
+{% extends 'base.html' %} <!-- #1: -->
+{% load omfilters %} <!-- #2: -->
 
-{% block content %} <!-- ## -->
+{% block content %} <!-- #3: -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card-columns">
             <!-- # IMPORT⬇: /product/views.py -> /product/models.py -->
-            {% for product in products %} <!-- ## -->
+            {% for product in products %} <!-- #4: -->
             <div class="card">
                 
-                {% if product.image %} <!-- ## -->
-                <a href ="{{product.slug}}"> <!-- ## -->
-                    <img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}"> <!-- ## -->
+                {% if product.image %} <!-- #5: -->
+                <a href ="{{product.slug}}"> <!-- #6: -->
+                    <img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}"> <!-- #7: -->
                 </a>
                 {% endif %}
 
                 <div class="card-body">
-                    <h5 class="card-title">{{product.name}}</h5> <!-- ## -->
+                    <h5 class="card-title">{{product.name}}</h5> <!-- #8: -->
                     <p class="card-text">{{product.short_description}}</p>
                     <div class="container product-price-block text-center">
-                        {% if product.price_promotional_marketing %} <!-- ## -->
+                        {% if product.price_promotional_marketing %} <!-- #9: -->
                             <span class="product-price">
-                                {{product.get_formatted_price2}} <!-- ## -->
+                                {{product.get_formatted_price2}} <!-- #10: -->
                             </span>
                             <span class="product-old-price text-muted">
-                                {{product.get_formatted_price}} <!-- ## -->
+                                {{product.get_formatted_price}} <!-- #11: -->
                             </span>
                         {% else %}
                             <!-- # IMPORT⬇: /product/views.py -> /product/models.py -> /product/templatetags/omfilters.py/ -->
                             <span class="product-price">
-                                {{product.marketing_price|format_price}} <!-- ## -->
+                                {{product.marketing_price|format_price}} <!-- #12: -->
                             </span>
                         {% endif %}
                     </div>
                 </div>
 
                 <div class="card-footer bg-transparent border-top-light-custom text-center">
-                    <a href="{{product.slug}}" class="btn btn-primary btn-sm m-1 btn-block"> <!-- ## -->
+                    <a href="{{product.slug}}" class="btn btn-primary btn-sm m-1 btn-block"> <!-- #13: -->
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Buy
                     </a>
@@ -55,5 +55,22 @@
 
 {% endblock %}
 
+
+<!-- ########################################################### -->
+<!--#1: O template list.html está estendendo um template base chamado base.html.
+Lógica: Isso permite reutilizar a estrutura do template base, mantendo consistência no layout das páginas. -->
+<!--#2: Carrega o arquivo de templatetags omfilters para utilizar filtros customizados no template. Módulo requisitado: O módulo /product/templatetags/omfilters.py. -->
+<!--#3: Define o bloco de conteúdo dentro do template, onde será inserido o conteúdo específico da página. Lógica: Delimita o local onde o conteúdo de list.html será inserido dentro do layout geral definido em base.html. -->
+<!--#4: Inicia um loop para iterar sobre a lista de produtos (definida como products na view ProductList) no template. Lógica: Exibe cada produto da lista no HTML, gerando um bloco de código repetido para cada produto. -->
+<!--#5: Verifica se o produto possui uma imagem associada. Se sim, renderiza o bloco de código a seguir. Lógica: Evita exibir imagens quebradas no frontend, garantindo que apenas produtos com imagens tenham essa parte exibida. -->
+<!--#6: Cria um link para a página de detalhes do produto usando o slug como identificador.
+Lógica: A navegação para páginas específicas de produtos é feita através de URLs baseadas no campo slug. -->
+<!--#7: Exibe a imagem do produto, usando a URL da imagem armazenada e o nome do produto como descrição alternativa (alt). Lógica: Carrega dinamicamente a imagem do produto e aplica a descrição acessível. -->
+<!--#8: Exibe o nome do produto em um cabeçalho de nível 5 dentro do card. Lógica: Mostra o nome do produto de forma destacada no layout. -->
+<!--#9: Verifica se o produto tem um preço promocional. Se existir, exibe a seção de preços promocionais. Lógica: Controla a exibição de preços normais e promocionais. -->
+<!--#10: Exibe o preço promocional formatado através da função get_formatted_price2 do modelo Product. Lógica: Aplica a formatação do preço promocional antes de exibi-lo no template. -->
+<!--#11: Exibe o preço regular formatado através da função get_formatted_price do modelo Product. Lógica: Aplica a formatação do preço normal antes de exibi-lo. -->
+<!--#12: Aplica o filtro format_price ao campo marketing_price do produto, formatando o valor no template. Módulo requisitado: O filtro format_price é definido no módulo /product/templatetags/omfilters.py, e o filtro, por sua vez, usa a função format_pricevrs de /utils/utils.py. -->
+<!--#13: Cria um botão que direciona o usuário para a página de detalhes do produto, novamente usando o slug como identificador. Lógica: Permite a navegação para a página de cada produto. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
