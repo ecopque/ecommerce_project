@@ -26,9 +26,9 @@ class Product(models.Model): #3:
         # return utils.format_pricevrs(self.marketing_price) #32:
     get_formatted_price.short_description = 'Preço BR' #28:
     
-    def get_formatted_price2(self): ##
-        return f'${self.price_promotional_marketing:.2f}'.replace('.', ',') ##
-    get_formatted_price2.short_description = 'Preço BR' ##
+    def get_formatted_price2(self): #33:
+        return f'${self.price_promotional_marketing:.2f}'.replace('.', ',') #34:
+    get_formatted_price2.short_description = 'Preço BR' #35:
 
     @staticmethod #4:
     def resize_image(img, new_width=800): #4:
@@ -76,8 +76,12 @@ class Variation(models.Model): #17:
     def __str__(self):
         return self.name or self.product.name #23:
     
-
+    
+# ------------------------------------------------------------------
 #32: Só um exemplo de como poderíamos utilizar o novo recurso que criei de 'utils';
+#33: Função do modelo Product que retorna o preço promocional formatado. Lógica: Usa formatação para exibir o preço promocional em um formato específico, substituindo o ponto decimal por vírgula.
+#34: Retorna o preço promocional formatado como string com 2 casas decimais, substituindo o ponto por vírgula.
+#35: Define uma descrição curta para a função get_formatted_price2 no admin do Django. Lógica: Serve para identificar a função de maneira amigável na interface de administração do Django.
 # ------------------------------------------------------------------
 #24: A função slugify converte um texto em um slug, que é uma versão simplificada e segura de uma string para ser usada em URLs. Normalmente, remove caracteres especiais e substitui espaços por hífens, além de transformar todas as letras em minúsculas.
 #25: O campo slug define um slug único para o produto. Um slug é usado para criar URLs amigáveis ao usuário e otimizadas para SEO. Este campo pode ser preenchido automaticamente, mas é opcional (blank=True, null=True).

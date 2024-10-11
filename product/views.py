@@ -28,7 +28,6 @@ class Finish(View):
     ...
 
 
-
 # ------------------------------------------------------------------
 #1: Importa a classe ListView de django.views.generic.list. ListView é uma class-based view que renderiza uma lista de objetos. Essa classe é usada para facilitar a exibição de listas no Django.
 #2: Importa a classe base View de django.views. View é a classe mais básica para todas as class-based views no Django.
