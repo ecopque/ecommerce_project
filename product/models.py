@@ -23,7 +23,7 @@ class Product(models.Model): #3:
 
     def get_formatted_price(self): #26:
         return f'R${self.marketing_price:.2f}'.replace('.', ',') #27:
-        # return utils.format_pricevrs(self.marketing_price) #31:
+        # return utils.format_pricevrs(self.marketing_price) #32:
     get_formatted_price.short_description = 'Preço BR' #28:
     
     def get_formatted_price2(self): ##
@@ -77,8 +77,7 @@ class Variation(models.Model): #17:
         return self.name or self.product.name #23:
     
 
-#31: Só um exemplo de como poderíamos utilizar o novo recurso que criei de 'utils';
-
+#32: Só um exemplo de como poderíamos utilizar o novo recurso que criei de 'utils';
 # ------------------------------------------------------------------
 #24: A função slugify converte um texto em um slug, que é uma versão simplificada e segura de uma string para ser usada em URLs. Normalmente, remove caracteres especiais e substitui espaços por hífens, além de transformar todas as letras em minúsculas.
 #25: O campo slug define um slug único para o produto. Um slug é usado para criar URLs amigáveis ao usuário e otimizadas para SEO. Este campo pode ser preenchido automaticamente, mas é opcional (blank=True, null=True).
