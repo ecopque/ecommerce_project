@@ -4,22 +4,27 @@
 <html lang="en">
 
 <head>
-    {% include 'partials/_head.html' %} <!-- ## -->
+    {% include 'partials/_head.html' %} <!-- #1: -->
 
-    <title>{% block title %}{% endblock %}BASE.HTML: Hello, world!</title> <!-- ## -->
+    <title>{% block title %}{% endblock %}BASE.HTML: Hello, world!</title> <!-- #2: -->
 </head>
 
 <body>
-    {% include 'partials/_nav.html' %} <!-- ## -->
+    {% include 'partials/_nav.html' %} <!-- -->
 
     <main class="container mt-4 mb-4">
-        {% block content %}{% endblock %} <!-- ## -->
+        {% block content %}{% endblock %} <!-- #3: -->
     </main>
 
-{% include 'partials/_footer.html' %} <!-- ## -->
+{% include 'partials/_footer.html' %} <!-- -->
 </body>
 
 </html>
 
+
+<!-- ########################################################### -->
+<!-- #1: Inclui o cabeçalho HTML que contém as meta tags e links de estilos. Módulo requisitado: Requisita o arquivo /templates/partials/_head.html. -->
+<!-- #2: Delimita o bloco onde o título da página será inserido. No caso, o título padrão é "Hello, world!". Lógica: Permite personalizar o título da página no template filho que estende base.html. -->
+<!-- #3: Delimita o bloco onde o conteúdo específico de cada página será inserido. Lógica: Permite que os templates filhos definam o conteúdo de cada página dentro da estrutura de base.html. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
