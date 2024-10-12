@@ -16,7 +16,7 @@ class ProductList(ListView): #3:
 
 class ProductDetail(DetailView): ##
     model = models.Product
-    template_name = 'product/detail'
+    template_name = 'product/detail.html'
     context_object_name = 'product'
 
     #IMPORT⬇: /product/urls.py
