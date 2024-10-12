@@ -4,16 +4,23 @@ from django.shortcuts import render
 from django.views.generic.list import ListView #1:
 from django.views import View #2:
 from . import models
+from django.views.generic.detail import DetailView ##
 
-# IMPORT⬇: /product/models.py
 class ProductList(ListView): #3:
+    # IMPORT⬇: /product/models.py
     model = models.Product #4:
+
     template_name = 'product/list.html' #5:
     context_object_name = 'products' #6:
     paginate_by = 3 #7:
 
-class ProductDetail(View):
-    ...
+class ProductDetail(DetailView): ##
+    model = models.Product
+    template_name = 'product/detail'
+    context_object_name = 'product'
+
+    #IMPORT⬇: /product/urls.py
+    slug_url_kwarg = 'slug' ##
 
 class AddToCart(View):
     ...
