@@ -8,9 +8,13 @@
         <div class="row">
             <div class="col-lg">
                 <div class="row no-gutters">
+                    
                     <div class="col-lg-12">
-                        <img class="img-fluid" src="imgs/keyboard_robot_bw_clone_lego_27558_1280x720.jpg">
+                        {% if product.image %}
+                            <img class="img-fluid" src="{{product.image.url}}"> <!-- ## -->
+                        {% endif %}
                     </div>
+                    
                 </div>
             </div>
             <div class="col-lg">
