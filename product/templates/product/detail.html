@@ -19,9 +19,9 @@
             </div>
             <div class="col-lg">
                 <div class="mt-4 mt-lg-0">
-                    <h1 class="h2">Hello, world!</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling
-                        extra attention to featured content or information.</p>
+                    <!-- # IMPORT⬇: /product/views.py -> /product/models.py -->
+                    <h1 class="h2">{{product.name}}</h1>
+                    <p class="lead">{{product.short_description|linebreaks}}</p> <!-- ## -->
                     <p class="lead">
                         <span id="variation-preco" class="lead product-price">R$29,90</span>
                         <span id="variation-preco-promocional"
@@ -58,79 +58,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="mt-5 mb-5">
-                    <h2 class="text-center">Product tal tal tal</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non diam lorem. Curabitur
-                        maximus
-                        magna non sem eleifend mollis. Nunc dapibus consectetur risus ut cursus. Cras facilisis
-                        eros
-                        quis vestibulum convallis. Etiam orci arcu, eleifend eu felis eu, aliquam sagittis sem.
-                        Donec eu
-                        aliquam ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce
-                        condimentum
-                        turpis ac elit lobortis, eu venenatis mauris ultricies. Integer orci diam, viverra sed
-                        scelerisque sit amet, posuere id elit. Nam metus risus, efficitur ut purus quis,
-                        accumsan
-                        cursus
-                        eros. Aenean sed pretium tortor, vitae vestibulum leo. Donec malesuada risus ac mauris
-                        pulvinar
-                        volutpat. Mauris nec pharetra sapien.</p>
-
-                    <p>Aenean facilisis lorem in arcu egestas rutrum. Fusce molestie lacinia dignissim. Nunc
-                        ultrices
-                        suscipit metus, eget semper est condimentum vitae. Donec vitae dui dui. Suspendisse
-                        elementum
-                        dolor quis nunc cursus, quis fringilla sem consectetur. Nullam sodales eros eu ornare
-                        laoreet.
-                        Donec in enim tempor, tincidunt neque ac, interdum diam. Suspendisse potenti. Vestibulum
-                        mi
-                        dolor, tristique quis lorem sit amet, vestibulum pretium ligula. Etiam sollicitudin quis
-                        risus
-                        ut ullamcorper.</p>
-
-                    <p>Proin congue tincidunt dolor, non efficitur orci eleifend vel. Nam quis efficitur erat.
-                        Proin
-                        quis tellus ac nisl malesuada sagittis eget id turpis. In sit amet blandit est. Nulla
-                        eget
-                        lacus
-                        eu urna interdum pretium. Nam tincidunt mauris non felis accumsan lacinia. Maecenas ac
-                        nunc
-                        erat. Phasellus pulvinar ultricies risus ut rhoncus. Vestibulum finibus, arcu nec
-                        vehicula
-                        volutpat, nisi libero lacinia libero, rhoncus aliquam urna elit vitae ante. Duis eget
-                        odio
-                        quis
-                        lacus consequat efficitur nec eu arcu.</p>
-
-                    <p>Maecenas commodo nunc nec eros bibendum maximus. Sed sit amet metus in ipsum euismod
-                        malesuada
-                        at a turpis. Nam ac dictum justo, ac posuere neque. Vestibulum vehicula tellus ut nunc
-                        fermentum, vel euismod nisi mattis. Maecenas elementum accumsan porta. Aliquam sed quam
-                        sit
-                        amet
-                        eros suscipit dapibus vitae eget nisl. Praesent eget dictum justo, at laoreet nulla.
-                        Integer
-                        lacinia elit enim, et vulputate quam accumsan id. Pellentesque ac purus in est suscipit
-                        ornare.
-                        Integer eu est vulputate, facilisis ex in, gravida lorem.</p>
-
-                    <p>Cras magna enim, ultricies eget dolor et, tempus lacinia urna. Nunc egestas nunc sed
-                        condimentum
-                        malesuada. Pellentesque sit amet dictum nisl, a lacinia metus. Quisque venenatis purus
-                        sed
-                        lorem
-                        varius, posuere scelerisque dolor venenatis. Duis tempus orci eu arcu faucibus, et
-                        lobortis
-                        dolor sodales. Aliquam quis volutpat erat, varius faucibus erat. Morbi sodales efficitur
-                        massa
-                        id porttitor. Cras at rhoncus leo, eu tincidunt libero. Donec lobortis consectetur
-                        sodales.
-                        Nullam at leo augue. Maecenas vel venenatis quam, eget pellentesque orci. Integer quis
-                        lacus
-                        ac
-                        elit aliquam aliquam a et diam. In magna erat, porta vel eleifend vitae, luctus a diam.
-                        Maecenas
-                        vel est at sem semper placerat. Nam faucibus tincidunt libero.</p>
+                    <h2 class="text-center">{{product.name}}</h2>
+                    {{product.long_description}}
+                       
                 </div>
             </div>
         </div>
