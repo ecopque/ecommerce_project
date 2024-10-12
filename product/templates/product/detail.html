@@ -59,7 +59,7 @@
             <div class="col-lg-12">
                 <div class="mt-5 mb-5">
                     <h2 class="text-center">{{product.name}}</h2>
-                    {{product.long_description}}
+                    {{product.long_description|linebreaks}}
                        
                 </div>
             </div>
@@ -68,5 +68,6 @@
     </div>
 </div>
 {% endblock %}
+
 
 <!-- # https://linktr.ee/edsoncopque -->
