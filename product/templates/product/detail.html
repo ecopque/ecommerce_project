@@ -34,27 +34,27 @@
                         {% endif %}
                     </p>
 
-                    <form action="/addtocart/" id="form-add-to-cart">
+                    <form action="{% url 'product:addtocart' %}" id="form-add-to-cart">
                         <div class="form-group">
                             <select id="select-variacoes" name="vid" class="form-control form-control-lg">
                                 {% for variation in product.variation_set.all %} <!-- ## -->
 
                                 {% if variation.price_promotional %} <!-- ## -->
                                     <option data-preco="{{variation.price|format_price}}"data-preco-promocional="{{variation.price_promotional|format_price}}" value="{{variation.id}}"> <!-- ## -->
-                                    {% if variation.name %} <!-- ## -->
-                                        {{variation.name}} <!-- ## -->
-                                    {% else %}
-                                        {{variation.name}}
-                                    {% endif %}
-                                     </option> 
+                                        {% if variation.name %} <!-- ## -->
+                                            {{variation.name}} <!-- ## -->
+                                        {% else %}
+                                            {{variation}} <!-- ## -->
+                                        {% endif %}
+                                    </option> 
                                 {% else %}
-                                    <option data-preco="{{variation.price|format_price}} "value="{{variation.id}}"> <!-- ## -->
+                                    <option data-preco="{{variation.price|format_price}}  "value="{{variation.id}}"> <!-- ## -->
                                         {% if variation.name %}
-                                        {{variation.name}}
-                                    {% else %}
-                                        {{variation.name}}
-                                    {% endif %}
-                                     </option>      
+                                            {{variation.name}}
+                                        {% else %}
+                                            {{variation}}
+                                        {% endif %}
+                                    </option>      
                                 {% endif %}
                                 {% endfor %}
                             </select>
@@ -70,7 +70,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="mt-5 mb-5">
