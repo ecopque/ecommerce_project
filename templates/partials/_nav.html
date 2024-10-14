@@ -1,7 +1,7 @@
 <!-- # FILE: /templates/partials/_nav.html -->
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-    <a class="navbar-brand" href="{% url 'product:list' %}">E-commerce Project</a> <!-- ## -->
+    <a class="navbar-brand" href="{% url 'product:list' %}">E-commerce Project</a> <!-- #1: #2: -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -51,5 +51,9 @@
     </div>
 </nav>
 
+
+<!-- #1: Dentro do template, o link href é gerado dinamicamente usando a tag {% url 'product:list' %} para obter a URL do nome de rota 'product
+', que é definida no arquivo de URLs. Essa abordagem evita hardcoding de URLs e facilita a manutenção. -->
+<!-- #2: Este é o botão 'E-commerce Project' que ao clicar vai para a página inicial. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
