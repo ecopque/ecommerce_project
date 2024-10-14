@@ -40,12 +40,22 @@
                                 {% for variation in product.variation_set.all %} <!-- ## -->
 
                                 {% if variation.price_promotional %} <!-- ## -->
-                                    <option data-preco="{{variation.price|format_price}}"data-preco-promocional="{{variation.price_promotional|format_price}}" value="{{variation.id}}">{{variation}} <!-- ## -->
+                                    <option data-preco="{{variation.price|format_price}}"data-preco-promocional="{{variation.price_promotional|format_price}}" value="{{variation.id}}"> <!-- ## -->
+                                    {% if variation.name %} <!-- ## -->
+                                        {{variation.name}} <!-- ## -->
+                                    {% else %}
+                                        {{variation.name}}
+                                    {% endif %}
+                                     </option> 
                                 {% else %}
-                                    <option data-preco="{{variation.price|format_price}} "value="{{variation.id}}">{{variation}} <!-- ## -->
+                                    <option data-preco="{{variation.price|format_price}} "value="{{variation.id}}"> <!-- ## -->
+                                        {% if variation.name %}
+                                        {{variation.name}}
+                                    {% else %}
+                                        {{variation.name}}
+                                    {% endif %}
+                                     </option>      
                                 {% endif %}
-
-                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
