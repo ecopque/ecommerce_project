@@ -26,11 +26,11 @@
                     <p class="lead">{{product.short_description|linebreaks}}</p> <!-- ## -->
                     <p class="lead">
                         {% if product.price_promotional_marketing %} <!-- ## -->
-                        <span id="variation-marketing_price" class="lead product-price">{{product.price_promotional_marketing|format_price}}</span> <!-- ## -->
-                        <span id="variation-price"
+                        <span id="variation-preco-promocional" class="lead product-price">{{product.price_promotional_marketing|format_price}}</span> <!-- ## -->
+                        <span id="variation-preco"
                             class="lead product-old-price text-muted">{{product.marketing_price|format_price}}</span> <!-- ## -->
                         {% else %}
-                            <span id="variation-preco" class="lead product-price">{{product.markeging_price|format_price}}</span> <!-- ## -->
+                            <span id="variation-preco" class="lead product-price">{{product.marketing_price|format_price}}</span> <!-- ## -->
                         {% endif %}
                     </p>
 
@@ -39,10 +39,10 @@
                             <select id="select-variacoes" name="vid" class="form-control form-control-lg">
                                 {% for variation in product.variation_set.all %} <!-- ## -->
 
-                                {% if variation.price_promotional_marketing %} <!-- ## -->
-                                    <option data-preco="{{variation.marketing_price}}"data-preco-promocional="{{variation.price_promotional_marketing}}" value="{{variation.id}}">{{variation}} <!-- ## -->
+                                {% if variation.price_promotional %} <!-- ## -->
+                                    <option data-preco="{{variation.price|format_price}}"data-preco-promocional="{{variation.price_promotional|format_price}}" value="{{variation.id}}">{{variation}} <!-- ## -->
                                 {% else %}
-                                    <option data-preco="{{variation.marketing_price}} "value="{{variation.id}}">{{variation}} <!-- ## -->
+                                    <option data-preco="{{variation.price|format_price}} "value="{{variation.id}}">{{variation}} <!-- ## -->
                                 {% endif %}
 
                                     </option>
