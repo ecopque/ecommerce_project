@@ -21,6 +21,7 @@
             <div class="col-lg">
                 <div class="mt-4 mt-lg-0">
                     <!-- # IMPORT⬇: /product/views.py -> /product/models.py -->
+                    <!-- # IMPORT⬇: /product/templatetags/brfilters.py -> /utils/utils.py -->
                     <h1 class="h2">{{product.name}}</h1>
                     <p class="lead">{{product.short_description|linebreaks}}</p> <!-- ## -->
                     <p class="lead">
@@ -51,14 +52,10 @@
                                 Add to Cart
                             </button>
                         </div>
-
                     </form>
-
-
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-lg-12">
