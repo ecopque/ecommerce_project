@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView #1:
 from django.views import View #2:
 from . import models
-from django.views.generic.detail import DetailView ##
+from django.views.generic.detail import DetailView #8:
 
 class ProductList(ListView): #3:
     # IMPORT⬇: /product/models.py
@@ -14,13 +14,13 @@ class ProductList(ListView): #3:
     context_object_name = 'products' #6:
     paginate_by = 3 #7:
 
-class ProductDetail(DetailView): ##
+class ProductDetail(DetailView): #9:
     model = models.Product
     template_name = 'product/detail.html'
     context_object_name = 'product'
 
     #IMPORT⬇: /product/urls.py
-    slug_url_kwarg = 'slug' ##
+    slug_url_kwarg = 'slug' #10:
 
 class AddToCart(View):
     ...
@@ -35,6 +35,9 @@ class Finish(View):
     ...
 
 
+#8: Essa classe é uma view genérica fornecida pelo Django que facilita a exibição de detalhes de um objeto específico. No código, DetailView é usada na classe ProductDetail para mostrar os detalhes de um produto.
+#9: A classe ProductDetail herda de DetailView, o que significa que ela é usada para exibir os detalhes de um objeto específico, no caso, um produto. O Django usa essa classe para buscar o objeto no banco de dados, renderizar o template especificado e fornecer o contexto para o template.
+#10: Esse atributo especifica o nome do parâmetro na URL que será usado para procurar o objeto. Aqui, o parâmetro 'slug' na URL será utilizado para buscar o produto correspondente no banco de dados. A configuração geralmente é feita no arquivo urls.py para mapear a URL a essa view.
 # ------------------------------------------------------------------
 #1: Importa a classe ListView de django.views.generic.list. ListView é uma class-based view que renderiza uma lista de objetos. Essa classe é usada para facilitar a exibição de listas no Django.
 #2: Importa a classe base View de django.views. View é a classe mais básica para todas as class-based views no Django.
