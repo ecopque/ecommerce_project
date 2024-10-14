@@ -1,3 +1,5 @@
+// FILE: /templates/static/assets/custom/js/scripts.js
+
 (function () {
     select_variacao = document.getElementById('select-variacoes');
     variation_preco = document.getElementById('variation-preco');
