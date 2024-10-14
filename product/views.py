@@ -35,6 +35,7 @@ class Finish(View):
     ...
 
 
+# ------------------------------------------------------------------
 #8: Essa classe é uma view genérica fornecida pelo Django que facilita a exibição de detalhes de um objeto específico. No código, DetailView é usada na classe ProductDetail para mostrar os detalhes de um produto.
 #9: A classe ProductDetail herda de DetailView, o que significa que ela é usada para exibir os detalhes de um objeto específico, no caso, um produto. O Django usa essa classe para buscar o objeto no banco de dados, renderizar o template especificado e fornecer o contexto para o template.
 #10: Esse atributo especifica o nome do parâmetro na URL que será usado para procurar o objeto. Aqui, o parâmetro 'slug' na URL será utilizado para buscar o produto correspondente no banco de dados. A configuração geralmente é feita no arquivo urls.py para mapear a URL a essa view.
