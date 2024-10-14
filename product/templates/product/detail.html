@@ -1,7 +1,9 @@
 <!-- # FILE: /product/templates/product/detail.html -->
 
 {% extends 'base.html' %}
-{% load brfilters %} <!-- ## -->
+
+<!-- #IMPORT⬇: /product/templatetags/brfilters.py -->
+{% load brfilters %}
 
 {% block content %}
 <div class="row">
@@ -12,7 +14,7 @@
                     
                     <div class="col-lg-12">
                         {% if product.image %}
-                            <img class="img-fluid" src="{{product.image.url}}"> <!-- ## -->
+                            <img class="img-fluid" src="{{product.image.url}}"> <!-- #1: -->
                         {% endif %}
                     </div>
                     
@@ -23,32 +25,32 @@
                     <!-- # IMPORT⬇: /product/views.py -> /product/models.py -->
                     <!-- # IMPORT⬇: /product/templatetags/brfilters.py -> /utils/utils.py -->
                     <h1 class="h2">{{product.name}}</h1>
-                    <p class="lead">{{product.short_description|linebreaks}}</p> <!-- ## -->
+                    <p class="lead">{{product.short_description|linebreaks}}</p> <!-- #2: -->
                     <p class="lead">
-                        {% if product.price_promotional_marketing %} <!-- ## -->
-                        <span id="variation-preco-promocional" class="lead product-price">{{product.price_promotional_marketing|format_price}}</span> <!-- ## -->
+                        {% if product.price_promotional_marketing %} <!-- #3: -->
+                        <span id="variation-preco-promocional" class="lead product-price">{{product.price_promotional_marketing|format_price}}</span> <!-- #3: -->
                         <span id="variation-preco"
-                            class="lead product-old-price text-muted">{{product.marketing_price|format_price}}</span> <!-- ## -->
+                            class="lead product-old-price text-muted">{{product.marketing_price|format_price}}</span> <!-- #3: -->
                         {% else %}
-                            <span id="variation-preco" class="lead product-price">{{product.marketing_price|format_price}}</span> <!-- ## -->
+                            <span id="variation-preco" class="lead product-price">{{product.marketing_price|format_price}}</span> <!-- #3: -->
                         {% endif %}
                     </p>
 
                     <form action="{% url 'product:addtocart' %}" id="form-add-to-cart">
                         <div class="form-group">
                             <select id="select-variacoes" name="vid" class="form-control form-control-lg">
-                                {% for variation in product.variation_set.all %} <!-- ## -->
+                                {% for variation in product.variation_set.all %} <!-- #4: -->
 
-                                {% if variation.price_promotional %} <!-- ## -->
-                                    <option data-preco="{{variation.price|format_price}}"data-preco-promocional="{{variation.price_promotional|format_price}}" value="{{variation.id}}"> <!-- ## -->
-                                        {% if variation.name %} <!-- ## -->
-                                            {{variation.name}} <!-- ## -->
+                                {% if variation.price_promotional %} <!-- #5: -->
+                                    <option data-preco="{{variation.price|format_price}}"data-preco-promocional="{{variation.price_promotional|format_price}}" value="{{variation.id}}"> <!-- #4: -->
+                                        {% if variation.name %} <!-- #4: -->
+                                            {{variation.name}} <!-- #4: -->
                                         {% else %}
-                                            {{variation}} <!-- ## -->
+                                            {{variation}} <!-- #4: -->
                                         {% endif %}
                                     </option> 
                                 {% else %}
-                                    <option data-preco="{{variation.price|format_price}}  "value="{{variation.id}}"> <!-- ## -->
+                                    <option data-preco="{{variation.price|format_price}}  "value="{{variation.id}}"> <!-- #4: -->
                                         {% if variation.name %}
                                             {{variation.name}}
                                         {% else %}
@@ -84,5 +86,12 @@
 </div>
 {% endblock %}
 
+
+<!-- #1: Aqui, o template verifica se o produto possui uma imagem e, se sim, exibe-a. O atributo src usa a URL da imagem do produto (product.image.url) para exibir a imagem correta. -->
+<!-- #2: O template exibe a descrição curta do produto usando o filtro linebreaks, que converte quebras de linha em tags <br> no HTML. Isso facilita a formatação do texto da descrição. -->
+<!-- #3: Esse bloco de código verifica se existe um preço promocional para o produto (product.price_promotional_marketing). Se sim, o preço promocional é exibido junto com o preço original riscado, indicando que há uma promoção. Caso contrário, apenas o preço original é exibido. -->
+<!-- #4: Itera sobre todas as variações do produto, que estão relacionadas ao modelo Product via o conjunto de variações (variation_set). Cada variação pode ter um preço e um nome diferentes, sendo listada em um menu de seleção (<select>).
+Os atributos data-preco e data-preco-promocional são usados para exibir dinamicamente os preços, e o campo value contém o ID da variação para ser enviado no formulário.-->
+<!-- #5: Verifica se uma variação específica do produto tem um preço promocional. Se sim, exibe o preço promocional e o preço original. Caso contrário, apenas o preço padrão é exibido. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
