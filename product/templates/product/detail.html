@@ -23,6 +23,7 @@
                     <h1 class="h2">{{product.name}}</h1>
                     <p class="lead">{{product.short_description|linebreaks}}</p> <!-- ## -->
                     <p class="lead">
+                        {% if product.price%}
                         <span id="variation-preco" class="lead product-price">R$29,90</span>
                         <span id="variation-preco-promocional"
                             class="lead product-old-price text-muted">R$49,90</span>
