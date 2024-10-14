@@ -1,10 +1,13 @@
 # FILE: /product/views.py
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.list import ListView #1:
 from django.views import View #2:
 from . import models
 from django.views.generic.detail import DetailView #8:
+from django.contrib import messages ##
+from django.http import HttpResponse ##
+from django.urls import reverse ##
 
 class ProductList(ListView): #3:
     # IMPORT⬇: /product/models.py
@@ -23,7 +26,28 @@ class ProductDetail(DetailView): #9:
     slug_url_kwarg = 'slug' #10:
 
 class AddToCart(View):
-    ...
+    def get(self, *args, **kwargs):
+        http_referer = self.request.META.get('HTTP_REFERER', reverse('product:list')) ##AAA:
+        variation_id = self.request.GET.get('vid') ##
+
+        if not variation_id: ##
+            messages.error(self.request, 'Product does not exist.') ##
+            return redirect(http_referer) ##
+        
+        # IMPORT⬇: /product/models.py
+        variation = get_object_or_404(models.Variation, id=variation_id) ##
+        if not self.request.session.get('cart'): ##
+            self.request.sessio['cart'] = {} ##
+            self.request.session.save() ##
+        
+        cart = self.request.session['cart'] ##
+
+        if variation_id in cart:
+            ...
+        else:
+            ...
+
+        return HttpResponse(f'{variation.product} {variation.name}') ##
 
 class RemoveFromCart(View):
     ...
@@ -35,6 +59,7 @@ class Finish(View):
     ...
 
 
+#AAA: Retorna a URL anterior à vigente;
 # ------------------------------------------------------------------
 #8: Essa classe é uma view genérica fornecida pelo Django que facilita a exibição de detalhes de um objeto específico. No código, DetailView é usada na classe ProductDetail para mostrar os detalhes de um produto.
 #9: A classe ProductDetail herda de DetailView, o que significa que ela é usada para exibir os detalhes de um objeto específico, no caso, um produto. O Django usa essa classe para buscar o objeto no banco de dados, renderizar o template especificado e fornecer o contexto para o template.
