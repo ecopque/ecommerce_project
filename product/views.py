@@ -57,8 +57,9 @@ class Cart(View):
 
 class Finish(View):
     ...
+    
 
-
+# ------------------------------------------------------------------
 #11: O módulo messages é parte da biblioteca django.contrib, que fornece funcionalidades comuns e reutilizáveis. Ele permite que mensagens temporárias sejam armazenadas na sessão de um usuário para exibição posterior. Isso é útil para exibir notificações ao usuário, como mensagens de erro ou sucesso, após alguma operação. No código fornecido, messages é utilizado para informar ao usuário quando algo não está certo, como "Product does not exist.#12: O módulo HttpResponse vem de django.http e é usado para retornar uma resposta HTTP para o navegador do usuário. Ele permite enviar texto simples, HTML ou outros conteúdos diretamente como uma resposta para o cliente. No código fornecido, é usado para retornar informações sobre o produto e a variação selecionados.
 #13: A função reverse de django.urls é usada para obter uma URL a partir do nome de uma rota nomeada, permitindo que o código seja mais flexível e menos dependente de URLs fixas. Ao usar reverse, o Django gera a URL com base no padrão de URL configurado no arquivo de URLs do projeto ou aplicativo. Isso é útil para redirecionamentos ou geração de links dinâmicos.
 #14: Retorna a URL anterior à vigente;
