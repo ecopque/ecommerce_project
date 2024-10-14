@@ -1,4 +1,4 @@
-# FILE: /product/templatetags/omfilters.py
+# FILE: /product/templatetags/brfilters.py
 
 from django.template import Library
 from utils import utils
