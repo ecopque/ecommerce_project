@@ -37,7 +37,7 @@ class AddToCart(View):
         # IMPORT⬇: /product/models.py
         variation = get_object_or_404(models.Variation, id=variation_id) #20:
         if not self.request.session.get('cart'): #21:
-            self.request.sessio['cart'] = {} #22:
+            self.request.session['cart'] = {} #22:
             self.request.session.save() #23:
         
         cart = self.request.session['cart'] #24:
