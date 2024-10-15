@@ -28,9 +28,9 @@ class ProductDetail(DetailView): #9:
 
 class AddToCart(View):
     def get(self, *args, **kwargs):
-        # if self.request.session.get('cart'): ##
-        #     del self.request.session['cart'] ##
-        #     self.request.session.save() ##
+        # if self.request.session.get('cart'):
+        #     del self.request.session['cart']
+        #     self.request.session.save()
 
         http_referer = self.request.META.get('HTTP_REFERER', reverse('product:list')) #14: #15:
         variation_id = self.request.GET.get('vid') #16:
@@ -41,10 +41,10 @@ class AddToCart(View):
         
         # IMPORT⬇: /product/models.py
         variation = get_object_or_404(models.Variation, id=variation_id) #20:
-        variation_stock = variation.stock ##
-        product = variation.product ##
-
-        product_id = product.id ##
+        variation_stock = variation.stock #26:
+        
+        product = variation.product #27:
+        product_id = product.id #28:
         product_name = product.name
         variation_name = variation.name or ''
         unit_price = variation.price
@@ -53,10 +53,10 @@ class AddToCart(View):
         slug = product.slug
         image = product.image
 
-        if image: ##
-            image = image.name ##
+        if image: #29:
+            image = image.name #30:
         else:
-            image = '' ##
+            image = '' #31:
 
         if variation.stock < 1: ##
             messages.error(self.request, 'Insufficient stock') ##
@@ -69,7 +69,7 @@ class AddToCart(View):
         cart = self.request.session['cart'] #24:
 
         if variation_id in cart:
-            quantitative_cart = cart[variation_id]['quantitative'] ##
+            quantitative_cart = cart[variation_id]['quantitative'] #32:
             quantitative_cart += 1 ##
 
             if variation_stock < quantitative_cart: ##
@@ -109,6 +109,16 @@ class Cart(View): ##
 class Finish(View):
     ...
     
+
+#26: A variável variation_stock é definida para armazenar o valor do estoque disponível da variação do produto. Isso é importante para verificar a quantidade disponível antes de adicionar ao carrinho.
+#27: Aqui, a variável product armazena o produto associado à variação. Isso permite o acesso a informações do produto, como nome e imagem.
+#28: A variável product_id armazena o identificador único do produto. Essa informação pode ser usada para operações como rastreamento ou exibição do produto no carrinho.
+#29: Verifica se o produto tem uma imagem associada. O campo image pode ser nulo ou vazio, então é necessário verificar se ele existe antes de utilizá-lo.
+#30: Se a imagem existir, define a variável image com o nome do arquivo da imagem. Isso é útil para exibir a imagem do produto.
+#31: Caso o produto não tenha uma imagem associada, a variável image será definida como uma string vazia, garantindo que não ocorra erro ao tentar acessá-la.
+#32: 
+
+
 
 # ------------------------------------------------------------------
 #11: O módulo messages é parte da biblioteca django.contrib, que fornece funcionalidades comuns e reutilizáveis. Ele permite que mensagens temporárias sejam armazenadas na sessão de um usuário para exibição posterior. Isso é útil para exibir notificações ao usuário, como mensagens de erro ou sucesso, após alguma operação. No código fornecido, messages é utilizado para informar ao usuário quando algo não está certo, como "Product does not exist.#12: O módulo HttpResponse vem de django.http e é usado para retornar uma resposta HTTP para o navegador do usuário. Ele permite enviar texto simples, HTML ou outros conteúdos diretamente como uma resposta para o cliente. No código fornecido, é usado para retornar informações sobre o produto e a variação selecionados.
