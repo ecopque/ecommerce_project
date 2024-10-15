@@ -42,7 +42,6 @@ class AddToCart(View):
         # IMPORT⬇: /product/models.py
         variation = get_object_or_404(models.Variation, id=variation_id) #20:
         variation_stock = variation.stock #26:
-        
         product = variation.product #27:
         product_id = product.id #28:
         product_name = product.name
@@ -58,9 +57,9 @@ class AddToCart(View):
         else:
             image = '' #31:
 
-        if variation.stock < 1: ##
-            messages.error(self.request, 'Insufficient stock') ##
-            return redirect(http_referer) ##
+        if variation.stock < 1: #32:
+            messages.error(self.request, 'Insufficient stock') #33:
+            return redirect(http_referer) #34:
 
         if not self.request.session.get('cart'): #21:
             self.request.session['cart'] = {} #22:
@@ -70,11 +69,11 @@ class AddToCart(View):
 
         if variation_id in cart:
             quantitative_cart = cart[variation_id]['quantitative'] #32:
-            quantitative_cart += 1 ##
+            quantitative_cart += 1
 
-            if variation_stock < quantitative_cart: ##
-                messages.warning(self.request, f'Insufficient {quantitative_cart}x for {product_name} product. Add {variation_stock}x.') ##
-                quantitative_cart = variation_stock ##
+            if variation_stock < quantitative_cart: #35: 
+                messages.warning(self.request, f'Insufficient {quantitative_cart}x for {product_name} product. Add {variation_stock}x.') #36:
+                quantitative_cart = variation_stock #37:
 
             cart[variation_id]['quantitative'] = quantitative_cart ##
             cart[variation_id]['quantitative_price'] = unit_price * quantitative_cart ##
@@ -116,7 +115,13 @@ class Finish(View):
 #29: Verifica se o produto tem uma imagem associada. O campo image pode ser nulo ou vazio, então é necessário verificar se ele existe antes de utilizá-lo.
 #30: Se a imagem existir, define a variável image com o nome do arquivo da imagem. Isso é útil para exibir a imagem do produto.
 #31: Caso o produto não tenha uma imagem associada, a variável image será definida como uma string vazia, garantindo que não ocorra erro ao tentar acessá-la.
-#32: 
+#32: Verifica se o estoque da variação é menor que 1. Se for, significa que não há estoque suficiente para adicionar ao carrinho.
+#33: Envia uma mensagem de erro ao usuário indicando que o estoque é insuficiente.
+#34: Redireciona o usuário para a página anterior (http_referer), caso o estoque seja insuficiente.
+#35: Verifica se a quantidade desejada no carrinho ultrapassa o estoque disponível.
+#36: Envia uma mensagem de aviso ao usuário sobre a quantidade insuficiente no estoque para o produto selecionado.
+#37: Ajusta a quantidade no carrinho para o máximo disponível em estoque.
+#38: 
 
 
 
