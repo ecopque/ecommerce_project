@@ -44,9 +44,7 @@ class AddToCart(View):
         variation_name = variation.name or ''
         variation_id = variation.id
         unit_price = variation.price
-        promotional_unit_price = variation.promotional_price
-        quantitative_price = variation.quantitative #???
-        promotional_quantitative_price = variation.promotional_unit_price #???
+        promotional_unit_price = variation.price_promotional
         quantitative = 1
         slug = product.slug
         image = product.image
@@ -72,6 +70,12 @@ class AddToCart(View):
 
             if variation_stock < quantitative_cart: ##
                 messages.warning(self.request, f'Insufficient {quantitative_cart}x for {product_name} product. Add {variation_stock}x.') ##
+                quantitative_cart = variation_stock ##
+
+            cart[variation_id]['quantitative'] = quantitative_cart ##
+            cart[variation_id]['quantitative_price'] = unit_price * quantitative_cart ##
+            cart[variation_id]['promotional_quantitative_price'] = promotional_unit_price * quantitative_cart ##
+
         else:
             cart[str(variation_id)] = {
                 'product_id': product_id,
