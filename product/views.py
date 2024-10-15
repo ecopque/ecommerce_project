@@ -102,8 +102,9 @@ class AddToCart(View):
 class RemoveFromCart(View):
     ...
 
-class Cart(View):
-    ...
+class Cart(View): ##
+    def get(self, *args, **kwargs): ##
+        return render(self.request, 'product/cart.html') ##
 
 class Finish(View):
     ...

@@ -1,4 +1,9 @@
 <!-- # FILE: /product/templates/product/cart.html -->
 
+{% extends 'base.html' %}
+
+{% block content %}
+    {{request.session.cart}} <!-- ## -->
+{% endblock %}
 
 <!-- # https://linktr.ee/edsoncopque -->
