@@ -36,9 +36,10 @@ class AddToCart(View):
         
         # IMPORT⬇: /product/models.py
         variation = get_object_or_404(models.Variation, id=variation_id) #20:
+        variation_stock = variation.stock ##
         product = variation.product ##
-        '''
-        product_id = product.id
+
+        product_id = product.id ##
         product_name = product.name
         variation_name = variation.name or ''
         variation_id = variation.id
@@ -47,7 +48,11 @@ class AddToCart(View):
         quantitative = 1
         slug = product.slug
         image = product.image
-        '''
+
+        if image: ##
+            image = image.name ##
+        else:
+            image = '' ##
 
         if variation.stock < 1: ##
             messages.error(self.request, 'Insufficient stock') ##
@@ -60,9 +65,23 @@ class AddToCart(View):
         cart = self.request.session['cart'] #24:
 
         if variation_id in cart:
-            ...
+            quantitative_cart = cart[variation_id]['quantitative'] ##
+            quantitative_cart += 1 ##
         else:
-            cart[str(variation_id)] = {}
+            cart[str(variation_id)] = {
+                'product_id': product_id,
+                'product_name': product_name,
+                'variation_name': variation_name,
+                'variation_id': variation_id,
+                'unit_price': unit_price,
+                'promotional_unit_price': promotional_unit_price,
+                'quantitative_price': unit_price,
+                'promotional_quantitative_price': promotional_unit_price,
+                'quantitative': 1,
+                'slug': slug,
+                'image': image,
+            } ##
+        self.request.session.save()
 
         return HttpResponse(f'{variation.product} {variation.name}') #25:
 
