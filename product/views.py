@@ -75,9 +75,9 @@ class AddToCart(View):
                 messages.warning(self.request, f'Insufficient {quantitative_cart}x for {product_name} product. Add {variation_stock}x.') #36:
                 quantitative_cart = variation_stock #37:
 
-            cart[variation_id]['quantitative'] = quantitative_cart ##
-            cart[variation_id]['quantitative_price'] = unit_price * quantitative_cart ##
-            cart[variation_id]['promotional_quantitative_price'] = promotional_unit_price * quantitative_cart ##
+            cart[variation_id]['quantitative'] = quantitative_cart #38:
+            cart[variation_id]['quantitative_price'] = unit_price * quantitative_cart #39:
+            cart[variation_id]['promotional_quantitative_price'] = promotional_unit_price * quantitative_cart #40:
 
         else:
             cart[str(variation_id)] = {
@@ -92,18 +92,18 @@ class AddToCart(View):
                 'quantitative': 1,
                 'slug': slug,
                 'image': image,
-            } ##
-        self.request.session.save() ##
-        messages.success(self.request, f'Product {product_name} {variation_name} added to your cart {cart[variation_id]["quantitative"]}x.') ##
-        return redirect(http_referer) ##
+            } #44:
+        self.request.session.save() #41:
+        messages.success(self.request, f'Product {product_name} {variation_name} added to your cart {cart[variation_id]["quantitative"]}x.') #42:
+        return redirect(http_referer)
         # return HttpResponse(f'{variation.product} {variation.name}') #25:
 
 class RemoveFromCart(View):
     ...
 
-class Cart(View): ##
-    def get(self, *args, **kwargs): ##
-        return render(self.request, 'product/cart.html') ##
+class Cart(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'product/cart.html') #43: 
 
 class Finish(View):
     ...
@@ -121,10 +121,13 @@ class Finish(View):
 #35: Verifica se a quantidade desejada no carrinho ultrapassa o estoque disponível.
 #36: Envia uma mensagem de aviso ao usuário sobre a quantidade insuficiente no estoque para o produto selecionado.
 #37: Ajusta a quantidade no carrinho para o máximo disponível em estoque.
-#38: 
-
-
-
+#38: Atualiza o carrinho com a quantidade ajustada.
+#39: Atualiza o preço total para a quantidade de produtos no carrinho.
+#40: Atualiza o preço promocional total para a quantidade de produtos no carrinho, se aplicável.
+#41: Salva as mudanças na sessão para persistir as atualizações no carrinho.
+#42: Envia uma mensagem de sucesso ao usuário indicando que o produto foi adicionado ao carrinho com a quantidade especificada.
+#43: Renderiza a página HTML do carrinho, localizada no arquivo cart.html.
+#44: Este bloco de código no arquivo views.py adiciona um novo item ao carrinho de compras na sessão do usuário. Se a variação do produto (identificada pelo variation_id) ainda não estiver no carrinho, ele cria uma nova entrada no dicionário do carrinho.
 # ------------------------------------------------------------------
 #11: O módulo messages é parte da biblioteca django.contrib, que fornece funcionalidades comuns e reutilizáveis. Ele permite que mensagens temporárias sejam armazenadas na sessão de um usuário para exibição posterior. Isso é útil para exibir notificações ao usuário, como mensagens de erro ou sucesso, após alguma operação. No código fornecido, messages é utilizado para informar ao usuário quando algo não está certo, como "Product does not exist.#12: O módulo HttpResponse vem de django.http e é usado para retornar uma resposta HTTP para o navegador do usuário. Ele permite enviar texto simples, HTML ou outros conteúdos diretamente como uma resposta para o cliente. No código fornecido, é usado para retornar informações sobre o produto e a variação selecionados.
 #13: A função reverse de django.urls é usada para obter uma URL a partir do nome de uma rota nomeada, permitindo que o código seja mais flexível e menos dependente de URLs fixas. Ao usar reverse, o Django gera a URL com base no padrão de URL configurado no arquivo de URLs do projeto ou aplicativo. Isso é útil para redirecionamentos ou geração de links dinâmicos.
