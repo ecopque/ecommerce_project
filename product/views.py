@@ -9,6 +9,7 @@ from django.contrib import messages #11:
 from django.http import HttpResponse #12:
 from django.urls import reverse #13:
 
+
 class ProductList(ListView): #3:
     # IMPORT⬇: /product/models.py
     model = models.Product #4:
@@ -27,6 +28,10 @@ class ProductDetail(DetailView): #9:
 
 class AddToCart(View):
     def get(self, *args, **kwargs):
+        # if self.request.session.get('cart'): ##
+        #     del self.request.session['cart'] ##
+        #     self.request.session.save() ##
+
         http_referer = self.request.META.get('HTTP_REFERER', reverse('product:list')) #14: #15:
         variation_id = self.request.GET.get('vid') #16:
 
@@ -42,7 +47,6 @@ class AddToCart(View):
         product_id = product.id ##
         product_name = product.name
         variation_name = variation.name or ''
-        variation_id = variation.id
         unit_price = variation.price
         promotional_unit_price = variation.price_promotional
         quantitative = 1
@@ -90,9 +94,10 @@ class AddToCart(View):
                 'slug': slug,
                 'image': image,
             } ##
-        self.request.session.save()
-
-        return HttpResponse(f'{variation.product} {variation.name}') #25:
+        self.request.session.save() ##
+        messages.success(self.request, f'Product {product_name} {variation_name} added to your cart {cart[variation_id]["quantitative"]}x.') ##
+        return redirect(http_referer) ##
+        # return HttpResponse(f'{variation.product} {variation.name}') #25:
 
 class RemoveFromCart(View):
     ...
