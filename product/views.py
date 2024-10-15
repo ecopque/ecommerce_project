@@ -107,8 +107,9 @@ class Cart(View):
 
 class Finish(View):
     ...
-    
 
+
+# ------------------------------------------------------------------
 #26: A variável variation_stock é definida para armazenar o valor do estoque disponível da variação do produto. Isso é importante para verificar a quantidade disponível antes de adicionar ao carrinho.
 #27: Aqui, a variável product armazena o produto associado à variação. Isso permite o acesso a informações do produto, como nome e imagem.
 #28: A variável product_id armazena o identificador único do produto. Essa informação pode ser usada para operações como rastreamento ou exibição do produto no carrinho.
