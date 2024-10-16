@@ -36,7 +36,13 @@
                                     </a>
                                 </td>
                                 <td>{{line.variation_name}}</td> <!-- ## -->
-                                <td>{{line.quantitative}}x</td> <!-- ## -->
+                                <td>{{line.quantitative}}x <!-- ## -->
+                                    {% if line.promotional_unit_price %} <!-- ## -->
+                                        {{line.promotional_unit_price}} <!-- ## -->
+                                    {% else %}
+                                        {{line.unit_price}} <!-- ## -->
+                                    {% endif %}
+                                </td>
                                 
                                 {% if line.promotional_quantitative_price %} <!-- ## -->
                                     <td>{{line.promotional_quantitative_price|format_price}}</td> <!-- ##-->

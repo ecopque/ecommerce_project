@@ -1,7 +1,7 @@
 # FILE: /utils/utils.py
 
 def format_pricevrs(value): #1:
-    return f'₿₿{value:.2f}'.replace('.', ',') #2:
+    return f'₿ {value:.2f}'.replace('.', ',') #2:
 
 
 # ------------------------------------------------------------------
