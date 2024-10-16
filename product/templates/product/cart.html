@@ -1,11 +1,12 @@
 <!-- # FILE: /product/templates/product/cart.html -->
 
 {% extends 'base.html' %} <!-- #1: -->
+{% load brfilters %} <!-- ## -->
 
 {% block content %}
     {% comment %} {{request.session.cart}} <!-- #2: --> {% endcomment %}
 
-    {% if request.session.cart %} <!-- ## -->
+    {% if cart %} <!-- ## -->
         <div class="row mt-3">
             <div class="col">
                 <h3>Shopping Cart</h3>
@@ -20,21 +21,31 @@
                             <th>QTD.</th>
                             <th>Total</th>
                         </tr>
-
-                        <tr>
-                            <td class="d-none d-lg-block">
-                                <img class="cart-img" src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
-                            </td>
-                            <td>
-                                Name of the product the customer is purchasing
-                                <a class="ml-3" href="#">
-                                    <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                            <td>Variation</td>
-                            <td>2x</td>
-                            <td>$ 10500,59</td>
-                        </tr>
+                        
+                        <!-- # Line of each product in the cart -->
+                        <!-- #IMPORT⬇: /product/views.py -->
+                         {% for line in cart.values %} <!-- ## -->
+                            <tr>
+                                <td class="d-none d-lg-block">
+                                    <img class="cart-img" src="{{line.image}}">
+                                </td>
+                                <td>
+                                    {{line.product_name}} <!-- ## -->
+                                    <a class="ml-3" href="#">
+                                        <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>{{line.variation_name}}</td> <!-- ## -->
+                                <td>{{line.quantitative}}x</td> <!-- ## -->
+                                
+                                {% if line.promotional_quantitative_price %} <!-- ## -->
+                                    <td>{{line.promotional_quantitative_price|format_price}}</td> <!-- ##-->
+                                {% else %}
+                                    <td>{{line.quantitative_price|format_price}}</td> <!-- ## -->
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        <!-- # End -->
 
                     </table>
                 </div>

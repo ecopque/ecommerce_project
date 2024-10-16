@@ -103,7 +103,8 @@ class RemoveFromCart(View):
 
 class Cart(View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'product/cart.html') #43: 
+        context = {'cart': self.request.session.get('cart', {})} ##
+        return render(self.request, 'product/cart.html', context) #43: ##
 
 class Finish(View):
     ...
