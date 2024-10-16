@@ -9,6 +9,9 @@ register = Library() #1:
 def format_price(value): #3:
     return utils.format_pricevrs(value) #3:
 
+@register.filter
+def cart_total(cart): ##
+    return utils.cart_total_qtd(cart) ##
 
 # ------------------------------------------------------------------
 #1: Cria uma instância de Library para registrar filtros personalizados. Lógica: Essa linha é necessária para permitir que você adicione filtros personalizados no sistema de templates do Django.

@@ -3,6 +3,9 @@
 def format_pricevrs(value): #1:
     return f'₿ {value:.2f}'.replace('.', ',') #2:
 
+def cart_total_qtd(cart):
+    return sum([i['quantitative'] for i in cart.values()])
+
 
 # ------------------------------------------------------------------
 #1: Declara a função que formata o valor recebido. Lógica: Esta função converte um número para o formato de preço em Bitcoin, substituindo o ponto decimal por uma vírgula.
