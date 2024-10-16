@@ -7,6 +7,7 @@ def cart_total_qtd(cart): #3:
     return sum([i['quantitative'] for i in cart.values()]) #3:
 
 
+# ------------------------------------------------------------------
 #3: Função que calcula o total de itens no carrinho, somando a quantidade (quantitative) de cada produto.
 # ------------------------------------------------------------------
 #1: Declara a função que formata o valor recebido. Lógica: Esta função converte um número para o formato de preço em Bitcoin, substituindo o ponto decimal por uma vírgula.

@@ -130,6 +130,7 @@ class Finish(View):
     ...
 
 
+# ------------------------------------------------------------------
 #45: Obtém os detalhes do item do carrinho associado ao variation_id fornecido.
 #46: Exibe uma mensagem de sucesso ao usuário, informando que o produto foi removido.
 #47: Remove o item do carrinho da sessão do usuário.
