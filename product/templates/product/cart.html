@@ -41,8 +41,6 @@
             </div>
         </div>
 
-
-
         <div class="row mt-3">
             <div class="col-lg">
                 <p class='lead'>Total in cart</p>
@@ -66,12 +64,11 @@
     {% else %}
         <div class="row mt-3">
             <div class="col">
-                <h3>Shopping Cart</h3>
-                <p class="lead">The products, quantities and prices you have chosen.</p>
-                {% endif %}
+                <h3>Empty Cart</h3>
+                <p class="lead">You have no products in your cart.</p>
             </div>
         </div>
-
+    {% endif %}
 {% endblock %}
 
 
