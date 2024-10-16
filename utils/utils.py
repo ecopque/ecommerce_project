@@ -3,8 +3,8 @@
 def format_pricevrs(value): #1:
     return f'₿ {value:.2f}'.replace('.', ',') #2:
 
-def cart_total_qtd(cart):
-    return sum([i['quantitative'] for i in cart.values()])
+def cart_total_qtd(cart): ##
+    return sum([i['quantitative'] for i in cart.values()]) ##
 
 
 # ------------------------------------------------------------------
