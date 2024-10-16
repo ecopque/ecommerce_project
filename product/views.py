@@ -113,23 +113,27 @@ class RemoveFromCart(View):
         if variation_id not in self.request.session['cart']:
             return redirect(http_referer)
         
-        cart = self.request.session['cart'][variation_id] ##
-        messages.success(self.request, f'{cart["product_name"]} {cart["variation_name"]} product removed from the system.') ##
+        cart = self.request.session['cart'][variation_id] #45:
+        messages.success(self.request, f'{cart["product_name"]} {cart["variation_name"]} product removed from the system.') #46:
 
-        del self.request.session['cart'][variation_id] ##
+        del self.request.session['cart'][variation_id] #47:
         self.request.session.save()
         
         return redirect(http_referer)
 
 class Cart(View):
     def get(self, *args, **kwargs):
-        context = {'cart': self.request.session.get('cart', {})} ##
-        return render(self.request, 'product/cart.html', context) #43: ##
+        context = {'cart': self.request.session.get('cart', {})} #48:
+        return render(self.request, 'product/cart.html', context) #43:
 
 class Finish(View):
     ...
 
 
+#45: Obtém os detalhes do item do carrinho associado ao variation_id fornecido.
+#46: Exibe uma mensagem de sucesso ao usuário, informando que o produto foi removido.
+#47: Remove o item do carrinho da sessão do usuário.
+#48: Prepara o contexto para renderizar a página do carrinho, passando o carrinho atual (ou um dicionário vazio, caso não exista) para o template.
 # ------------------------------------------------------------------
 #26: A variável variation_stock é definida para armazenar o valor do estoque disponível da variação do produto. Isso é importante para verificar a quantidade disponível antes de adicionar ao carrinho.
 #27: Aqui, a variável product armazena o produto associado à variação. Isso permite o acesso a informações do produto, como nome e imagem.
