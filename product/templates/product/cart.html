@@ -4,64 +4,74 @@
 
 {% block content %}
     {% comment %} {{request.session.cart}} <!-- #2: --> {% endcomment %}
-    <div class="row mt-3">
-        <div class="col">
-            <h3>Shopping Cart</h3>
-            <p class="lead">The products, quantities and prices you have chosen.</p>
 
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th class="d-none d-lg-block">Image</th>
-                        <th>Product</th>
-                        <th>V.</th>
-                        <th>QTD.</th>
-                        <th>Total</th>
-                    </tr>
+    {% if request.session.cart %} <!-- ## -->
+        <div class="row mt-3">
+            <div class="col">
+                <h3>Shopping Cart</h3>
+                <p class="lead">The products, quantities and prices you have chosen.</p>
 
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th class="d-none d-lg-block">Image</th>
+                            <th>Product</th>
+                            <th>V.</th>
+                            <th>QTD.</th>
+                            <th>Total</th>
+                        </tr>
 
-                    <tr>
-                        <td class="d-none d-lg-block">
-                            <img class="cart-img" src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
-                        </td>
-                        <td>
-                            Name of the product the customer is purchasing
-                            <a class="ml-3" href="#">
-                                <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                        <td>Variation</td>
-                        <td>2x</td>
-                        <td>$ 10500,59</td>
-                    </tr>
+                        <tr>
+                            <td class="d-none d-lg-block">
+                                <img class="cart-img" src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
+                            </td>
+                            <td>
+                                Name of the product the customer is purchasing
+                                <a class="ml-3" href="#">
+                                    <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td>Variation</td>
+                            <td>2x</td>
+                            <td>$ 10500,59</td>
+                        </tr>
 
-
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
 
 
-    <div class="row mt-3">
-        <div class="col-lg">
-            <p class='lead'>Total in cart</p>
+        <div class="row mt-3">
+            <div class="col-lg">
+                <p class='lead'>Total in cart</p>
 
-            <div class='table-responsive'>
-                <table class="table">
-                    <tr>
-                        <td class="font-weight-bold">Total</td>
-                        <td>$100000</td>
-                    </tr>
-                </table>
+                <div class='table-responsive'>
+                    <table class="table">
+                        <tr>
+                            <td class="font-weight-bold">Total</td>
+                            <td>$100000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg mt-auto">
+                <a class="btn btn-lg btn-block btn-primary" href="#">
+                    Complete purchase
+                </a>
             </div>
         </div>
-        <div class="col-lg mt-auto">
-            <a class="btn btn-lg btn-block btn-primary" href="#">
-                Complete purchase
-            </a>
+    
+    {% else %}
+        <div class="row mt-3">
+            <div class="col">
+                <h3>Shopping Cart</h3>
+                <p class="lead">The products, quantities and prices you have chosen.</p>
+                {% endif %}
+            </div>
         </div>
-    </div>
+
 {% endblock %}
 
 
