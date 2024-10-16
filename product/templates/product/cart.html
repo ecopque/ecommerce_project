@@ -34,7 +34,7 @@
                                     <a href="{% url 'product:detail' line.slug %}"> <!-- ## -->
                                     {{line.product_name}} <!-- ## -->
                                     </a>
-                                    <a class="ml-3" href="#">
+                                    <a class="ml-3" href="{% url 'product:removefromcart' %}?vid={{line.variation_id}}"> <!-- ## -->
                                         <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
                                     </a>
                                 </td>
