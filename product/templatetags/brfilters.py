@@ -15,7 +15,7 @@ def cart_total(cart): #4:
 
 @register.filter
 def cart_totals(cart): ##
-    return utils.cart_totals_product(cart) ##
+    return utils.cart_totals_products(cart) ##
 
 
 # ------------------------------------------------------------------
