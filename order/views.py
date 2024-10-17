@@ -7,7 +7,7 @@ from django.views import View
 class Pay(ListView):
     ...
 
-class Save_Order(View):
+class SaveOrder(View):
     ...
 
 class Details(View):
