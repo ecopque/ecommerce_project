@@ -13,6 +13,9 @@ def format_price(value): #3:
 def cart_total(cart): #4:
     return utils.cart_total_qtd(cart) #4:
 
+def cart_totals(cart): ##
+    return utils.cart_totals_product(cart) ##
+
 
 # ------------------------------------------------------------------
 #4: Define um filtro personalizado (cart_total) que usa a função cart_total_qtd para calcular o total de itens no carrinho, sendo utilizado em templates para exibir essa informação.
