@@ -6,6 +6,25 @@ def format_pricevrs(value): #1:
 def cart_total_qtd(cart): #3:
     return sum([i['quantitative'] for i in cart.values()]) #3:
 
+def cart_totals_product(cart):
+    total = 0
+    for i in cart.values():
+        if i.get('promotional_quantitative_price'):
+            total += i.get('promotional_quantitative_price')
+        else:
+            total += i.get('quantitative_price')
+    return total
+
+    # return sum(
+    #     [
+    #         i.get('promotional_quantitative_price')
+    #         if i.get('promotional_quantitative_price')
+    #         else i.get('quantitative_price')
+    #         for i
+    #         in cart.values()
+    #     ]
+    # )
+
 
 # ------------------------------------------------------------------
 #3: Função que calcula o total de itens no carrinho, somando a quantidade (quantitative) de cada produto.
