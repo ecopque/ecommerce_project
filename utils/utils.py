@@ -6,7 +6,7 @@ def format_pricevrs(value): #1:
 def cart_total_qtd(cart): #3:
     return sum([i['quantitative'] for i in cart.values()]) #3:
 
-def cart_totals_product(cart): ##
+def cart_totals_products(cart): ##
     total = 0
     for i in cart.values():
         if i.get('promotional_quantitative_price'):
