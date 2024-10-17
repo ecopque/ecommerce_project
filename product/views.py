@@ -126,7 +126,7 @@ class Cart(View):
         context = {'cart': self.request.session.get('cart', {})} #48:
         return render(self.request, 'product/cart.html', context) #43:
 
-class Finish(View):
+class PurchaseSummary(View):
     ...
 
 
