@@ -14,10 +14,11 @@ def cart_total(cart): #4:
     return utils.cart_total_qtd(cart) #4:
 
 @register.filter
-def cart_totals(cart): ##
-    return utils.cart_totals_products(cart) ##
+def cart_totals(cart): #5:
+    return utils.cart_totals_products(cart) #5:
 
 
+#5: A função cart_totals é um filtro de template do Django, que usa a função cart_totals_products do módulo utils para calcular o total dos preços dos produtos no carrinho. @register.filter: Isso registra a função como um filtro de template, permitindo que seja usada diretamente nos templates do Django.
 # ------------------------------------------------------------------
 #4: Define um filtro personalizado (cart_total) que usa a função cart_total_qtd para calcular o total de itens no carrinho, sendo utilizado em templates para exibir essa informação.
 # ------------------------------------------------------------------
