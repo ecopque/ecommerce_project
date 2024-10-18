@@ -69,7 +69,7 @@
                     <table class="table">
                         <tr>
                             <td class="font-weight-bold">Total</td>
-                            <td>{{cart|cart_totals|format_price}}</td> <!-- ## -->
+                            <td>{{cart|cart_totals|format_price}}</td> <!-- #15: -->
                         </tr>
                     </table>
                 </div>
@@ -92,6 +92,7 @@
 {% endblock %}
 
 
+<!-- #15: Esta linha no template aplica os filtros cart_totals e format_price ao objeto cart. Primeiro, cart_totals calcula o total dos preços no carrinho, usando a função de filtro registrada anteriormente. Em seguida, o filtro format_price formata esse valor total para exibição, por exemplo, convertendo-o para uma string formatada de forma específica. Comunicação/Requisição de Módulos: O filtro cart_totals usa a função cart_totals_products do módulo utils, enquanto o filtro format_price usa a função format_pricevrs também do módulo utils. Esses módulos são definidos em /utils/utils.py e são importados no arquivo /product/templatetags/brfilters.py. -->
 <!-- ########################################################### -->
 <!-- #3: Esses comandos carregam módulos específicos para uso nos templates.
 brfilters é um módulo customizado (localizado em /product/templatetags/brfilters.py) que disponibiliza filtros personalizados para manipulação de dados no template. static é um módulo padrão do Django que facilita a inclusão de arquivos estáticos (como CSS ou JavaScript) nos templates. -->
