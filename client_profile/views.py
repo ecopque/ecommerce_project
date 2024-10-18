@@ -1,4 +1,4 @@
-#FILE: /client_profile/views.py
+# FILE: /client_profile/views.py
 
 from django.shortcuts import render
 from django.views.generic import ListView
