@@ -11,14 +11,14 @@ class PerfilForm(forms.ModelForm): ##
         fields = '__all__' ##
         exclude = ('user',) ##
 
-    class UserForm(forms.ModelForm): ##
-        class Meta:
-            model = User ##
-            fields = ('first_name', 'last_name', 'username', 'password', 'email') ##
+class UserForm(forms.ModelForm): ##
+    class Meta:
+        model = User ##
+        fields = ('first_name', 'last_name', 'username', 'password', 'email') ##
 
-        def clean(self, *args, **kwargs): ##
-            data = self.data ##
-            cleaned = self.cleaned_data ##
+    def clean(self, *args, **kwargs): ##
+        data = self.data ##
+        cleaned = self.cleaned_data ##
 
 
 
