@@ -3,8 +3,19 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} <!-- ## -->
 
+<!-- # IMPORT⬇: /client_profile/views.py -->
 {% block content %} <!-- ## -->
-    TESTING...
+    <div class="row">
+        <div class="col-lg">
+            <h1>Login</h1>
+        </div>
+
+        <div class="col-lg">
+            <h1>Register</h1>
+            <form method="POST" action="">
+                {{userform|crispy}}
+            </form>
+    </div>
 {% endblock %}
 
 
