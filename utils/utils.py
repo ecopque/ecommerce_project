@@ -6,7 +6,7 @@ def format_pricevrs(value): #1:
 def cart_total_qtd(cart): #3:
     return sum([i['quantitative'] for i in cart.values()]) #3:
 
-def cart_totals_products(cart): ##
+def cart_totals_products(cart): #4:
     total = 0
     for i in cart.values():
         if i.get('promotional_quantitative_price'):
@@ -26,6 +26,7 @@ def cart_totals_products(cart): ##
     # )
 
 
+#4: Esta função calcula o total de preços de todos os produtos no carrinho. Para cada item no carrinho (cart), verifica se existe um preço promocional (promotional_quantitative_price). Se existir, ele é somado ao total. Caso contrário, o preço regular (quantitative_price) é somado. Por fim, retorna o total acumulado. Dependência: O carrinho (cart) é um dicionário cujos valores são itens do carrinho, presumivelmente representando os produtos e seus detalhes.
 # ------------------------------------------------------------------
 #3: Função que calcula o total de itens no carrinho, somando a quantidade (quantitative) de cada produto.
 # ------------------------------------------------------------------
