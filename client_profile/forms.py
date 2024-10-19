@@ -31,9 +31,24 @@ class UserForm(forms.ModelForm): ##
         cleaned = self.cleaned_data ##
         validation_error_msgs = {} ##
 
+        user_data = cleaned.get('username') ##
+        password_data = cleaned.get('password') ##
+        password_data2 = cleaned.get('password2') ##
+        email_data = cleaned.get('email') ##
+
+        user_db = User.objects.filter(username=user_data).first() ##
+        email_db = User.objects.filter(username=email_data).first() ##
+
+        error_msg_user_exists = 'User already exists.'
+        error_msg_password_match = 'The two passwords do not match.'
+        error_msg_email_exists = 'E-mail already exists.'
+        error_msg_email_shorts = 'Password must be at least 6 characters long.'
+
+        # Logged in users: update
         if self.user: ##
-            print('Logged in')
+            ...
         
+        # Users not logged in: registration
         else:
             ...
 
