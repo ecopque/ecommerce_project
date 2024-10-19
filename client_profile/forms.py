@@ -4,17 +4,16 @@ from django import forms
 from . import models
 from django.contrib.auth.models import User
 
-class PerfilForm(forms.ModelForm): ##
+class PerfilForm(forms.ModelForm): #1:
     class Meta:
         #IMPORT⬇: /client_profile/models.py
-        model = models.Client_Profile ##
-        fields = '__all__' ##
-        exclude = ('user',) ##
+        model = models.Client_Profile #2:
+        fields = '__all__' #3:
+        exclude = ('user',) #4:
 
-class UserForm(forms.ModelForm): ##
-    
-    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password') ##
-    password2 = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password confirmation') ##
+class UserForm(forms.ModelForm): #5:
+    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password') #6:
+    password2 = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password confirmation')
 
 
     def __init__(self, user=None, *args, **kwargs): ##
@@ -62,7 +61,6 @@ class UserForm(forms.ModelForm): ##
                 if email_data != email_db.email: ##
                     validation_error_msgs['email'] = error_msg_email_exists
 
-        
         # Users not logged in: registration
         else:
             validation_error_msgs['username'] = 'XXX'
@@ -71,5 +69,12 @@ class UserForm(forms.ModelForm): ##
             raise(forms.ValidationError(validation_error_msgs))
 
 
+#1: Define um formulário baseado no modelo para o perfil do cliente, utilizando o ModelForm do Django. Essa classe herda funcionalidades de forms.ModelForm, permitindo a criação de formulários com base nos modelos do banco de dados.
+#2: Indica que o formulário PerfilForm será baseado no modelo Client_Profile, definido em /client_profile/models.py. Esse modelo especifica os campos e comportamentos que o formulário utilizará para representar os dados do perfil do cliente.
+#3: Especifica que todos os campos do modelo Client_Profile serão incluídos no formulário. Isso significa que o formulário terá um campo para cada atributo definido no modelo, exceto os campos explicitamente excluídos.
+#4: Exclui o campo user do formulário, ou seja, esse campo não será exibido ou manipulado diretamente no formulário.
+#5: Define um formulário para o modelo User, utilizando o ModelForm do Django, permitindo criar e manipular usuários do sistema.
+#6: Adiciona campos para senha e confirmação de senha no formulário, com PasswordInput como widget, ocultando os caracteres digitados.
+#7: 
 
 # https://linktr.ee/edsoncopque
