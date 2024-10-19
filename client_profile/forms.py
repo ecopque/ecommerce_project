@@ -12,7 +12,7 @@ class PerfilForm(forms.ModelForm): ##
         exclude = ('user',) ##
 
 class UserForm(forms.ModelForm): ##
-    password = forms.CharField(required=False, widget=forms.PasswordInput()) ##
+    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password brother!') ##
 
     def __init__(self, user=None, *args, **kwargs): ##
         super().__init__(*args, **kwargs) ##
@@ -26,6 +26,12 @@ class UserForm(forms.ModelForm): ##
     def clean(self, *args, **kwargs): ##
         data = self.data ##
         cleaned = self.cleaned_data ##
+
+        if self.user: ##
+            print('Logged in')
+        
+        else:
+            ...
 
 
 
