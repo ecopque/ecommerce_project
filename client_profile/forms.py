@@ -46,18 +46,29 @@ class UserForm(forms.ModelForm): ##
 
         # Logged in users: update
         if self.user: ##
-            if user_data != user_db: ##
-                if user_db: ##
+            if user_db: ##
+                if user_data != user_db.username: ##
                     validation_error_msgs['username'] = error_msg_user_exists ##
 
             if password_data: ##
                 if password_data != password_data2: ##
                     validation_error_msgs['password'] = error_msg_password_match ##
                     validation_error_msgs['password2'] = error_msg_password_match
+
+                if len(password_data) < 6: ##
+                    validation_error_msgs['password'] = error_msg_email_shorts
+
+            if email_db: ##
+                if email_data != email_db.email: ##
+                    validation_error_msgs['email'] = error_msg_email_exists
+
         
         # Users not logged in: registration
         else:
-            ...
+            validation_error_msgs['username'] = 'XXX'
+
+        if validation_error_msgs:
+            raise(forms.ValidationError(validation_error_msgs))
 
 
 
