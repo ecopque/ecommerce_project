@@ -69,6 +69,7 @@ class UserForm(forms.ModelForm): #5:
             raise(forms.ValidationError(validation_error_msgs))
 
 
+# ------------------------------------------------------------------
 #1: Define um formulário baseado no modelo para o perfil do cliente, utilizando o ModelForm do Django. Essa classe herda funcionalidades de forms.ModelForm, permitindo a criação de formulários com base nos modelos do banco de dados.
 #2: Indica que o formulário PerfilForm será baseado no modelo Client_Profile, definido em /client_profile/models.py. Esse modelo especifica os campos e comportamentos que o formulário utilizará para representar os dados do perfil do cliente.
 #3: Especifica que todos os campos do modelo Client_Profile serão incluídos no formulário. Isso significa que o formulário terá um campo para cada atributo definido no modelo, exceto os campos explicitamente excluídos.
@@ -98,6 +99,5 @@ class UserForm(forms.ModelForm): #5:
 #27: Verifica se a senha tem pelo menos 6 caracteres. Caso contrário, adiciona uma mensagem de erro.
 #28: Verifica se o e-mail já está registrado.
 #29: Compara o e-mail fornecido com o registrado no banco de dados.
-#30: 
 
 # https://linktr.ee/edsoncopque

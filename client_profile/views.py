@@ -44,11 +44,11 @@ class Logout(View):
     ...
 
 
+# ------------------------------------------------------------------
 #1: Define uma classe de visualização base para lidar com o perfil do cliente.
 #2: Verifica se o usuário está autenticado para personalizar o contexto do formulário.
 #3: Cria um dicionário de contexto com os formulários UserForm e PerfilForm.
 #4: Renderiza a página com o template especificado e o contexto.
 #5: Sobrescreve o método get para renderizar a página com o contexto configurado.
-#6: 
 
 # https://linktr.ee/edsoncopque
