@@ -1,10 +1,10 @@
 <!-- # FILE: /client_profile/templates/client_profile/create.html -->
 
 {% extends 'base.html' %}
-{% load crispy_forms_tags %} <!-- ## -->
+{% load crispy_forms_tags %} <!-- #1: -->
 
 <!-- # IMPORT⬇: /client_profile/views.py -->
-{% block content %} <!-- ## -->
+{% block content %} <!-- #2: -->
     <div class="row">
         <div class="col-lg">
             <h1>Login</h1>
@@ -13,8 +13,8 @@
         <div class="col-lg">
             <h1>Register</h1>
             <form method="POST" action="">
-                {% csrf_token %} <!-- ## -->
-                {{userform|crispy}} <!-- ## -->
+                {% csrf_token %} <!-- #3: -->
+                {{userform|crispy}} <!-- #4: -->
                 <div class="row">
                     <div class="col">
                         <button type="submit" class='btn btn-primary btn-block btn-lg'>
@@ -26,5 +26,10 @@
     </div>
 {% endblock %}
 
+
+<!-- #1: Carrega as tags do crispy_forms, uma biblioteca do Django usada para melhorar o estilo dos formulários. -->
+<!-- #2: Inicia um bloco de conteúdo que será renderizado dentro do template base. -->
+<!-- #3: Gera um token CSRF para proteger o formulário contra ataques de falsificação de solicitação entre sites. -->
+<!-- #4: Renderiza o formulário userform utilizando o estilo do crispy_forms. -->
 
 <!-- # https://linktr.ee/edsoncopque -->

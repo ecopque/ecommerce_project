@@ -57,8 +57,8 @@ class UserForm(forms.ModelForm): #5:
                 if len(password_data) < 6: #27:
                     validation_error_msgs['password'] = error_msg_email_shorts
 
-            if email_db: ##
-                if email_data != email_db.email: ##
+            if email_db: #28:
+                if email_data != email_db.email: #29:
                     validation_error_msgs['email'] = error_msg_email_exists
 
         # Users not logged in: registration
@@ -96,6 +96,8 @@ class UserForm(forms.ModelForm): #5:
 #25: Verifica se a senha foi fornecida.
 #26: Valida se as senhas coincidem, caso contrário, adiciona mensagens de erro.
 #27: Verifica se a senha tem pelo menos 6 caracteres. Caso contrário, adiciona uma mensagem de erro.
-#28: 
+#28: Verifica se o e-mail já está registrado.
+#29: Compara o e-mail fornecido com o registrado no banco de dados.
+#30: 
 
 # https://linktr.ee/edsoncopque
