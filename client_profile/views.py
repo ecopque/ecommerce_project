@@ -12,11 +12,18 @@ class BasePerfil(View): ##
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
 
-        self.context = {
-            'userform': forms.UserForm(data=self.request.POST or None),
-            'perfilform': forms.PerfilForm(data=self.request.POST or None),
-            } ##
-        
+        # Checking if you are logged in
+        if self.request.user.is_authenticated: ##
+            self.context = {
+                'userform': forms.UserForm(data=self.request.POST or None, user=self.request.user, instance=self.request.user,),
+                'perfilform': forms.PerfilForm(data=self.request.POST or None),
+                } ##
+        else:
+            self.context = {
+                'userform': forms.UserForm(data=self.request.POST or None,),
+                'perfilform': forms.PerfilForm(data=self.request.POST or None),
+                } ##
+            
         self.new_render = render(self.request, self.template_name, self.context) ##
 
     def get(self, *args, **kwargs): ##
