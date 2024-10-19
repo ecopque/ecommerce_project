@@ -24,7 +24,8 @@ class BasePerfil(View): ##
 
 
 class Create(BasePerfil):
-    ...
+    def post(self, *args, **kwargs): ##
+        return self.new_render ##
 
 class Update(View):
     ...

@@ -13,7 +13,15 @@
         <div class="col-lg">
             <h1>Register</h1>
             <form method="POST" action="">
-                {{userform|crispy}}
+                {% csrf_token %} <!-- ## -->
+                {{userform|crispy}} <!-- ## -->
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class='btn btn-primary btn-block btn-lg'>
+                            Submit
+                        </button>
+                    </div>
+                </div>
             </form>
     </div>
 {% endblock %}

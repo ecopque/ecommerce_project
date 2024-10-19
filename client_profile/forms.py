@@ -12,6 +12,9 @@ class PerfilForm(forms.ModelForm): ##
         exclude = ('user',) ##
 
 class UserForm(forms.ModelForm): ##
+    def __init__(self, user=None, *args, **kwargs): ##
+        super().__init__(*args, **kwargs) ##
+
     class Meta:
         model = User ##
         fields = ('first_name', 'last_name', 'username', 'password', 'email') ##
