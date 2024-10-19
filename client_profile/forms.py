@@ -16,27 +16,27 @@ class UserForm(forms.ModelForm): #5:
     password2 = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password confirmation')
 
 
-    def __init__(self, user=None, *args, **kwargs): ##
-        super().__init__(*args, **kwargs) ##
+    def __init__(self, user=None, *args, **kwargs): #7:
+        super().__init__(*args, **kwargs) #8:
 
-        self.user = user ##
+        self.user = user #9:
 
     class Meta:
-        model = User ##
-        fields = ('first_name', 'last_name', 'username', 'password', 'password2', 'email') ##
+        model = User #10:
+        fields = ('first_name', 'last_name', 'username', 'password', 'password2', 'email') #11:
 
-    def clean(self, *args, **kwargs): ##
-        data = self.data ##
-        cleaned = self.cleaned_data ##
-        validation_error_msgs = {} ##
+    def clean(self, *args, **kwargs): #12:
+        data = self.data #13:
+        cleaned = self.cleaned_data #14:
+        validation_error_msgs = {} #15:
 
-        user_data = cleaned.get('username') ##
-        password_data = cleaned.get('password') ##
-        password_data2 = cleaned.get('password2') ##
-        email_data = cleaned.get('email') ##
+        user_data = cleaned.get('username') #16:
+        password_data = cleaned.get('password') #17:
+        password_data2 = cleaned.get('password2') #17:
+        email_data = cleaned.get('email') #18:
 
-        user_db = User.objects.filter(username=user_data).first() ##
-        email_db = User.objects.filter(username=email_data).first() ##
+        user_db = User.objects.filter(username=user_data).first() #19:
+        email_db = User.objects.filter(username=email_data).first() #20:
 
         error_msg_user_exists = 'User already exists.'
         error_msg_password_match = 'The two passwords do not match.'
@@ -44,17 +44,17 @@ class UserForm(forms.ModelForm): #5:
         error_msg_email_shorts = 'Password must be at least 6 characters long.'
 
         # Logged in users: update
-        if self.user: ##
-            if user_db: ##
-                if user_data != user_db.username: ##
-                    validation_error_msgs['username'] = error_msg_user_exists ##
+        if self.user: #21:
+            if user_db: #22:
+                if user_data != user_db.username: #23:
+                    validation_error_msgs['username'] = error_msg_user_exists #24:
 
-            if password_data: ##
-                if password_data != password_data2: ##
-                    validation_error_msgs['password'] = error_msg_password_match ##
+            if password_data: #25:
+                if password_data != password_data2: #26:
+                    validation_error_msgs['password'] = error_msg_password_match
                     validation_error_msgs['password2'] = error_msg_password_match
 
-                if len(password_data) < 6: ##
+                if len(password_data) < 6: #27:
                     validation_error_msgs['password'] = error_msg_email_shorts
 
             if email_db: ##
@@ -75,6 +75,27 @@ class UserForm(forms.ModelForm): #5:
 #4: Exclui o campo user do formulário, ou seja, esse campo não será exibido ou manipulado diretamente no formulário.
 #5: Define um formulário para o modelo User, utilizando o ModelForm do Django, permitindo criar e manipular usuários do sistema.
 #6: Adiciona campos para senha e confirmação de senha no formulário, com PasswordInput como widget, ocultando os caracteres digitados.
-#7: 
+#7: Sobrescreve o método __init__ para aceitar um parâmetro opcional user, além dos argumentos padrões args e kwargs, permitindo personalizar o formulário com base no usuário atual.
+#8: Chama o construtor da superclasse (ModelForm) para garantir a inicialização correta dos atributos do formulário.
+#9: Armazena o usuário passado como argumento para uso futuro no formulário, por exemplo, para validação personalizada.
+#10: Define metadados para o formulário, especificando o modelo User do Django e os campos que serão exibidos e manipulados.
+#11: Especifica os campos que serão incluídos no formulário UserForm, permitindo o cadastro ou atualização desses atributos para um usuário.
+#12: Sobrescreve o método clean, usado para validação personalizada dos dados do formulário antes de serem salvos.
+#13: Obtém os dados enviados no formulário como um dicionário.
+#14: Acessa os dados validados e limpos do formulário.
+#15: Inicializa um dicionário para armazenar mensagens de erro de validação.
+#16: Obtém o nome de usuário inserido no formulário.
+#17: Obtém os valores das senhas inseridas no formulário.
+#18: Obtém o e-mail inserido no formulário.
+#19: Consulta o banco de dados para verificar se já existe um usuário com o nome de usuário fornecido.
+#20: Verifica se já existe um usuário com o e-mail fornecido.
+#21: Verifica se o usuário está logado. Se estiver, aplica regras específicas para atualização de dados.
+#22: Verifica se o nome de usuário já existe no banco de dados.
+#23: Verifica se o nome de usuário fornecido é diferente do registrado para o usuário atual.
+#24: Adiciona uma mensagem de erro se o nome de usuário já existir.
+#25: Verifica se a senha foi fornecida.
+#26: Valida se as senhas coincidem, caso contrário, adiciona mensagens de erro.
+#27: Verifica se a senha tem pelo menos 6 caracteres. Caso contrário, adiciona uma mensagem de erro.
+#28: 
 
 # https://linktr.ee/edsoncopque
