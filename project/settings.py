@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'product', #14:
     'order', #15:
     'client_profile', #15:
-    'crispy_forms', ##
-    'crispy_bootstrap4', ##
+    'crispy_forms', #16:
+    'crispy_bootstrap4', #16:
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4' ##
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #17:
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -161,6 +161,8 @@ INTERNAL_IPS = [ #13:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+#16: Adiciona crispy_forms e crispy_bootstrap4 às aplicações instaladas para suportar a formatação de formulários com o framework Bootstrap 4.
+#17: Define o pacote de templates do crispy_forms para usar o Bootstrap 4.
 # ------------------------------------------------------------------
 #15: Estes são nomes dos aplicativos, que foi adicionado à lista INSTALLED_APPS. Isso significa que o Django reconhecerá e ativará estes apps, permitindo que suas funcionalidades (modelos, views, etc.) sejam integradas ao projeto.
 # ------------------------------------------------------------------
