@@ -12,7 +12,10 @@ class PerfilForm(forms.ModelForm): ##
         exclude = ('user',) ##
 
 class UserForm(forms.ModelForm): ##
-    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password brother!') ##
+    
+    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password') ##
+    password2 = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password confirmation') ##
+
 
     def __init__(self, user=None, *args, **kwargs): ##
         super().__init__(*args, **kwargs) ##
@@ -21,11 +24,12 @@ class UserForm(forms.ModelForm): ##
 
     class Meta:
         model = User ##
-        fields = ('first_name', 'last_name', 'username', 'password', 'email') ##
+        fields = ('first_name', 'last_name', 'username', 'password', 'password2', 'email') ##
 
     def clean(self, *args, **kwargs): ##
         data = self.data ##
         cleaned = self.cleaned_data ##
+        validation_error_msgs = {} ##
 
         if self.user: ##
             print('Logged in')
