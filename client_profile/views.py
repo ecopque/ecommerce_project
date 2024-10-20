@@ -12,8 +12,12 @@ class BasePerfil(View): #1:
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
 
+        self.client_profile = None ##
+
         # Checking if you are logged in
         if self.request.user.is_authenticated: #2:
+            self.client_profile = models.Client_Profile.objects.filter(user=self.request.user).first() ##
+
             self.context = {
                 'userform': forms.UserForm(data=self.request.POST or None, user=self.request.user, instance=self.request.user,),
                 'perfilform': forms.PerfilForm(data=self.request.POST or None),
@@ -32,6 +36,7 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
+        print(self.client_profile)
         return self.new_render
 
 class Update(View):
