@@ -15,7 +15,6 @@ class UserForm(forms.ModelForm): #5:
     password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password') #6:
     password2 = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password confirmation')
 
-
     def __init__(self, user=None, *args, **kwargs): #7:
         super().__init__(*args, **kwargs) #8:
 
@@ -63,7 +62,18 @@ class UserForm(forms.ModelForm): #5:
 
         # Users not logged in: registration
         else:
-            validation_error_msgs['username'] = 'XXX'
+            if user_data != user_db.username:
+                validation_error_msgs['username'] = error_msg_user_exists
+
+            if password_data != password_data2:
+                validation_error_msgs['password'] = error_msg_password_match
+                validation_error_msgs['password2'] = error_msg_password_match
+
+            if len(password_data) < 6:
+                validation_error_msgs['password'] = error_msg_email_shorts
+
+            if email_data != email_db.email:
+                validation_error_msgs['email'] = error_msg_email_exists
 
         if validation_error_msgs:
             raise(forms.ValidationError(validation_error_msgs))
