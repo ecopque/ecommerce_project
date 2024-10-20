@@ -12,7 +12,7 @@ class PerfilForm(forms.ModelForm): #1:
         exclude = ('user',) #4:
 
 class UserForm(forms.ModelForm): #5:
-    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password') #6:
+    password = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password', help_text='xxx') #6:
     password2 = forms.CharField(required=False, widget=forms.PasswordInput(), label='Password confirmation')
 
     def __init__(self, user=None, *args, **kwargs): #7:
@@ -35,12 +35,13 @@ class UserForm(forms.ModelForm): #5:
         email_data = cleaned.get('email') #18:
 
         user_db = User.objects.filter(username=user_data).first() #19:
-        email_db = User.objects.filter(username=email_data).first() #20:
+        email_db = User.objects.filter(email=email_data).first() #20:
 
         error_msg_user_exists = 'User already exists.'
         error_msg_password_match = 'The two passwords do not match.'
         error_msg_email_exists = 'E-mail already exists.'
         error_msg_email_shorts = 'Password must be at least 6 characters long.'
+        error_msg_required_field = 'This field is required.'
 
         # Logged in users: update
         if self.user: #21:
@@ -62,8 +63,14 @@ class UserForm(forms.ModelForm): #5:
 
         # Users not logged in: registration
         else:
-            if user_data != user_db.username:
+            if user_db: ##
                 validation_error_msgs['username'] = error_msg_user_exists
+
+            if not password_data: ##
+                validation_error_msgs['password'] = error_msg_required_field
+
+            if not password_data2:
+                validation_error_msgs['password'] = error_msg_required_field
 
             if password_data != password_data2:
                 validation_error_msgs['password'] = error_msg_password_match
@@ -72,7 +79,7 @@ class UserForm(forms.ModelForm): #5:
             if len(password_data) < 6:
                 validation_error_msgs['password'] = error_msg_email_shorts
 
-            if email_data != email_db.email:
+            if email_db:
                 validation_error_msgs['email'] = error_msg_email_exists
 
         if validation_error_msgs:
@@ -99,7 +106,7 @@ class UserForm(forms.ModelForm): #5:
 #17: Obtém os valores das senhas inseridas no formulário.
 #18: Obtém o e-mail inserido no formulário.
 #19: Consulta o banco de dados para verificar se já existe um usuário com o nome de usuário fornecido.
-#20: Verifica se já existe um usuário com o e-mail fornecido.
+#20: Verifica se já existe o e-mail fornecido.
 #21: Verifica se o usuário está logado. Se estiver, aplica regras específicas para atualização de dados.
 #22: Verifica se o nome de usuário já existe no banco de dados.
 #23: Verifica se o nome de usuário fornecido é diferente do registrado para o usuário atual.
