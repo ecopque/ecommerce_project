@@ -63,10 +63,10 @@ class UserForm(forms.ModelForm): #5:
 
         # Users not logged in: registration
         else:
-            if user_db: ##
+            if user_db: #30:
                 validation_error_msgs['username'] = error_msg_user_exists
 
-            if not password_data: ##
+            if not password_data: #31:
                 validation_error_msgs['password'] = error_msg_required_field
 
             if not password_data2:
@@ -86,6 +86,8 @@ class UserForm(forms.ModelForm): #5:
             raise(forms.ValidationError(validation_error_msgs))
 
 
+#30: Verifica se o usuário já existe no banco de dados. user_db é uma instância de User retornada pela consulta ao banco de dados usando User.objects.filter(username=user_data).first(). Se a consulta retornar um usuário, isso indica que o nome de usuário já está registrado e uma mensagem de erro é adicionada para informar que o usuário já existe.
+#31: Verifica se o campo de senha não foi preenchido. password_data é extraído de self.cleaned_data, e se estiver vazio, uma mensagem de erro é adicionada para indicar que o campo de senha é obrigatório.
 # ------------------------------------------------------------------
 #1: Define um formulário baseado no modelo para o perfil do cliente, utilizando o ModelForm do Django. Essa classe herda funcionalidades de forms.ModelForm, permitindo a criação de formulários com base nos modelos do banco de dados.
 #2: Indica que o formulário PerfilForm será baseado no modelo Client_Profile, definido em /client_profile/models.py. Esse modelo especifica os campos e comportamentos que o formulário utilizará para representar os dados do perfil do cliente.
