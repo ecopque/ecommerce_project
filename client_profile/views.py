@@ -1,16 +1,20 @@
 # FILE: /client_profile/views.py
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.views import View
 from . import models
 from . import forms
+from django.contrib.auth.models import User ##
+import copy ##
 
 class BasePerfil(View): #1:
     template_name = 'client_profile/create.html'
 
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
+
+        self.cart = copy.deepcopy(self.request.session.get('cart', {})) ##
 
         self.client_profile = None ##
 
@@ -39,7 +43,7 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
-        # if not self.userform.is_valid() or not self.perfilform.is_valid():
+        # if not self.userform.is_valid() or not self.perfilform.is_valid(): ##
         if not self.userform.is_valid(): ##
             print('Invalid')
             return self.new_render
@@ -52,7 +56,9 @@ class Create(BasePerfil):
         
         # User logged in
         if self.request.user.is_authenticated: ##
-            user = self.request.user ##
+            # user = self.request.user ##
+            user = get_object_or_404(User, username=self.request.user.username) ##
+
             user.username = username ##
 
             if password: ##
@@ -74,6 +80,10 @@ class Create(BasePerfil):
             client_profile.save() ##
 
         print('Valid')
+
+        self.request.session['cart'] = self.cart ##
+        self.request.session.save() ##
+
         return self.new_render
 
 class Update(View):
