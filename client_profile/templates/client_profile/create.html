@@ -6,9 +6,12 @@
 <!-- # IMPORT⬇: /client_profile/views.py -->
 {% block content %} <!-- #2: -->
     <div class="row">
-        <div class="col-lg">
-            <h1>Login</h1>
-        </div>
+
+        {% if not request.user.is_authenticated %} <!-- ## -->
+            <div class="col-lg">
+                <h1>Login</h1>
+            </div>
+        {% endif %}
 
         <div class="col-lg">
             <h1>Register</h1>
