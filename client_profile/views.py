@@ -27,6 +27,9 @@ class BasePerfil(View): #1:
                 'userform': forms.UserForm(data=self.request.POST or None,),
                 'perfilform': forms.PerfilForm(data=self.request.POST or None),
                 } #3:
+        
+        self.userform = self.context['userform'] ##
+        self.perfilform = self.context['perfilform'] ##
             
         self.new_render = render(self.request, self.template_name, self.context) #4:
 
@@ -36,7 +39,11 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
-        print(self.client_profile)
+        if not self.userform.is_valid() or not self.perfilform.is_valid(): ##
+            print('Invalid')
+            return self.new_render
+        
+        print('Valid')
         return self.new_render
 
 class Update(View):

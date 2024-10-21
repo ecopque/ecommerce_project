@@ -15,6 +15,7 @@
             <form method="POST" action="">
                 {% csrf_token %} <!-- #3: -->
                 {{userform|crispy}} <!-- #4: -->
+                {{perfilform|crispy}} <!-- # -->
                 <div class="row">
                     <div class="col">
                         <button type="submit" class='btn btn-primary btn-block btn-lg'>
