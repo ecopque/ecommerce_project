@@ -14,7 +14,10 @@
         {% endif %}
 
         <div class="col-lg">
-            <h1>Register</h1>
+
+            {% block titleregistration %} <!-- ## -->
+                <h1>Register</h1>
+            {% endblock %}
             <form method="POST" action="">
                 {% csrf_token %} <!-- #3: -->
                 {{userform|crispy}} <!-- #4: -->
