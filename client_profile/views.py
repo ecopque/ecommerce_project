@@ -39,17 +39,30 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
-        if not self.userform.is_valid() or not self.perfilform.is_valid(): ##
+        # if not self.userform.is_valid() or not self.perfilform.is_valid():
+        if not self.userform.is_valid(): ##
             print('Invalid')
             return self.new_render
 
         username = self.userform.cleaned_data.get('username') ##
         password = self.userform.cleaned_data.get('password') ##
         email = self.userform.cleaned_data.get('email') ##
+        first_name = self.userform.cleaned_data.get('first_name') ##
+        last_name = self.userform.cleaned_data.get('last_name') ##
         
         # User logged in
         if self.request.user.is_authenticated: ##
-            ...
+            user = self.request.user ##
+            user.username = username ##
+
+            if password: ##
+                user.set_password(password) ##
+            
+            user.email = email ##
+            user.first_name = first_name ##
+            user.last_name = last_name ##
+            user.save() ##
+
         # User not logged in (new) 
         else:
             user = self.userform.save(commit=False) ##
