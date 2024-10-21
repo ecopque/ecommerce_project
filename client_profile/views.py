@@ -43,7 +43,7 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
-        # if not self.userform.is_valid() or not self.perfilform.is_valid(): ##
+        # if not self.userform.is_valid() or not self.perfilform.is_valid(): #
         if not self.userform.is_valid(): #13:
             print('Invalid')
             return self.new_render
@@ -96,6 +96,7 @@ class Logout(View):
     ...
 
 
+# ------------------------------------------------------------------
 #6: Importa o modelo User do módulo django.contrib.auth.models. Este modelo é utilizado para representar usuários no sistema, como nas operações de verificação de existência e atualização de dados do usuário.
 #7: Importa o módulo copy, que fornece funções para criar cópias superficiais ou profundas de objetos. Neste caso, copy.deepcopy() é utilizado para duplicar o carrinho de compras, garantindo que mudanças na cópia não afetem o objeto original.
 #8: Obtém o carrinho de compras da sessão e cria uma cópia profunda para evitar que alterações feitas na cópia afetem o carrinho original armazenado na sessão. Isso é importante para manipular os dados do carrinho de forma segura durante a execução do código.

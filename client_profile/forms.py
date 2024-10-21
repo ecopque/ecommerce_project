@@ -86,6 +86,7 @@ class UserForm(forms.ModelForm): #5:
             raise(forms.ValidationError(validation_error_msgs))
 
 
+# ------------------------------------------------------------------
 #30: Verifica se o usuário já existe no banco de dados. user_db é uma instância de User retornada pela consulta ao banco de dados usando User.objects.filter(username=user_data).first(). Se a consulta retornar um usuário, isso indica que o nome de usuário já está registrado e uma mensagem de erro é adicionada para informar que o usuário já existe.
 #31: Verifica se o campo de senha não foi preenchido. password_data é extraído de self.cleaned_data, e se estiver vazio, uma mensagem de erro é adicionada para indicar que o campo de senha é obrigatório.
 # ------------------------------------------------------------------
