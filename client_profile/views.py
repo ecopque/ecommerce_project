@@ -42,7 +42,17 @@ class Create(BasePerfil):
         if not self.userform.is_valid() or not self.perfilform.is_valid(): ##
             print('Invalid')
             return self.new_render
+
+        # data
         
+        # User logged in
+        if self.request.user.is_authenticated: ##
+            ...
+        # User not logged in (new) 
+        else:
+            user = self.userform.save(commit=False) ##
+            user.set_password() ##
+
         print('Valid')
         return self.new_render
 
