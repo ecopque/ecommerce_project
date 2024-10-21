@@ -43,7 +43,9 @@ class Create(BasePerfil):
             print('Invalid')
             return self.new_render
 
-        # data
+        username = self.userform.cleaned_data.get('username') ##
+        password = self.userform.cleaned_data.get('password') ##
+        email = self.userform.cleaned_data.get('email') ##
         
         # User logged in
         if self.request.user.is_authenticated: ##
@@ -51,7 +53,12 @@ class Create(BasePerfil):
         # User not logged in (new) 
         else:
             user = self.userform.save(commit=False) ##
-            user.set_password() ##
+            user.set_password(password) ##
+            user.save() ##
+
+            client_profile = self.perfilform.save(commit=False) ##
+            client_profile.user = user ##
+            client_profile.save() ##
 
         print('Valid')
         return self.new_render
