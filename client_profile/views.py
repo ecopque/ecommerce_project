@@ -25,8 +25,8 @@ class BasePerfil(View): #1:
 
             self.context = {
                 'userform': forms.UserForm(data=self.request.POST or None, user=self.request.user, instance=self.request.user,),
-                'perfilform': forms.PerfilForm(data=self.request.POST or None),
-                } #3:
+                'perfilform': forms.PerfilForm(data=self.request.POST or None, instance=self.client_profile),
+                } #3: ##AAA:
         else:
             self.context = {
                 'userform': forms.UserForm(data=self.request.POST or None,),
@@ -70,6 +70,11 @@ class Create(BasePerfil):
             user.last_name = last_name
             user.save()
 
+            if not self.client_profile: ##
+                self.perfilform.cleaned_data['user'] = user ##
+                client_profile = models.Client_Profile(**self.perfilform.cleaned_data) ##
+                client_profile.save()
+
         # User not logged in (new) 
         else:
             user = self.userform.save(commit=False) #
@@ -102,6 +107,7 @@ class Logout(View):
     ...
 
 
+#AAA: Adicionamos 'instance=self.client_profile';
 # ------------------------------------------------------------------
 #6: Importa o modelo User do módulo django.contrib.auth.models. Este modelo é utilizado para representar usuários no sistema, como nas operações de verificação de existência e atualização de dados do usuário.
 #7: Importa o módulo copy, que fornece funções para criar cópias superficiais ou profundas de objetos. Neste caso, copy.deepcopy() é utilizado para duplicar o carrinho de compras, garantindo que mudanças na cópia não afetem o objeto original.
