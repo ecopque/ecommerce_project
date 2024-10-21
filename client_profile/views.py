@@ -7,6 +7,7 @@ from . import models
 from . import forms
 from django.contrib.auth.models import User #6:
 import copy #7:
+from django.contrib.auth import authenticate, login
 
 class BasePerfil(View): #1:
     template_name = 'client_profile/create.html'
@@ -78,6 +79,11 @@ class Create(BasePerfil):
             client_profile = self.perfilform.save(commit=False) #21:
             client_profile.user = user #22:
             client_profile.save()
+        
+        if password: ##
+            authentic = authenticate(self.request, username=user, password=password) ##
+            if authentic: ##
+                login(self.request, user=user) ##
 
         print('Valid')
 
