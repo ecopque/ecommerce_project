@@ -35,6 +35,9 @@ class BasePerfil(View): #1:
         
         self.userform = self.context['userform'] #11:
         self.perfilform = self.context['perfilform'] #12:
+
+        if self.request.user.is_authenticated:
+            self.template_name = 'client_profile/update.html' ##
             
         self.new_render = render(self.request, self.template_name, self.context) #4:
 
@@ -74,6 +77,10 @@ class Create(BasePerfil):
                 self.perfilform.cleaned_data['user'] = user ##
                 client_profile = models.Client_Profile(**self.perfilform.cleaned_data) ##
                 client_profile.save()
+            else:
+                client_profile = self.perfilform.save(commit=False) ##
+                client_profile.user = user ##
+                client_profile.save() ##
 
         # User not logged in (new) 
         else:
