@@ -114,6 +114,7 @@ class Logout(View):
     ...
 
 
+# ------------------------------------------------------------------
 #24: Adicionamos 'instance=self.client_profile';
 #25: Esta linha verifica se o usuário está autenticado (self.request.user.is_authenticated). Se estiver, altera o template_name para 'client_profile/update.html'. Isso indica que usuários autenticados verão um template de atualização de perfil, enquanto usuários não autenticados usariam outro template (definido anteriormente como 'client_profile/create.html').
 #26: Esta linha está comentada e, portanto, não é executada. Mas se fosse utilizada, user seria atribuído diretamente ao objeto de usuário associado à requisição atual (self.request.user).
@@ -125,7 +126,6 @@ class Logout(View):
 #32: Verifica se a variável password contém um valor (ou seja, se o usuário forneceu uma senha). Se a senha foi especificada, o próximo passo é autenticar o usuário com essas credenciais.
 #33: Tenta autenticar o usuário usando o username e a password fornecidos. Se a autenticação for bem-sucedida, o objeto authentic representará o usuário autenticado.
 #34: Verifica se a autenticação foi bem-sucedida (authentic não é None). Se sim, o método login() é chamado para autenticar o usuário na sessão atual, permitindo que ele acesse o sistema.
-#35: 
 # ------------------------------------------------------------------
 #6: Importa o modelo User do módulo django.contrib.auth.models. Este modelo é utilizado para representar usuários no sistema, como nas operações de verificação de existência e atualização de dados do usuário.
 #7: Importa o módulo copy, que fornece funções para criar cópias superficiais ou profundas de objetos. Neste caso, copy.deepcopy() é utilizado para duplicar o carrinho de compras, garantindo que mudanças na cópia não afetem o objeto original.
