@@ -26,7 +26,7 @@ class BasePerfil(View): #1:
             self.context = {
                 'userform': forms.UserForm(data=self.request.POST or None, user=self.request.user, instance=self.request.user,),
                 'perfilform': forms.PerfilForm(data=self.request.POST or None, instance=self.client_profile),
-                } #3: ##AAA:
+                } #3: #24:
         else:
             self.context = {
                 'userform': forms.UserForm(data=self.request.POST or None,),
@@ -36,8 +36,8 @@ class BasePerfil(View): #1:
         self.userform = self.context['userform'] #11:
         self.perfilform = self.context['perfilform'] #12:
 
-        if self.request.user.is_authenticated:
-            self.template_name = 'client_profile/update.html' ##
+        if self.request.user.is_authenticated: #25:
+            self.template_name = 'client_profile/update.html' #25:
             
         self.new_render = render(self.request, self.template_name, self.context) #4:
 
@@ -60,7 +60,7 @@ class Create(BasePerfil):
         
         # User logged in
         if self.request.user.is_authenticated: #15:
-            # user = self.request.user ##
+            # user = self.request.user #26:
             user = get_object_or_404(User, username=self.request.user.username) #16:
 
             user.username = username #17:
@@ -73,14 +73,14 @@ class Create(BasePerfil):
             user.last_name = last_name
             user.save()
 
-            if not self.client_profile: ##
-                self.perfilform.cleaned_data['user'] = user ##
-                client_profile = models.Client_Profile(**self.perfilform.cleaned_data) ##
+            if not self.client_profile: #27:
+                self.perfilform.cleaned_data['user'] = user #28:
+                client_profile = models.Client_Profile(**self.perfilform.cleaned_data) #29:
                 client_profile.save()
             else:
-                client_profile = self.perfilform.save(commit=False) ##
-                client_profile.user = user ##
-                client_profile.save() ##
+                client_profile = self.perfilform.save(commit=False) #30:
+                client_profile.user = user #31:
+                client_profile.save()
 
         # User not logged in (new) 
         else:
@@ -92,10 +92,10 @@ class Create(BasePerfil):
             client_profile.user = user #22:
             client_profile.save()
         
-        if password: ##
-            authentic = authenticate(self.request, username=user, password=password) ##
-            if authentic: ##
-                login(self.request, user=user) ##
+        if password: #32:
+            authentic = authenticate(self.request, username=user, password=password) #33:
+            if authentic: #34:
+                login(self.request, user=user) #34:
 
         print('Valid')
 
@@ -114,7 +114,18 @@ class Logout(View):
     ...
 
 
-#AAA: Adicionamos 'instance=self.client_profile';
+#24: Adicionamos 'instance=self.client_profile';
+#25: Esta linha verifica se o usuário está autenticado (self.request.user.is_authenticated). Se estiver, altera o template_name para 'client_profile/update.html'. Isso indica que usuários autenticados verão um template de atualização de perfil, enquanto usuários não autenticados usariam outro template (definido anteriormente como 'client_profile/create.html').
+#26: Esta linha está comentada e, portanto, não é executada. Mas se fosse utilizada, user seria atribuído diretamente ao objeto de usuário associado à requisição atual (self.request.user).
+#27: Esta linha verifica se self.client_profile não existe (ou seja, é None). Se for o caso, significa que não há um perfil associado ao usuário atual e será necessário criar um novo perfil.
+#28: Caso um novo perfil esteja sendo criado (verificado pela condição anterior), essa linha adiciona o objeto user aos dados limpos (cleaned_data) do formulário perfilform. Isso associa o perfil ao usuário antes de criar a instância do modelo Client_Profile.
+#29: Cria uma nova instância do modelo Client_Profile, passando os dados limpos do formulário perfilform como argumentos. Isso é feito usando o operador ** para desempacotar o dicionário de dados e atribuir os valores correspondentes aos campos do modelo.
+#30: Aqui, o perfil do cliente é atualizado ou criado com base nos dados do formulário, mas ainda não é salvo no banco de dados. O argumento commit=False impede o salvamento imediato, permitindo associar o usuário ao perfil antes de salvá-lo.
+#31: Associa o objeto user ao perfil do cliente antes de salvar o perfil no banco de dados. Isso é necessário para estabelecer a relação entre o perfil e o usuário autenticado.
+#32: Verifica se a variável password contém um valor (ou seja, se o usuário forneceu uma senha). Se a senha foi especificada, o próximo passo é autenticar o usuário com essas credenciais.
+#33: Tenta autenticar o usuário usando o username e a password fornecidos. Se a autenticação for bem-sucedida, o objeto authentic representará o usuário autenticado.
+#34: Verifica se a autenticação foi bem-sucedida (authentic não é None). Se sim, o método login() é chamado para autenticar o usuário na sessão atual, permitindo que ele acesse o sistema.
+#35: 
 # ------------------------------------------------------------------
 #6: Importa o modelo User do módulo django.contrib.auth.models. Este modelo é utilizado para representar usuários no sistema, como nas operações de verificação de existência e atualização de dados do usuário.
 #7: Importa o módulo copy, que fornece funções para criar cópias superficiais ou profundas de objetos. Neste caso, copy.deepcopy() é utilizado para duplicar o carrinho de compras, garantindo que mudanças na cópia não afetem o objeto original.
