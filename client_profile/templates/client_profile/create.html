@@ -7,7 +7,7 @@
 {% block content %} <!-- #2: -->
     <div class="row">
 
-        {% if not request.user.is_authenticated %} <!-- ## -->
+        {% if not request.user.is_authenticated %} <!-- #5: -->
             <div class="col-lg">
                 <h1>Login</h1>
             </div>
@@ -15,7 +15,7 @@
 
         <div class="col-lg">
 
-            {% block titleregistration %} <!-- ## -->
+            {% block titleregistration %} <!-- #6: -->
                 <h1>Register</h1>
             {% endblock %}
             <form method="POST" action="">
@@ -34,6 +34,8 @@
 {% endblock %}
 
 
+<!-- #6: Define um bloco chamado titleregistration, que será utilizado para renderizar o título "Register". Esse bloco pode ser sobrescrito em templates que herdam deste. -->
+<!-- #5: Esta linha, no template, verifica se o usuário não está autenticado. Se o usuário não estiver logado, o conteúdo dentro deste bloco será renderizado, exibindo elementos como a seção de login. -->
 <!-- ########################################################### -->
 <!-- #1: Carrega as tags do crispy_forms, uma biblioteca do Django usada para melhorar o estilo dos formulários. -->
 <!-- #2: Inicia um bloco de conteúdo que será renderizado dentro do template base. -->
