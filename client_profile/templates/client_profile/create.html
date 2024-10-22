@@ -8,16 +8,16 @@
     <div class="row">
 
         {% if not request.user.is_authenticated %} <!-- #5: -->
-            <div class="col-lg">
+            <div class="col-lg mt-3"> <!-- #9: -->
                 <h4>Login</h4> <!-- #7: -->
-                <p>If you already have an account, enter your username and password below.</p>
+                <p>If you already have an account, enter your username and password below.</p> <!-- #8: -->
             </div>
         {% endif %}
 
-        <div class="col-lg">
-
+        <div class="col-lg mt-3"> <!-- #9: -->
             {% block titleregistration %} <!-- #6: -->
                 <h4>Register</h4> <!-- #7: -->
+                <p>If you are not registered, fill out the form below.</p> <!-- #8: -->
             {% endblock %}
             <form method="POST" action="">
                 {% csrf_token %} <!-- #3: -->
@@ -36,6 +36,8 @@
 
 
 <!-- #7: Coloquei 'H4' para reduzir o tamanho da fonte 'login'; -->
+<!-- #8: Mensagens/texto acima dos formulários; -->
+<!-- #9: Margem adicionada para ficar mais organizado quando acessado por mobile (mt-3)-->
 <!-- ########################################################### -->
 <!-- #5: Esta linha, no template, verifica se o usuário não está autenticado. Se o usuário não estiver logado, o conteúdo dentro deste bloco será renderizado, exibindo elementos como a seção de login. -->
 <!-- #6: Define um bloco chamado titleregistration, que será utilizado para renderizar o título "Register". Esse bloco pode ser sobrescrito em templates que herdam deste. -->
