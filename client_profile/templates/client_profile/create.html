@@ -11,6 +11,26 @@
             <div class="col-lg mt-3"> <!-- #9: -->
                 <h4>Login</h4> <!-- #7: -->
                 <p>If you already have an account, enter your username and password below.</p> <!-- #8: -->
+
+                <!-- # Boootstrap Forms -->
+                <form>
+                    <div class="form-group">
+                      <label for="InputUser1">Username</label> <!-- ## -->
+                      <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="userHelp" placeholder="Enter your username"> <!-- ## -->
+                      <small id="emailHelp" class="form-text text-muted">Do not share your username with strangers.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> <!-- ## -->
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!-- # end Boootstrap Forms -->
+
             </div>
         {% endif %}
 
@@ -19,7 +39,7 @@
                 <h4>Register</h4> <!-- #7: -->
                 <p>If you are not registered, fill out the form below.</p> <!-- #8: -->
             {% endblock %}
-            
+
             <form method="POST" action="">
                 {% csrf_token %} <!-- #3: -->
                 {{userform|crispy}} <!-- #4: -->
