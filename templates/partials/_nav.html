@@ -19,18 +19,24 @@
             </li>
             
             <!-- # MENU -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
+             {% if request.user.is_authenticated %} <!-- #5: ## -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'client_profile:create' %}"> Update</a> <!-- ## -->
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Enter</a> <!-- #6: -->
+                </li>
+            {% endif %}
 
             {% if request.session.cart %} <!-- #3: -->
                 <li class="nav-item">
@@ -60,6 +66,8 @@
 </nav>
 
 
+<!-- #5: Se o usuário estiver autenticado, vai aparecer este menu. -->
+<!-- #6: Quando o usuário não estiver logado, vai aparecer na barra a opção de 'Enter', ou seja, entrar;-->
 <!-- ########################################################### -->
 <!-- #3: Verifica se o carrinho (request.session.cart) existe para mostrar o ícone do carrinho e a quantidade de itens. -->
 <!-- #4: Exibe o total de itens no carrinho, usando o filtro cart_total para calcular o valor. -->
