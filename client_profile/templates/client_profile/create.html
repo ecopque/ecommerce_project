@@ -19,6 +19,7 @@
                 <h4>Register</h4> <!-- #7: -->
                 <p>If you are not registered, fill out the form below.</p> <!-- #8: -->
             {% endblock %}
+            
             <form method="POST" action="">
                 {% csrf_token %} <!-- #3: -->
                 {{userform|crispy}} <!-- #4: -->
