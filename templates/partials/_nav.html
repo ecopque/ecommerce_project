@@ -34,10 +34,10 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Enter Login</a> <!-- #6: -->
+                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Enter Login</a> <!-- ## #6: -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Create Account</a> <!-- #6: -->
+                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Create Account</a> <!-- ## #6: -->
                 </li>
             {% endif %}
 
@@ -70,7 +70,7 @@
 
 
 <!-- #5: Se o usuário estiver autenticado, vai aparecer este menu. -->
-<!-- #6: Quando o usuário não estiver logado, vai aparecer na barra a opção de 'Enter Login', ou seja, entrar;-->
+<!-- #6: Quando o usuário não estiver logado, vai aparecer na barra a opção de 'Enter Login' e 'Create Account', ou seja, entrar ou registrar; -->
 <!-- ########################################################### -->
 <!-- #3: Verifica se o carrinho (request.session.cart) existe para mostrar o ícone do carrinho e a quantidade de itens. -->
 <!-- #4: Exibe o total de itens no carrinho, usando o filtro cart_total para calcular o valor. -->
