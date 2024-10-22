@@ -9,14 +9,15 @@
 
         {% if not request.user.is_authenticated %} <!-- #5: -->
             <div class="col-lg">
-                <h1>Login</h1>
+                <h4>Login</h4> <!-- #7: -->
+                <p>If you already have an account, enter your username and password below.</p>
             </div>
         {% endif %}
 
         <div class="col-lg">
 
             {% block titleregistration %} <!-- #6: -->
-                <h1>Register</h1>
+                <h4>Register</h4> <!-- #7: -->
             {% endblock %}
             <form method="POST" action="">
                 {% csrf_token %} <!-- #3: -->
@@ -34,9 +35,10 @@
 {% endblock %}
 
 
+<!-- #7: Coloquei 'H4' para reduzir o tamanho da fonte 'login'; -->
 <!-- ########################################################### -->
-<!-- #6: Define um bloco chamado titleregistration, que será utilizado para renderizar o título "Register". Esse bloco pode ser sobrescrito em templates que herdam deste. -->
 <!-- #5: Esta linha, no template, verifica se o usuário não está autenticado. Se o usuário não estiver logado, o conteúdo dentro deste bloco será renderizado, exibindo elementos como a seção de login. -->
+<!-- #6: Define um bloco chamado titleregistration, que será utilizado para renderizar o título "Register". Esse bloco pode ser sobrescrito em templates que herdam deste. -->
 <!-- ########################################################### -->
 <!-- #1: Carrega as tags do crispy_forms, uma biblioteca do Django usada para melhorar o estilo dos formulários. -->
 <!-- #2: Inicia um bloco de conteúdo que será renderizado dentro do template base. -->
