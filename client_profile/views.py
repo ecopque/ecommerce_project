@@ -9,6 +9,7 @@ from django.contrib.auth.models import User #6:
 import copy #7:
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.http import HttpResponse
 
 class BasePerfil(View): #1:
     template_name = 'client_profile/create.html'
@@ -114,10 +115,16 @@ class Update(View):
     ...
 
 class Login(View):
-    ...
+    def post(self, *args, **kwargs):
+        return HttpResponse('Login')
 
 class Logout(View):
-    ...
+    def get(self, *args, **kwargs): ##
+        cart = copy.deepcopy(self.request.session.get('cart')) ##
+        logout(self.request)
+        self.request.session['cart'] = cart ##
+        self.request.session.save() ##
+        return redirect('product:list')
 
 
 #35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
