@@ -13,21 +13,21 @@
         <dl class="row">
             <!-- # IMPORT: /client_profile/views.py -->
             <dt class="col-lg-2">Name:</dt>
-            <dd class="col-lg-4">{{user.first_name}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.first_name}}</dd> <!-- 1: -->
             <dt class="col-lg-2">Last Name:</dt>
-            <dd class="col-lg-4">{{user.last_name}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.last_name}}</dd> <!-- # -->
 
             <!-- # IMPORT: /client_profile/models.py -->
             <dt class="col-lg-2">Age:</dt>
-            <dd class="col-lg-4">{{user.client_profile.age}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.age}}</dd> <!-- #2: -->
             <dt class="col-lg-2">Date of Birth:</dt>
-            <dd class="col-lg-4">{{user.client_profile.date_birth}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.date_birth}}</dd> <!-- # -->
             <dt class="col-lg-2">CPF:</dt>
-            <dd class="col-lg-4">{{user.client_profile.cpf}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.cpf}}</dd> <!-- # -->
             
             <!-- # IMPORT: /client_profile/views.py -->
             <dt class="col-lg-2">E-mail:</dt>
-            <dd class="col-lg-4">{{user.email}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.email}}</dd> <!-- # -->
         </dl>
 
         <p class="lead">Address Details</p>
@@ -35,19 +35,19 @@
         <dl class="row">
             <!-- # IMPORT: /client_profile/models.py -->
             <dt class="col-lg-2">Address:</dt>
-            <dd class="col-lg-4">{{user.client_profile.address}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.address}}</dd> <!-- # -->
             <dt class="col-lg-2">Number:</dt>
-            <dd class="col-lg-4">{{user.client_profile.number}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.number}}</dd> <!-- # -->
             <dt class="col-lg-2">Complement:</dt>
-            <dd class="col-lg-4">{{user.client_profile.complement}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.complement}}</dd> <!-- # -->
             <dt class="col-lg-2">Neighborhood:</dt>
-            <dd class="col-lg-4">{{user.client_profile.neighborhood}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.neighborhood}}</dd> <!-- # -->
             <dt class="col-lg-2">City:</dt>
-            <dd class="col-lg-4">{{user.client_profile.city}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.city}}</dd> <!-- # -->
             <dt class="col-lg-2">State:</dt>
-            <dd class="col-lg-4">{{user.client_profile.state}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.state}}</dd> <!-- # -->
             <dt class="col-lg-2">CEP:</dt>
-            <dd class="col-lg-4">{{user.client_profile.cep}}</dd> <!-- ## -->
+            <dd class="col-lg-4">{{user.client_profile.cep}}</dd> <!-- # -->
         </dl>
     </div>
 </div>
@@ -59,19 +59,19 @@
             <h3>Cart Summary</h3>
             <p class="lead">The products, quantities and prices you have chosen.</p>
             
-            {% include 'partials/_cart.html' %} <!-- ## BBB-->
+            {% include 'partials/_cart.html' %} <!-- #3: -->
         </div>
     </div>
 
     <div class="row mt-3">
         <div class="col">
-            <p class="lead text-center"><span class="font-weight-bold">Cart total:</span>{{cart|cart_totals|format_price}}</p> <!-- ## -->
+            <p class="lead text-center"><span class="font-weight-bold">Cart total:</span>{{cart|cart_totals|format_price}}</p> <!-- #4: -->
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <a class="btn btn-block btn-primary btn-lg" href="{% url 'order:pay' %}"> <!-- ## -->
+            <a class="btn btn-block btn-primary btn-lg" href="{% url 'order:pay' %}"> <!-- #5: -->
                 Place Order and Pay
             </a>
         </div>
@@ -80,6 +80,10 @@
 {% endblock %}
 
 
-<!-- # BBB: Vai incluir o pequeno bloco de código inicial que é uma tabela mostrando os produtos no carrinho. -->
+<!-- #1: Mostra o primeiro nome do usuário, extraído do objeto user, que faz parte do contexto enviado à página. O campo first_name é um atributo padrão do modelo User do Django. -->
+<!-- #2: Exibe a idade do usuário, que é obtida a partir do perfil de cliente associado ao objeto User. Esse campo pertence ao modelo ClientProfile, que estende o usuário padrão para incluir mais detalhes pessoais. -->
+<!-- #3: Vai incluir o pequeno bloco de código inicial que é uma tabela mostrando os produtos no carrinho. -->
+<!-- #4: cart: Um objeto que representa o carrinho de compras, geralmente passado ao template pelo contexto da view. -->
+<!-- #5: Utiliza a tag de template {% url %} do Django para gerar a URL correspondente à view order:pay. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
