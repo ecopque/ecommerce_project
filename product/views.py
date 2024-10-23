@@ -127,9 +127,19 @@ class Cart(View):
         return render(self.request, 'product/cart.html', context) #43:
 
 class PurchaseSummary(View):
-    ...
+    def get(self, *args, **kwargs):
+        if not self.request.user.is_authenticated: ##
+            return redirect('client_profile:create')
+        
+        # AI:
+        cart = self.request.session.get('cart', {})
+        context = {'user': self.request.user, 'cart': cart}
+
+        # context = {'user': self.request.user, 'cart': self.request.session['cart'],} ## AAA:
+        return render(self.request, 'product/purchasesummary.html', context) ##
 
 
+#AAA: Esta porra não funcionou!
 # ------------------------------------------------------------------
 #45: Obtém os detalhes do item do carrinho associado ao variation_id fornecido.
 #46: Exibe uma mensagem de sucesso ao usuário, informando que o produto foi removido.

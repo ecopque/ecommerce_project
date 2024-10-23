@@ -1,3 +1,104 @@
 <!-- # FILE: /product/templates/product/purchasesummary.html -->
 
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-5">
+    <div class="col-lg">
+        <h2>Resumo da sua compra</h2>
+
+        <p class="lead">User Data</p>
+        <p>If you need to edit, <a href="/userprofile/update/">click here.</a></p>
+        <dl class="row">
+            <!-- # IMPORT: /client_profile/views.py -->
+            <dt class="col-lg-2">Name:</dt>
+            <dd class="col-lg-4">{{user.first_name}}</dd> <!-- ## -->
+            <dt class="col-lg-2">Last Name:</dt>
+            <dd class="col-lg-4">{{user.last_name}}</dd> <!-- ## -->
+
+            <!-- # IMPORT: /client_profile/models.py -->
+            <dt class="col-lg-2">Age:</dt>
+            <dd class="col-lg-4">{{user.client_profile.age}}</dd> <!-- ## -->
+            <dt class="col-lg-2">Date of Birth:</dt>
+            <dd class="col-lg-4">{{user.client_profile.date_birth}}</dd> <!-- ## -->
+            <dt class="col-lg-2">CPF:</dt>
+            <dd class="col-lg-4">{{user.client_profile.cpf}}</dd> <!-- ## -->
+            
+            <!-- # IMPORT: /client_profile/views.py -->
+            <dt class="col-lg-2">E-mail:</dt>
+            <dd class="col-lg-4">{{user.email}}</dd> <!-- ## -->
+        </dl>
+
+        <p class="lead">Address Details</p>
+        <p>If you need to edit, <a href="#">click here.</a></p>
+        <dl class="row">
+            <dt class="col-lg-2">Endereço:</dt>
+            <dd class="col-lg-4">Av. Filho Junior</dd>
+            <dt class="col-lg-2">Número:</dt>
+            <dd class="col-lg-4">12</dd>
+
+            <dt class="col-lg-2">Complemento:</dt>
+            <dd class="col-lg-4">Casa</dd>
+            <dt class="col-lg-2">Nascimento:</dt>
+            <dd class="col-lg-4">Centro</dd>
+
+            <dt class="col-lg-2">Cidade:</dt>
+            <dd class="col-lg-4">São Paulo</dd>
+            <dt class="col-lg-2">Estado:</dt>
+            <dd class="col-lg-4">SP</dd>
+
+            <dt class="col-lg-2">CEP:</dt>
+            <dd class="col-lg-4">00000000</dd>
+        </dl>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col">
+        <h3>Carrinho de compras</h3>
+        <p class="lead">Os produtos, quantidades e preços que você escolheu.</p>
+
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th class="d-none d-lg-block">Imagem</th>
+                    <th>Produto</th>
+                    <th>AT.</th>
+                    <th>QTD.</th>
+                    <th>Total</th>
+                </tr>
+
+                <tr>
+                    <td class="d-none d-lg-block">
+                        <img class="img-thumbnail img-fluid" style="width:150px; height: auto;"
+                            src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
+                    </td>
+                    <td>
+                        Camiseta Redbug Super Natural Bros
+                        <a class="ml-3" href="#">
+                            <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>P</td>
+                    <td>1 x 39,9</td>
+                    <td>R$ 39,90</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a class="btn btn-block btn-primary btn-lg" href="#">
+            Realizar pedido e pagar
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+
 <!-- # https://linktr.ee/edsoncopque -->
