@@ -1,6 +1,6 @@
 # FILE: /client_profile/views.py
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views import View
 from . import models
@@ -102,7 +102,9 @@ class Create(BasePerfil):
         self.request.session['cart'] = self.cart #23:
         self.request.session.save()
 
-        return self.new_render
+        # return self.new_render
+        return redirect('client_profile:create') #35: ##
+
 
 class Update(View):
     ...
@@ -114,6 +116,7 @@ class Logout(View):
     ...
 
 
+#35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
 # ------------------------------------------------------------------
 #24: Adicionamos 'instance=self.client_profile';
 #25: Esta linha verifica se o usuário está autenticado (self.request.user.is_authenticated). Se estiver, altera o template_name para 'client_profile/update.html'. Isso indica que usuários autenticados verão um template de atualização de perfil, enquanto usuários não autenticados usariam outro template (definido anteriormente como 'client_profile/create.html').
