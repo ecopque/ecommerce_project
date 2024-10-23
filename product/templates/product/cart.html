@@ -79,12 +79,12 @@
                 </div>
             </div>
             <div class="col-lg mt-auto">
-                {% if request.user.is_authenticated %} <!-- #17: ## -->
-                    <a class="btn btn-lg btn-block btn-primary" href="{% url 'product:purchasesummary' %}"> <!-- #17: ## -->
+                {% if request.user.is_authenticated %} <!-- #17: #19: -->
+                    <a class="btn btn-lg btn-block btn-primary" href="{% url 'product:purchasesummary' %}"> <!-- #17: #19: -->
                         BUY
                     </a>
                 {% else %}
-                    <a class="btn btn-lg btn-block btn-primary" href="{% url 'client_profile:create' %}"> <!-- #18: ## -->
+                    <a class="btn btn-lg btn-block btn-primary" href="{% url 'client_profile:create' %}"> <!-- #18: #20: -->
                         Enter or Register and Buy
                     </a>
                 {% endif %}
@@ -105,6 +105,8 @@
 <!-- #16: Conteúdo transferido para '/templates/partials/_cart.html', por isto inserimos o 'include' -->
 <!-- #17: Se o cliente estiver com produtos no carrinho e logado, o botão será BUY. -->
 <!-- #18: Caso o cliente não esteja logado mas ainda assim com itens no carrinho, o botão será 'Enter or Register and Buy'. -->
+<!-- #19: Verifica no template se o usuário está autenticado. Se o usuário estiver logado, exibe o botão para prosseguir para o resumo de compra (product:purchasesummary). Caso contrário, exibe um botão que leva o usuário para a página de login ou registro. -->
+<!-- #20: Essa linha especifica que, se o usuário não estiver autenticado, o botão exibido levará à página para criar ou registrar o perfil do cliente (client_profile:create). Isso garante que o usuário tenha um perfil válido para completar a compra.-->
 <!-- ########################################################### -->
 <!-- #15: Esta linha no template aplica os filtros cart_totals e format_price ao objeto cart. Primeiro, cart_totals calcula o total dos preços no carrinho, usando a função de filtro registrada anteriormente. Em seguida, o filtro format_price formata esse valor total para exibição, por exemplo, convertendo-o para uma string formatada de forma específica. Comunicação/Requisição de Módulos: O filtro cart_totals usa a função cart_totals_products do módulo utils, enquanto o filtro format_price usa a função format_pricevrs também do módulo utils. Esses módulos são definidos em /utils/utils.py e são importados no arquivo /product/templatetags/brfilters.py. -->
 <!-- ########################################################### -->
