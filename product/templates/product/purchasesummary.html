@@ -1,6 +1,7 @@
 <!-- # FILE: /product/templates/product/purchasesummary.html -->
 
 {% extends 'base.html' %}
+{% load brfilters %}
 
 {% block content %}
 <div class="row mb-5">
@@ -55,10 +56,16 @@
 {% if cart %}
     <div class="row mt-3">
         <div class="col">
-            <h3>Shopping Cart</h3>
+            <h3>Cart Summary</h3>
             <p class="lead">The products, quantities and prices you have chosen.</p>
             
-            {% include 'partials/_cart.html' %}
+            {% include 'partials/_cart.html' %} <!-- ## BBB-->
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <p class="lead text-center"><span class="font-weight-bold">Cart total:</span>{{cart|cart_totals|format_price}}</p> <!-- ## -->
         </div>
     </div>
 
@@ -72,5 +79,7 @@
 {% endif %}
 {% endblock %}
 
+
+<!-- # BBB: Vai incluir o pequeno bloco de código inicial que é uma tabela mostrando os produtos no carrinho. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
