@@ -32,27 +32,24 @@
         <p class="lead">Address Details</p>
         <p>If you need to edit, <a href="#">click here.</a></p>
         <dl class="row">
-            <dt class="col-lg-2">Endereço:</dt>
-            <dd class="col-lg-4">Av. Filho Junior</dd>
-            <dt class="col-lg-2">Número:</dt>
-            <dd class="col-lg-4">12</dd>
-
-            <dt class="col-lg-2">Complemento:</dt>
-            <dd class="col-lg-4">Casa</dd>
-            <dt class="col-lg-2">Nascimento:</dt>
-            <dd class="col-lg-4">Centro</dd>
-
-            <dt class="col-lg-2">Cidade:</dt>
-            <dd class="col-lg-4">São Paulo</dd>
-            <dt class="col-lg-2">Estado:</dt>
-            <dd class="col-lg-4">SP</dd>
-
+            <!-- # IMPORT: /client_profile/models.py -->
+            <dt class="col-lg-2">Address:</dt>
+            <dd class="col-lg-4">{{user.client_profile.address}}</dd> <!-- ## -->
+            <dt class="col-lg-2">Number:</dt>
+            <dd class="col-lg-4">{{user.client_profile.number}}</dd> <!-- ## -->
+            <dt class="col-lg-2">Complement:</dt>
+            <dd class="col-lg-4">{{user.client_profile.complement}}</dd> <!-- ## -->
+            <dt class="col-lg-2">Neighborhood:</dt>
+            <dd class="col-lg-4">{{user.client_profile.neighborhood}}</dd> <!-- ## -->
+            <dt class="col-lg-2">City:</dt>
+            <dd class="col-lg-4">{{user.client_profile.city}}</dd> <!-- ## -->
+            <dt class="col-lg-2">State:</dt>
+            <dd class="col-lg-4">{{user.client_profile.state}}</dd> <!-- ## -->
             <dt class="col-lg-2">CEP:</dt>
-            <dd class="col-lg-4">00000000</dd>
+            <dd class="col-lg-4">{{user.client_profile.cep}}</dd> <!-- ## -->
         </dl>
     </div>
 </div>
-
 
 
 <div class="row">
