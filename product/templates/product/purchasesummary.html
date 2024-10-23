@@ -8,7 +8,7 @@
         <h2>Resumo da sua compra</h2>
 
         <p class="lead">User Data</p>
-        <p>If you need to edit, <a href="/userprofile/update/">click here.</a></p>
+        <p>If you need to edit, <a href="{% url 'client_profile:create' %}">click here.</a></p>
         <dl class="row">
             <!-- # IMPORT: /client_profile/views.py -->
             <dt class="col-lg-2">Name:</dt>
@@ -30,7 +30,7 @@
         </dl>
 
         <p class="lead">Address Details</p>
-        <p>If you need to edit, <a href="#">click here.</a></p>
+        <p>If you need to edit, <a href="{% url 'client_profile:create' %}">click here.</a></p>
         <dl class="row">
             <!-- # IMPORT: /client_profile/models.py -->
             <dt class="col-lg-2">Address:</dt>
