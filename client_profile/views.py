@@ -48,8 +48,8 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
-        # if not self.userform.is_valid() or not self.perfilform.is_valid(): #
-        if not self.userform.is_valid(): #13:
+        if not self.userform.is_valid() or not self.perfilform.is_valid(): #37: ##
+        # if not self.userform.is_valid(): #13:
             print('Invalid')
             return self.new_render
 
@@ -122,7 +122,7 @@ class Logout(View):
 
 #35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
 #36: Mensagem que aparecerá após o cadastro for realizado ou atualizado;
-#37: 
+#37: Agora retornamos essa linha, tínhamos esquecido;
 # ------------------------------------------------------------------
 #24: Adicionamos 'instance=self.client_profile';
 #25: Esta linha verifica se o usuário está autenticado (self.request.user.is_authenticated). Se estiver, altera o template_name para 'client_profile/update.html'. Isso indica que usuários autenticados verão um template de atualização de perfil, enquanto usuários não autenticados usariam outro template (definido anteriormente como 'client_profile/create.html').

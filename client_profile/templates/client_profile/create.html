@@ -14,6 +14,7 @@
 
                 <!-- # Boootstrap Forms -->
                 <form method="POST" action="{% url 'client_profile:login' %}"> <!-- ## -->
+                    {% csrf_token %} <!-- ## -->
                     <div class="form-group">
                       <label for="InputUser1">Username</label> <!-- ## -->
                       <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="userHelp" placeholder="Enter your username"> <!-- ## -->
