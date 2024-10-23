@@ -110,7 +110,6 @@ class Create(BasePerfil):
         # return self.new_render
         return redirect('client_profile:create') #35:
 
-
 class Update(View):
     ...
 
@@ -141,6 +140,7 @@ class Logout(View):
         return redirect('product:list')
 
 
+# ------------------------------------------------------------------
 #35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
 #36: Mensagem que aparecerá após o cadastro for realizado ou atualizado;
 #37: Agora retornamos essa linha, tínhamos esquecido;
