@@ -13,16 +13,16 @@
                 <p>If you already have an account, enter your username and password below.</p> <!-- #8: -->
 
                 <!-- # Boootstrap Forms -->
-                <form method="POST" action="{% url 'client_profile:login' %}"> <!-- ## -->
-                    {% csrf_token %} <!-- ## -->
+                <form method="POST" action="{% url 'client_profile:login' %}"> <!-- #10: -->
+                    {% csrf_token %} <!-- #11: -->
                     <div class="form-group">
-                      <label for="InputUser1">Username</label> <!-- ## -->
-                      <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="userHelp" placeholder="Enter your username"> <!-- ## -->
+                      <label for="InputUser1">Username</label> <!-- #12: -->
+                      <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="userHelp" placeholder="Enter your username"> <!-- #13: -->
                       <small id="emailHelp" class="form-text text-muted">Do not share your username with strangers.</small>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password"> <!-- ## -->
+                      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password"> <!-- #14: -->
                     </div>
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -60,6 +60,11 @@
 <!-- #7: Coloquei 'H4' para reduzir o tamanho da fonte 'login'; -->
 <!-- #8: Mensagens/texto acima dos formulários; -->
 <!-- #9: Margem adicionada para ficar mais organizado quando acessado por mobile (mt-3)-->
+<!-- #10: Esta linha cria um formulário HTML para enviar dados via método POST para a URL nomeada 'client_profile'. O módulo Django URLs gerencia esta URL, que corresponde a uma view específica no módulo views.py do app client_profile. -->
+<!-- #11: Esta linha insere um token CSRF (Cross-Site Request Forgery) no formulário, uma medida de segurança do Django para proteger contra ataques CSRF. -->
+<!-- #12: Cria uma etiqueta para o campo de entrada de nome de usuário, associando o texto "Username" ao campo identificado por InputUser1. -->
+<!-- #13: Define um campo de entrada de texto para o nome de usuário. Possui atributos para identificação (name, id), classe CSS (form-control), e um texto de ajuda (placeholder). -->
+<!-- #14: Cria um campo de entrada do tipo senha, permitindo que o usuário digite sua senha sem que os caracteres sejam visíveis. -->
 <!-- ########################################################### -->
 <!-- #5: Esta linha, no template, verifica se o usuário não está autenticado. Se o usuário não estiver logado, o conteúdo dentro deste bloco será renderizado, exibindo elementos como a seção de login. -->
 <!-- #6: Define um bloco chamado titleregistration, que será utilizado para renderizar o título "Register". Esse bloco pode ser sobrescrito em templates que herdam deste. -->
