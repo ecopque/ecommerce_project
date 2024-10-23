@@ -51,6 +51,7 @@ class Create(BasePerfil):
     def post(self, *args, **kwargs):
         if not self.userform.is_valid() or not self.perfilform.is_valid(): #37: #38:
         # if not self.userform.is_valid(): #13:
+            messages.error(self.request, 'There are erros in the registration form. Please check that all fields have been filled in correctly.') #45:
             print('Invalid')
             return self.new_render
 
@@ -139,7 +140,7 @@ class Logout(View):
         self.request.session.save()
         return redirect('product:list')
 
-
+#45: No formulário de cadastro, caso o cliente preencha algum campo errado esta mensagem será apresentada no topo da tela!
 # ------------------------------------------------------------------
 #35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
 #36: Mensagem que aparecerá após o cadastro for realizado ou atualizado;
