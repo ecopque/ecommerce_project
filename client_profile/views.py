@@ -7,7 +7,7 @@ from . import models
 from . import forms
 from django.contrib.auth.models import User #6:
 import copy #7:
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 class BasePerfil(View): #1:
