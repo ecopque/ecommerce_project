@@ -19,15 +19,15 @@
             </li>
             
             <!-- # MENU Account and Enter -->
-             {% if request.user.is_authenticated %} <!-- #5: ## -->
+             {% if request.user.is_authenticated %} <!-- #5: #7: -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'client_profile:create' %}"> Update</a> <!-- ## -->
-                        <a class="dropdown-item" href="{% url 'client_profile:logout' %}"> Logout</a> <!-- ## -->
+                        <a class="dropdown-item" href="{% url 'client_profile:create' %}"> Update</a> <!-- #8: -->
+                        <a class="dropdown-item" href="{% url 'client_profile:logout' %}"> Logout</a> <!-- #9: -->
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
@@ -35,10 +35,10 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Enter Login</a> <!-- ## #6: -->
+                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Enter Login</a> <!-- #6: -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Create Account</a> <!-- ## #6: -->
+                    <a class="nav-link" href="{% url 'client_profile:create' %}"> Create Account</a> <!-- #6: -->
                 </li>
             {% endif %}
 
@@ -72,6 +72,9 @@
 
 <!-- #5: Se o usuário estiver autenticado, vai aparecer este menu. -->
 <!-- #6: Quando o usuário não estiver logado, vai aparecer na barra a opção de 'Enter Login' e 'Create Account', ou seja, entrar ou registrar; -->
+<!-- #7: Verifica se o usuário está autenticado. Isso é feito no módulo views.py, usando o objeto request para determinar o status de login do usuário. -->
+<!-- #8: Insere um link no menu dropdown que leva o usuário para a URL associada ao nome 'client_profile'.  -->
+ <!-- #9: Cria um link para a URL nomeada 'client_profile', que realiza a ação de logout. -->
 <!-- ########################################################### -->
 <!-- #3: Verifica se o carrinho (request.session.cart) existe para mostrar o ícone do carrinho e a quantidade de itens. -->
 <!-- #4: Exibe o total de itens no carrinho, usando o filtro cart_total para calcular o valor. -->

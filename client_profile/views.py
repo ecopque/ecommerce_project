@@ -49,7 +49,7 @@ class BasePerfil(View): #1:
 
 class Create(BasePerfil):
     def post(self, *args, **kwargs):
-        if not self.userform.is_valid() or not self.perfilform.is_valid(): #37: ##
+        if not self.userform.is_valid() or not self.perfilform.is_valid(): #37: #38:
         # if not self.userform.is_valid(): #13:
             print('Invalid')
             return self.new_render
@@ -104,11 +104,11 @@ class Create(BasePerfil):
         self.request.session['cart'] = self.cart #23:
         self.request.session.save()
 
-        messages.success(self.request, 'Your registration has been created or updated successfully.') #36: ##
+        messages.success(self.request, 'Your registration has been created or updated successfully.') #36: #39:
         messages.success(self.request, 'You are logged in and can complete your purchase.') #36:
 
         # return self.new_render
-        return redirect('client_profile:create') #35: ##
+        return redirect('client_profile:create') #35:
 
 
 class Update(View):
@@ -116,34 +116,41 @@ class Update(View):
 
 class Login(View):
     def post(self, *args, **kwargs):
-        username = self.request.POST.get('username') ##
-        password = self.request.POST.get('password') ##
+        username = self.request.POST.get('username') #40:
+        password = self.request.POST.get('password')
 
         if not username or not password:
             messages.error(self.request, 'Invalid username or password')
             return redirect('client_profile:create')
         
         user = authenticate(self.request, username=username, password=password)
-        if not user: ##
+        if not user: #41:
             messages.error(self.request, 'Invalid username or password')
             return redirect('client_profile:create')
         
-        login(self.request, user=user) ##
+        login(self.request, user=user) #42:
         messages.info(self.request, 'You are logged in.')
         return redirect('product:cart')
 
 class Logout(View):
-    def get(self, *args, **kwargs): ##
-        cart = copy.deepcopy(self.request.session.get('cart')) ##
+    def get(self, *args, **kwargs):
+        cart = copy.deepcopy(self.request.session.get('cart')) #43:
         logout(self.request)
-        self.request.session['cart'] = cart ##
-        self.request.session.save() ##
+        self.request.session['cart'] = cart #44:
+        self.request.session.save()
         return redirect('product:list')
 
 
 #35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
 #36: Mensagem que aparecerá após o cadastro for realizado ou atualizado;
 #37: Agora retornamos essa linha, tínhamos esquecido;
+#38: Verifica se os formulários userform e perfilform são válidos. Esses formulários são gerados no módulo views.py e correspondem a objetos do módulo forms.py do app client_profile.
+#39: Usa o módulo messages do Django para exibir uma mensagem de sucesso ao usuário, indicando que o registro foi criado ou atualizado com sucesso.
+#40: Obtém o nome de usuário dos dados POST enviados na requisição.
+#41: Verifica se o objeto user retornado pela função authenticate é None. Isso indica que a autenticação falhou (nome de usuário ou senha incorretos).
+#42: Autentica o usuário na sessão atual, utilizando a função login do Django.
+#43: Faz uma cópia profunda do conteúdo do carrinho de compras armazenado na sessão. Isso preserva os dados do carrinho mesmo após o logout.
+#44: Restaura o conteúdo do carrinho na sessão após o logout. Isso é necessário para que o usuário possa continuar com o carrinho atual após uma nova autenticação.
 # ------------------------------------------------------------------
 #24: Adicionamos 'instance=self.client_profile';
 #25: Esta linha verifica se o usuário está autenticado (self.request.user.is_authenticated). Se estiver, altera o template_name para 'client_profile/update.html'. Isso indica que usuários autenticados verão um template de atualização de perfil, enquanto usuários não autenticados usariam outro template (definido anteriormente como 'client_profile/create.html').
