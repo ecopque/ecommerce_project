@@ -109,7 +109,8 @@ class Create(BasePerfil):
         messages.success(self.request, 'You are logged in and can complete your purchase.') #36:
 
         # return self.new_render
-        return redirect('client_profile:create') #35:
+        # return redirect('client_profile:create') #35:
+        return redirect('product:cart') #46:
 
 class Update(View):
     ...
@@ -140,7 +141,9 @@ class Logout(View):
         self.request.session.save()
         return redirect('product:list')
 
+
 #45: No formulário de cadastro, caso o cliente preencha algum campo errado esta mensagem será apresentada no topo da tela!
+#46: Após se cadastrar no site (register), será redirecionada para o carrinho.
 # ------------------------------------------------------------------
 #35: Agora posso enviar o formulário e depois quando atualizar a página "nada acontecerá", ou seja, continuarei na mesma página de atualização do cadastro;
 #36: Mensagem que aparecerá após o cadastro for realizado ou atualizado;
