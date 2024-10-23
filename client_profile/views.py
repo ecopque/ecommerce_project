@@ -116,7 +116,21 @@ class Update(View):
 
 class Login(View):
     def post(self, *args, **kwargs):
-        return HttpResponse('Login')
+        username = self.request.POST.get('username') ##
+        password = self.request.POST.get('password') ##
+
+        if not username or not password:
+            messages.error(self.request, 'Invalid username or password')
+            return redirect('client_profile:create')
+        
+        user = authenticate(self.request, username=username, password=password)
+        if not user: ##
+            messages.error(self.request, 'Invalid username or password')
+            return redirect('client_profile:create')
+        
+        login(self.request, user=user) ##
+        messages.info(self.request, 'You are logged in.')
+        return redirect('product:cart')
 
 class Logout(View):
     def get(self, *args, **kwargs): ##
