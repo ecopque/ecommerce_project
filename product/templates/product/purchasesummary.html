@@ -51,50 +51,25 @@
     </div>
 </div>
 
-
-<div class="row">
-    <div class="col">
-        <h3>Carrinho de compras</h3>
-        <p class="lead">Os produtos, quantidades e preços que você escolheu.</p>
-
-        <div class="table-responsive">
-            <table class="table">
-                <tr>
-                    <th class="d-none d-lg-block">Imagem</th>
-                    <th>Produto</th>
-                    <th>AT.</th>
-                    <th>QTD.</th>
-                    <th>Total</th>
-                </tr>
-
-                <tr>
-                    <td class="d-none d-lg-block">
-                        <img class="img-thumbnail img-fluid" style="width:150px; height: auto;"
-                            src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
-                    </td>
-                    <td>
-                        Camiseta Redbug Super Natural Bros
-                        <a class="ml-3" href="#">
-                            <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                    <td>P</td>
-                    <td>1 x 39,9</td>
-                    <td>R$ 39,90</td>
-                </tr>
-
-            </table>
+<!-- # COPY: /product/templates/product/cart.html -->
+{% if cart %}
+    <div class="row mt-3">
+        <div class="col">
+            <h3>Shopping Cart</h3>
+            <p class="lead">The products, quantities and prices you have chosen.</p>
+            
+            {% include 'partials/_cart.html' %}
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col">
-        <a class="btn btn-block btn-primary btn-lg" href="#">
-            Realizar pedido e pagar
-        </a>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-block btn-primary btn-lg" href="#">
+                Place Order and Pay
+            </a>
+        </div>
     </div>
-</div>
+{% endif %}
 {% endblock %}
 
 
