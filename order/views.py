@@ -28,19 +28,25 @@ class Pay(View):
             cart_variation_ids.append(v)
         print(cart_variation_ids)
 
+        # IMPORT⬇: /product/models.py
         bd_variations = list(Variation.objects.select_related('product').filter(id__in=cart_variation_ids)) #4: ##
+        
         for variation in bd_variations: ##
-            vid = variation.id ##
+            vid = str(variation.id) ##
             
+            # IMPORT⬇: /product/models.py
             stock = variation.stock ##
-            qtd_cart = cart[vid]['quantitative'] ##
-            price_unt = cart[vid]['price_unit'] ##
-            price_unt_promo = cart[vid]['price_unit_promotional'] ##
 
+            # IMPORT⬇: /product/views.py
+            qtd_cart = cart[vid]['quantitative'] ##
+            price_unt = cart[vid]['unit_price'] ##
+            price_unt_promo = cart[vid]['promotional_unit_price'] ##
+            
             if stock < qtd_cart:
+                # IMPORT⬇: /product/views.py
                 cart[vid]['quantitative'] = stock ##
-                cart[vid]['price_quantitative'] = stock * price_unt ##
-                cart[vid]['price_quantitative_promocional'] = stock * price_unt_promo ##
+                cart[vid]['quantitative_price'] = stock * price_unt ##
+                cart[vid]['promotional_quantitative_price'] = stock * price_unt_promo ##
                 messages.error(self.request, 'Insufficient stock for some products in your cart. We have reduced the quantity of some products.')
                 
                 return redirect('product:cart')
