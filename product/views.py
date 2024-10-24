@@ -140,7 +140,6 @@ class PurchaseSummary(View):
         if not self.request.session.get('cart'): #53: ##
             messages.error(self.request, 'Empty cart.')
             return redirect('product:list')
-
         
         # AI:
         cart = self.request.session.get('cart', {})
@@ -149,8 +148,9 @@ class PurchaseSummary(View):
         # context = {'user': self.request.user, 'cart': self.request.session['cart'],} #50: AAA:
         return render(self.request, 'product/purchasesummary.html', context) #51:
 
-#52: Criamos esta variável pois ela identifica ou filtra o 'perfil' do usuário. É com ela que vamos fazer a verificação p/ saber se o usuário tem perfil para então poder chegar no resuma da compra;
-#53: Se o carrinho estiver vazio...
+
+#52: Criamos esta variável pois ela identifica ou filtra o 'perfil' do usuário. É com ela que vamos fazer a verificação p/ saber se o usuário tem 'perfil' para então poder chegar no resuma da compra;
+#53: Se dentro do resumo você excluir os itens do carrinho, quando zerar automaticamente vocẽ será redirecionado para 'list', ou seja, para a página inicial do e-commerce.
 # ------------------------------------------------------------------
 #49: Verifica se o usuário está autenticado. Isso é feito para garantir que somente usuários logados possam prosseguir para o resumo da compra. Caso contrário, ele será redirecionado para a página de criação de perfil do cliente (client_profile:create). Esse redirecionamento é importante para validar a identidade do usuário antes de continuar com a compra.
 #50: Esta porra não funcionou!
