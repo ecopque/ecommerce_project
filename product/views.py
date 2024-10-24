@@ -135,6 +135,8 @@ class PurchaseSummary(View):
         client_profile = Client_Profile.objects.filter(user=self.request.user).exists() ##
         if not client_profile: ##
             messages.error(self.request, 'User without profile.') ##
+            return redirect('client_profile:create') ##
+
         
         # AI:
         cart = self.request.session.get('cart', {})
