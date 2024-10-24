@@ -38,10 +38,12 @@ class Pay(View):
             price_unt_promo = cart[vid]['price_unit_promotional'] ##
 
             if stock < qtd_cart:
-                cart[vid]['quantitative'] == stock ##
-                cart[vid]['price_quantitative'] == stock * price_unt ##
+                cart[vid]['quantitative'] = stock ##
+                cart[vid]['price_quantitative'] = stock * price_unt ##
                 cart[vid]['price_quantitative_promocional'] = stock * price_unt_promo ##
-                messages.error(self.request, 'Insufficient stock for some products in your cart.')
+                messages.error(self.request, 'Insufficient stock for some products in your cart. We have reduced the quantity of some products.')
+                
+                return redirect('product:cart')
 
         context = {}
         return render(self.request, self.template_name, context) ##
@@ -51,6 +53,7 @@ class SaveOrder(View):
 
 class Details(View):
     ...
+
 
 #1: Se não estiver logado e tentar acessar '127.0.0.1:8000/order/', será redirecionado para a página de 'create' e receberá uma mensagem de erro. ;
 #2: Mesmo se estiver logado e tentar acessar '127.0.0.1:8000/order/' e não houver itens no carrinho, será redirecionado para 'list' e receberá mensagem de erro;
