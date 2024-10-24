@@ -149,6 +149,7 @@ class PurchaseSummary(View):
         return render(self.request, 'product/purchasesummary.html', context) #51:
 
 
+# ------------------------------------------------------------------
 #52: Criamos esta variável pois ela identifica ou filtra o 'perfil' do usuário. É com ela que vamos fazer a verificação p/ saber se o usuário tem 'perfil' para então poder chegar no resuma da compra;
 #53: Se dentro do resumo você excluir os itens do carrinho, quando zerar automaticamente vocẽ será redirecionado para 'list', ou seja, para a página inicial do e-commerce.
 #54: Esta linha verifica se existe um perfil de cliente associado ao usuário autenticado que está fazendo a requisição. Utiliza o modelo Client_Profile importado do módulo client_profile.models, e o método filter é usado para buscar registros onde o campo user corresponde ao usuário atual (self.request.user). A função exists() retorna um valor booleano (True ou False) indicando se pelo menos um perfil correspondente foi encontrado.
