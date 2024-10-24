@@ -142,6 +142,7 @@ class Logout(View):
         return redirect('product:list')
 
 
+# ------------------------------------------------------------------
 #45: No formulário de cadastro, caso o cliente preencha algum campo errado esta mensagem será apresentada no topo da tela!
 #46: Após se cadastrar no site (register), será redirecionada para o carrinho.
 # ------------------------------------------------------------------

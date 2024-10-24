@@ -139,6 +139,7 @@ class PurchaseSummary(View):
         return render(self.request, 'product/purchasesummary.html', context) #51:
 
 
+# ------------------------------------------------------------------
 #49: Verifica se o usuário está autenticado. Isso é feito para garantir que somente usuários logados possam prosseguir para o resumo da compra. Caso contrário, ele será redirecionado para a página de criação de perfil do cliente (client_profile:create). Esse redirecionamento é importante para validar a identidade do usuário antes de continuar com a compra.
 #50: Esta porra não funcionou!
 #51: Renderiza a página de resumo da compra com o template purchasesummary.html e o contexto que contém informações do usuário e o carrinho. Essa linha se comunica com o módulo de templates do Django, especificamente com o template mencionado.
