@@ -42,14 +42,21 @@ class Pay(View):
             price_unt = cart[vid]['unit_price'] ##
             price_unt_promo = cart[vid]['promotional_unit_price'] ##
             
+            error_msg_stock = ''
+
             if stock < qtd_cart:
                 # IMPORT⬇: /product/views.py
                 cart[vid]['quantitative'] = stock ##
                 cart[vid]['quantitative_price'] = stock * price_unt ##
                 cart[vid]['promotional_quantitative_price'] = stock * price_unt_promo ##
-                messages.error(self.request, 'Insufficient stock for some products in your cart. We have reduced the quantity of some products.')
                 
-                return redirect('product:cart')
+                error_msg_stock = 'Insufficient stock for some products in your cart. We have reduced the quantity of some products.'
+            
+            if error_msg_stock: ##
+                messages.error(self.request, error_msg_stock)
+
+                self.request.session.save()
+                return redirect('product:cart') ##
 
         context = {}
         return render(self.request, self.template_name, context) ##
