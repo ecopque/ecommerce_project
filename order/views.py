@@ -29,8 +29,19 @@ class Pay(View):
         print(cart_variation_ids)
 
         bd_variations = list(Variation.objects.select_related('product').filter(id__in=cart_variation_ids)) #4: ##
-        print(bd_variations)
+        for variation in bd_variations: ##
+            vid = variation.id ##
+            
+            stock = variation.stock ##
+            qtd_cart = cart[vid]['quantitative'] ##
+            price_unt = cart[vid]['price_unit'] ##
+            price_unt_promo = cart[vid]['price_unit_promotional'] ##
 
+            if stock < qtd_cart:
+                cart[vid]['quantitative'] == stock ##
+                cart[vid]['price_quantitative'] == stock * price_unt ##
+                cart[vid]['price_quantitative_promocional'] = stock * price_unt_promo ##
+                messages.error(self.request, 'Insufficient stock for some products in your cart.')
 
         context = {}
         return render(self.request, self.template_name, context) ##
