@@ -161,6 +161,7 @@ INTERNAL_IPS = [ #13:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# ------------------------------------------------------------------
 #18: 'BASE_DIR' adicionado, esqueci de adicionar.
 # ------------------------------------------------------------------
 #16: Adiciona crispy_forms e crispy_bootstrap4 às aplicações instaladas para suportar a formatação de formulários com o framework Bootstrap 4.
