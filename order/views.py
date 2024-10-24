@@ -10,8 +10,12 @@ class Pay(ListView):
     template_name = 'order/pay.html' ##
 
     def get(self, *args, **kwargs):
+        if not self.request.user.is_authenticated: ##
+            messages.error(self.request, 'You need to log in.')
+            return redirect('client_profile:create')
+
         context = {}
-        return redirect(self.request, self.template_name, context) ##
+        return render(self.request, self.template_name, context) ##
 
 class SaveOrder(View):
     ...
