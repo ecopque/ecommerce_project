@@ -8,6 +8,7 @@ from django.views.generic.detail import DetailView #8:
 from django.contrib import messages #11:
 from django.http import HttpResponse #12:
 from django.urls import reverse #13:
+from client_profile.models import Client_Profile
 
 
 class ProductList(ListView): #3:
@@ -130,6 +131,10 @@ class PurchaseSummary(View):
     def get(self, *args, **kwargs):
         if not self.request.user.is_authenticated: #49:
             return redirect('client_profile:create')
+        
+        client_profile = Client_Profile.objects.filter(user=self.request.user).exists() ##
+        if not client_profile: ##
+            messages.error(self.request, 'User without profile.') ##
         
         # AI:
         cart = self.request.session.get('cart', {})
