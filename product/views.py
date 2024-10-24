@@ -132,12 +132,12 @@ class PurchaseSummary(View):
         if not self.request.user.is_authenticated: #49:
             return redirect('client_profile:create')
         
-        client_profile = Client_Profile.objects.filter(user=self.request.user).exists() #52: ##
-        if not client_profile: ##
-            messages.error(self.request, 'User without profile.') ##
-            return redirect('client_profile:create') ##
+        client_profile = Client_Profile.objects.filter(user=self.request.user).exists() #52: #54:
+        if not client_profile: #55:
+            messages.error(self.request, 'User without profile.')
+            return redirect('client_profile:create')
         
-        if not self.request.session.get('cart'): #53: ##
+        if not self.request.session.get('cart'): #53: #56: #57:
             messages.error(self.request, 'Empty cart.')
             return redirect('product:list')
         
@@ -145,12 +145,16 @@ class PurchaseSummary(View):
         cart = self.request.session.get('cart', {})
         context = {'user': self.request.user, 'cart': cart}
 
-        # context = {'user': self.request.user, 'cart': self.request.session['cart'],} #50: AAA:
+        # context = {'user': self.request.user, 'cart': self.request.session['cart'],} #50:
         return render(self.request, 'product/purchasesummary.html', context) #51:
 
 
 #52: Criamos esta variável pois ela identifica ou filtra o 'perfil' do usuário. É com ela que vamos fazer a verificação p/ saber se o usuário tem 'perfil' para então poder chegar no resuma da compra;
 #53: Se dentro do resumo você excluir os itens do carrinho, quando zerar automaticamente vocẽ será redirecionado para 'list', ou seja, para a página inicial do e-commerce.
+#54: Esta linha verifica se existe um perfil de cliente associado ao usuário autenticado que está fazendo a requisição. Utiliza o modelo Client_Profile importado do módulo client_profile.models, e o método filter é usado para buscar registros onde o campo user corresponde ao usuário atual (self.request.user). A função exists() retorna um valor booleano (True ou False) indicando se pelo menos um perfil correspondente foi encontrado.
+#55: Esta linha verifica se o resultado da linha 52 foi False, ou seja, se não existe um perfil de cliente associado ao usuário autenticado. Caso o perfil não exista, a execução seguirá para o bloco dentro do if.
+#56: Esta linha verifica se o carrinho de compras na sessão do usuário está vazio ou não existe. O método get é utilizado para tentar recuperar o dicionário do carrinho, retornando None caso ele não exista. Se o carrinho estiver vazio, o fluxo de execução seguirá para o bloco dentro do if.
+#57: Aqui, self.request.session.get('cart') tenta obter o valor associado à chave 'cart' na sessão do usuário. Se a chave 'cart' não existir ou estiver vazia (ou seja, o retorno será None ou uma estrutura vazia), a expressão será avaliada como False. if not self.request.session.get('cart'): será verdadeiro (True) quando não houver um carrinho na sessão do usuário, ou seja, quando a chave 'cart' não existir ou for considerada vazia.
 # ------------------------------------------------------------------
 #49: Verifica se o usuário está autenticado. Isso é feito para garantir que somente usuários logados possam prosseguir para o resumo da compra. Caso contrário, ele será redirecionado para a página de criação de perfil do cliente (client_profile:create). Esse redirecionamento é importante para validar a identidade do usuário antes de continuar com a compra.
 #50: Esta porra não funcionou!
