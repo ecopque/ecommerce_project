@@ -5,6 +5,8 @@ from django.views.generic import ListView
 from django.views import View
 from django.contrib import messages
 from product.models import Variation
+from utils import utils
+from .models import Order, OrderItem
 
 class Pay(View):
     # IMPORT⬇: /order/templates/order/pay.html
@@ -57,6 +59,30 @@ class Pay(View):
 
                 self.request.session.save()
                 return redirect('product:cart') ##
+        
+        # IMPORT⬇: /utils/utils.py
+        total_qtd_cart = utils.cart_total_qtd(cart) ##
+        total_value_cart = utils.cart_totals_products(cart) ##
+        
+        # IMPORT⬇: /order/models.py
+        order = Order(user=self.request.user, total=total_value_cart, total_qtd=total_qtd_cart, status='C') ##
+        order.save()
+
+        OrderItem.objects.bulk_create(
+            [
+                OrderItem(
+                    order=order,
+                    product=v['product_name'], ##
+                    product_id=v['product_id'], ##
+                    variation=v['variation_name'], ##
+                    variation_id=v['variation_id'],
+                    price=v['price_quantitative'], ##
+                    price_promotional=v['price_quantitative_promotional'],
+                    quantity=v['quantity'],
+                    image=v['image'],               
+                )
+            ]
+        )
 
         context = {}
         return render(self.request, self.template_name, context) ##
