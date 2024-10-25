@@ -71,16 +71,24 @@ class Pay(View):
         OrderItem.objects.bulk_create(
             [
                 OrderItem(
-                    order=order,
-                    product=v['product_name'], ##
+                    #IMPORT⬇: /order/models.py
+                    order=order, ##
+                    product_name=v['product_name'], ##
                     product_id=v['product_id'], ##
                     variation=v['variation_name'], ##
-                    variation_id=v['variation_id'],
-                    price=v['price_quantitative'], ##
-                    price_promotional=v['price_quantitative_promotional'],
-                    quantity=v['quantity'],
-                    image=v['image'],               
+                    variation_id=v['variation_id'], ##
+
+                    # IMPORT⬇: /order/models.py | /order/views.py
+                    price=v['quantitative_price'], ##
+                    price_promotional=v['promotional_quantitative_price'], ##
+
+                    # IMPORT⬇: /order/views.py | /order/models.py
+                    quantitative=v['quantitative'], ##
+                   
+                    #IMPORT⬇: /order/models.py
+                    image=v['image'], ##
                 )
+                for v in cart.values()
             ]
         )
 

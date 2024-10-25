@@ -33,7 +33,7 @@ class OrderItem(models.Model):
     variation_id = models.PositiveBigIntegerField()
     price = models.FloatField()
     price_promotional = models.FloatField(default=0)
-    quantity = models.PositiveBigIntegerField() #7:
+    quantitative = models.PositiveIntegerField() #7:
     image = models.CharField(max_length=2000) #8:
 
     def __str__(self):
@@ -51,7 +51,7 @@ class OrderItem(models.Model):
 #4: Este método especial define a representação string do objeto Order. Quando o objeto é convertido em string (por exemplo, ao ser exibido no admin), ele mostrará "Order number" seguido pelo ID primário (self.pk) do pedido.
 #5: Este campo define uma relação de chave estrangeira com o modelo Order. Cada item de pedido (OrderItem) está relacionado a um pedido específico. O on_delete=models.CASCADE garante que, se o pedido for deletado, todos os itens associados também serão excluídos.
 #6: Cria um campo product_name para armazenar o nome do produto em um item de pedido. O campo é do tipo CharField com um comprimento máximo de 255 caracteres.
-#7: Define o campo quantity, que armazena a quantidade de um produto neste item de pedido. Ele é do tipo PositiveBigIntegerField, garantindo que apenas valores positivos sejam permitidos.
+#7: Define o campo quantity, que armazena a quantidade de um produto neste item de pedido. Ele é do tipo PositiveBigIntegerField, garantindo que apenas valores positivos sejam permitidos. Obs: Corrigido para PositiveIntegerField.
 #8: Este campo image armazena o caminho ou URL de uma imagem associada ao produto no item de pedido. Ele é um CharField com um limite de 2000 caracteres.
 #9: Define a representação em string de um objeto OrderItem. Ele exibe "Order Item" seguido pela ordem associada ao item (self.order).
 
