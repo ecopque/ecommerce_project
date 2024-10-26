@@ -7,6 +7,7 @@ from django.contrib import messages
 from product.models import Variation
 from utils import utils
 from .models import Order, OrderItem
+from django.http import HttpResponse
 
 class Pay(View):
     # IMPORT⬇: /order/templates/order/pay.html
@@ -100,6 +101,10 @@ class SaveOrder(View):
 
 class Details(View):
     ...
+
+class List(View): ##
+    def get(self, *args, **kwargs):
+        return HttpResponse('List')
 
 
 #1: Se não estiver logado e tentar acessar '127.0.0.1:8000/order/', será redirecionado para a página de 'create' e receberá uma mensagem de erro. ;
