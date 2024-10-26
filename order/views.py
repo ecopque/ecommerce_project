@@ -43,13 +43,13 @@ class Pay(View):
             # IMPORT⬇: /product/views.py
             qtd_cart = cart[vid]['quantitative'] #14:
             price_unt = cart[vid]['unit_price'] #15:
-            price_unt_promo = cart[vid]['promotional_unit_price'] ##
+            price_unt_promo = cart[vid]['promotional_unit_price'] #16:
             
             error_msg_stock = ''
 
             if stock < qtd_cart:
                 # IMPORT⬇: /product/views.py
-                cart[vid]['quantitative'] = stock ##
+                cart[vid]['quantitative'] = stock #17:
                 cart[vid]['quantitative_price'] = stock * price_unt ##
                 cart[vid]['promotional_quantitative_price'] = stock * price_unt_promo ##
                 
@@ -118,7 +118,9 @@ class List(View): ##
 #13: Obtém a quantidade em estoque da variação do produto atual. Isso é usado para verificar se há estoque suficiente para atender ao pedido.
 #14: Recupera a quantidade solicitada do produto no carrinho. cart[vid] acessa as informações do produto correspondente no dicionário do carrinho.
 #15: Obtém o preço unitário do produto no carrinho.
-#16: 
+#16: Obtém o preço promocional unitário do produto no carrinho, se existir.
+#17: Atualiza a quantidade do produto no carrinho para o valor do estoque disponível, caso o estoque seja inferior à quantidade solicitada originalmente.
+#18: 
 # ------------------------------------------------------------------
 #1: Se não estiver logado e tentar acessar '127.0.0.1:8000/order/', será redirecionado para a página de 'create' e receberá uma mensagem de erro. ;
 #2: Mesmo se estiver logado e tentar acessar '127.0.0.1:8000/order/' e não houver itens no carrinho, será redirecionado para 'list' e receberá mensagem de erro;
