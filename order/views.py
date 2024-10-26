@@ -92,8 +92,8 @@ class Pay(View):
             ]
         )
 
-        context = {}
-        return render(self.request, self.template_name, context) ##
+        del self.request.session['cart'] ##
+        return redirect('')
 
 class SaveOrder(View):
     ...
