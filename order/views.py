@@ -94,7 +94,7 @@ class Pay(View):
         )
 
         del self.request.session['cart'] ##
-        return redirect('')
+        return redirect('order:list')
 
 class SaveOrder(View):
     ...
