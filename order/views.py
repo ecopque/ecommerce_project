@@ -107,6 +107,7 @@ class List(View):
         return HttpResponse('List')
 
 
+# ------------------------------------------------------------------
 #5: Essa linha define o caminho do template HTML (order/pay.html) que será utilizado para renderizar a página de pagamento. É necessário para que a view Pay saiba qual arquivo de template exibir quando a requisição for feita.
 #6: Verifica se o usuário não está autenticado. Caso o usuário não esteja logado, uma mensagem de erro é enviada e o usuário é redirecionado para a página de criação de perfil (client_profile:create). Isso assegura que apenas usuários autenticados possam acessar essa view.
 #7: Verifica se o carrinho de compras não existe na sessão. Se o carrinho estiver vazio ou não estiver presente, uma mensagem de erro é exibida e o usuário é redirecionado para a lista de produtos (product:list). Isso garante que a operação de pagamento só seja possível se o usuário tiver itens no carrinho.
@@ -132,7 +133,6 @@ class List(View):
 #27: Define o preço promocional total do produto, baseado na quantidade, no item do pedido.
 #28: Define a imagem do produto no item do pedido.
 #29: Remove o carrinho da sessão após a conclusão do pedido, limpando os itens para o próximo uso.
-#30: 
 # ------------------------------------------------------------------
 #1: Se não estiver logado e tentar acessar '127.0.0.1:8000/order/', será redirecionado para a página de 'create' e receberá uma mensagem de erro. ;
 #2: Mesmo se estiver logado e tentar acessar '127.0.0.1:8000/order/' e não houver itens no carrinho, será redirecionado para 'list' e receberá mensagem de erro;

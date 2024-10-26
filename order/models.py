@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) #1:
     total = models.FloatField() #2:
-    total_qtd = models.PositiveIntegerField() ##
+    total_qtd = models.PositiveIntegerField() #
     status = models.CharField(
         default='C',
         max_length=1,
