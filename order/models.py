@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) #1:
     total = models.FloatField() #2:
-    total_qtd = models.PositiveBigIntegerField() ##
+    total_qtd = models.PositiveIntegerField() ##
     status = models.CharField(
         default='C',
         max_length=1,
@@ -28,9 +28,9 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE) #5:
     product_name = models.CharField(max_length=255) #6:
-    product_id = models.PositiveBigIntegerField()
+    product_id = models.PositiveIntegerField()
     variation = models.CharField(max_length=255)
-    variation_id = models.PositiveBigIntegerField()
+    variation_id = models.PositiveIntegerField()
     price = models.FloatField()
     price_promotional = models.FloatField(default=0)
     quantitative = models.PositiveIntegerField() #7:
