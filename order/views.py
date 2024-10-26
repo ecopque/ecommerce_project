@@ -50,50 +50,50 @@ class Pay(View):
             if stock < qtd_cart:
                 # IMPORT⬇: /product/views.py
                 cart[vid]['quantitative'] = stock #17:
-                cart[vid]['quantitative_price'] = stock * price_unt ##
-                cart[vid]['promotional_quantitative_price'] = stock * price_unt_promo ##
+                cart[vid]['quantitative_price'] = stock * price_unt #18:
+                cart[vid]['promotional_quantitative_price'] = stock * price_unt_promo #19:
                 
                 error_msg_stock = 'Insufficient stock for some products in your cart. We have reduced the quantity of some products.'
             
-            if error_msg_stock: ##
+            if error_msg_stock:
                 messages.error(self.request, error_msg_stock)
 
                 self.request.session.save()
-                return redirect('product:cart') ##
+                return redirect('product:cart') #20:
         
         # IMPORT⬇: /utils/utils.py
-        total_qtd_cart = utils.cart_total_qtd(cart) ##
-        total_value_cart = utils.cart_totals_products(cart) ##
+        total_qtd_cart = utils.cart_total_qtd(cart) #21:
+        total_value_cart = utils.cart_totals_products(cart) #22:
         
         # IMPORT⬇: /order/models.py
-        order = Order(user=self.request.user, total=total_value_cart, total_qtd=total_qtd_cart, status='C') ##
+        order = Order(user=self.request.user, total=total_value_cart, total_qtd=total_qtd_cart, status='C') #23:
         order.save()
 
         OrderItem.objects.bulk_create(
             [
                 OrderItem(
                     #IMPORT⬇: /order/models.py
-                    order=order, ##
-                    product_name=v['product_name'], ##
-                    product_id=v['product_id'], ##
-                    variation=v['variation_name'], ##
-                    variation_id=v['variation_id'], ##
+                    order=order, #24:
+                    product_name=v['product_name'], #25:
+                    product_id=v['product_id'],
+                    variation=v['variation_name'],
+                    variation_id=v['variation_id'],
 
                     # IMPORT⬇: /order/models.py | /order/views.py
-                    price=v['quantitative_price'], ##
-                    price_promotional=v['promotional_quantitative_price'], ##
+                    price=v['quantitative_price'], #26:
+                    price_promotional=v['promotional_quantitative_price'], #27:
 
                     # IMPORT⬇: /order/views.py | /order/models.py
-                    quantitative=v['quantitative'], ##
+                    quantitative=v['quantitative'],
                    
                     #IMPORT⬇: /order/models.py
-                    image=v['image'], ##
+                    image=v['image'], #28:
                 )
                 for v in cart.values()
             ]
         )
 
-        del self.request.session['cart'] ##
+        del self.request.session['cart'] #29:
         return redirect('order:list')
 
 class SaveOrder(View):
@@ -102,7 +102,7 @@ class SaveOrder(View):
 class Details(View):
     ...
 
-class List(View): ##
+class List(View):
     def get(self, *args, **kwargs):
         return HttpResponse('List')
 
@@ -120,7 +120,19 @@ class List(View): ##
 #15: Obtém o preço unitário do produto no carrinho.
 #16: Obtém o preço promocional unitário do produto no carrinho, se existir.
 #17: Atualiza a quantidade do produto no carrinho para o valor do estoque disponível, caso o estoque seja inferior à quantidade solicitada originalmente.
-#18: 
+#18: Recalcula o preço total do produto no carrinho com base na quantidade disponível em estoque e no preço unitário.
+#19: Recalcula o preço total promocional do produto com base na quantidade disponível em estoque e no preço unitário promocional.
+#20: Redireciona o usuário para a página do carrinho (product:cart) caso haja problemas com o estoque, para que ele possa revisar os itens.
+#21: Chama a função cart_total_qtd do módulo utils para calcular o total de itens no carrinho.
+#22: Chama a função cart_totals_products do módulo utils para calcular o valor total dos produtos no carrinho.
+#23: Cria uma instância de Order com os dados do usuário, o valor total do carrinho, a quantidade total de itens e o status C (Created).
+#24: Referencia o pedido recém-criado na criação de cada item do pedido (OrderItem). Isso cria a associação entre os itens e o pedido.
+#25: Define o nome do produto no item do pedido.
+#26: Define o preço total do produto, baseado na quantidade, no item do pedido.
+#27: Define o preço promocional total do produto, baseado na quantidade, no item do pedido.
+#28: Define a imagem do produto no item do pedido.
+#29: Remove o carrinho da sessão após a conclusão do pedido, limpando os itens para o próximo uso.
+#30: 
 # ------------------------------------------------------------------
 #1: Se não estiver logado e tentar acessar '127.0.0.1:8000/order/', será redirecionado para a página de 'create' e receberá uma mensagem de erro. ;
 #2: Mesmo se estiver logado e tentar acessar '127.0.0.1:8000/order/' e não houver itens no carrinho, será redirecionado para 'list' e receberá mensagem de erro;
