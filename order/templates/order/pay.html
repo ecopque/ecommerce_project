@@ -53,9 +53,15 @@
                                 <img class="cart-img" src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
                             </td>
                             <td>{{line.product_name}}</td> <!-- ## -->
-                            <td></td>
-                            <td>1</td>
-                            <td>R$ 19,90</td>
+                            <td>{{line.variation}}</td> <!-- ## -->
+                            <td>{{line.quantitative}}</td> <!-- ## -->
+                            <td>
+                                {% if line.price_promotional %} <!-- ## -->
+                                    {{line.price_promotional|format_price}}
+                                {% else %}
+                                    {{line.price|format_price}} <!-- ## -->
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </table>
