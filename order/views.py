@@ -1,6 +1,6 @@
 # FILE: /order/views.py
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views.generic import ListView
 from django.views import View
 from django.contrib import messages
@@ -8,6 +8,7 @@ from product.models import Variation
 from utils import utils
 from .models import Order, OrderItem
 from django.http import HttpResponse
+
 
 class Pay(View):
     def get(self, *args, **kwargs):
@@ -99,7 +100,10 @@ class SaveOrder(View):
         )
 
         del self.request.session['cart'] #29:
-        return redirect('order:list')
+        # return redirect('order:list')
+
+        # order = /order/views.py
+        return redirect(reverse('order:pay', kwargs={'pk': order.pk})) ##
 
 
 class Details(View):
