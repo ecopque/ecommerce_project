@@ -22,6 +22,11 @@ class Pay(DispatchLoginRequired, DetailView): ##
     model = Order
     pk_url_kwarg = 'pk' ##
     context_object_name = 'order'
+
+    def get_queryset(self, *args, **kwargs): ##
+        qs = super().get_queryset(*args, **kwargs) ##
+        qs = qs.filter(user=self.request.user) ## AAA:
+        return qs
     
 
 class SaveOrder(View):
@@ -123,6 +128,7 @@ class List(View):
         return HttpResponse('List')
 
 
+#AAA: Agora sim, estamos filtrando a queryset pelo usuário!
 # ------------------------------------------------------------------
 #5: Essa linha define o caminho do template HTML (order/pay.html) que será utilizado para renderizar a página de pagamento. É necessário para que a view Pay saiba qual arquivo de template exibir quando a requisição for feita.
 #6: Verifica se o usuário não está autenticado. Caso o usuário não esteja logado, uma mensagem de erro é enviada e o usuário é redirecionado para a página de criação de perfil (client_profile:create). Isso assegura que apenas usuários autenticados possam acessar essa view.
