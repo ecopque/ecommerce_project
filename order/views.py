@@ -10,6 +10,11 @@ from .models import Order, OrderItem
 from django.http import HttpResponse
 
 class Pay(View):
+    def get(self, *args, **kwargs):
+        return HttpResponse('Pay.')
+    
+
+class SaveOrder(View):
     # IMPORT⬇: /order/templates/order/pay.html
     template_name = 'order/pay.html' #5:
 
@@ -96,8 +101,6 @@ class Pay(View):
         del self.request.session['cart'] #29:
         return redirect('order:list')
 
-class SaveOrder(View):
-    ...
 
 class Details(View):
     ...
