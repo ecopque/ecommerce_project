@@ -28,7 +28,6 @@ class Pay(DispatchLoginRequired, DetailView): ##
         qs = qs.filter(user=self.request.user) ## AAA:
         return qs
     
-
 class SaveOrder(View):
     # IMPORT⬇: /order/templates/order/pay.html
     template_name = 'order/pay.html' #5:
