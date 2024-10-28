@@ -2,12 +2,71 @@
 
 {% extends 'base.html' %}
 
+{% load brfilters %}
+
 {% block content %}
     
     <div class="row">
         <div class="col">
-            <h3>Choose payment method</h3>
-            <p>For the developer: add your preferred method.</p>
+            <h3>Choose the payment method</h3>
+            <p>For developers: add your preferred payment method.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>{{order}}</h3> <!-- ## -->
+
+            <div class="row mt-4">
+                <!-- # IMPORT⬇: /order/models.py -->
+                <div class="col-lg-2 font-weight-bold">Order number:</div>
+                <div class="col-lg-4">{{order.id}}</div> <!-- ## -->
+                <div class="col-lg-2 font-weight-bold">Total a pagar:</div>
+                <div class="col-lg-4">{{order.total|format_price}}</div>
+                <div class="col-lg-2 font-weight-bold">Number of items:</div>
+                <div class="col-lg-4">{{order.total_qtd}}</div> <!-- ## -->
+                <div class="col-lg-2 font-weight-bold">Status:</div>
+                <div class="col-lg-4">{{order.get_status_display}}</div> <!-- ## -->
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h3>Products</h3>
+                </div>
+            </div>
+
+            <div class="table-responsive mt-3">
+                <table class="table">
+                    <tr>
+                        <th class="d-none d-lg-block">Image</th>
+                        <th>Product</th>
+                        <th>Variation</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+
+                    
+                    {% comment %} {% for line in order.itemorder_set.all %} <!-- ## --> {% endcomment %}
+                    <tr>
+                        <td class="d-none d-lg-block">
+                            <img class="cart-img" src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
+                        </td>
+                        <td>Acompanhante baiana</td>
+                        <td></td>
+                        <td>1</td>
+                        <td>R$ 19,90</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col">
+                    <a href="#" class="btn btn-primary btn-block btn-lg">Pay</a>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
