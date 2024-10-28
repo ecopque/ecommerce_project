@@ -71,7 +71,8 @@
 
     <div class="row">
         <div class="col">
-            <a class="btn btn-block btn-primary btn-lg" href="{% url 'order:pay' %}"> <!-- #5: -->
+            {% comment %} <a class="btn btn-block btn-primary btn-lg" href="{% url 'order:pay' %}">  <!-- #5: --> {% endcomment %}
+            <a class="btn btn-block btn-primary btn-lg" href="{% url 'order:save_order' %}"> <!-- #6: -->
                 Place Order and Pay
             </a>
         </div>
@@ -80,6 +81,7 @@
 {% endblock %}
 
 
+<!-- #6: Foi feito uma modificação no 'urls.py'/order e também em 'views.py'/order, portanto, apontamos agora para 'save_order'. -->
 <!-- ########################################################### -->
 <!-- #1: Mostra o primeiro nome do usuário, extraído do objeto user, que faz parte do contexto enviado à página. O campo first_name é um atributo padrão do modelo User do Django. -->
 <!-- #2: Exibe a idade do usuário, que é obtida a partir do perfil de cliente associado ao objeto User. Esse campo pertence ao modelo ClientProfile, que estende o usuário padrão para incluir mais detalhes pessoais. -->
