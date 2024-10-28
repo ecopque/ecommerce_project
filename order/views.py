@@ -9,8 +9,13 @@ from utils import utils
 from .models import Order, OrderItem
 from django.http import HttpResponse
 
+class DispatchLoginRequired(View):
+    def dispatch(self, *args, **kwargs): ##
+        if not self.request.user.is_authenticated: ##
+            return redirect('client_profile:create')
+        return super().dispatch(*args, **kwargs) ##
 
-class Pay(DetailView):
+class Pay(DispatchLoginRequired, DetailView): ##
     template_name = 'order/pay.html'
     
     # IMPORT⬇: /order/models.py
