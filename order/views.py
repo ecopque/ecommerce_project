@@ -1,7 +1,7 @@
 # FILE: /order/views.py
 
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views import View
 from django.contrib import messages
 from product.models import Variation
@@ -10,9 +10,13 @@ from .models import Order, OrderItem
 from django.http import HttpResponse
 
 
-class Pay(View):
-    def get(self, *args, **kwargs):
-        return HttpResponse('Pay.')
+class Pay(DetailView):
+    template_name = 'order/pay.html'
+    
+    # IMPORT⬇: /order/models.py
+    model = Order
+    pk_url_kwarg = 'pk' ##
+    context_object_name = 'order'
     
 
 class SaveOrder(View):
