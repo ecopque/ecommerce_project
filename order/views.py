@@ -130,12 +130,14 @@ class SaveOrder(View):
 class Details(View):
     ...
 
-class List(DispatchLoginRequiredMixin, ListView):
-    def get(self, *args, **kwargs):
-        return HttpResponse('List')
+class List(DispatchLoginRequiredMixin, ListView): #38:
+    model = Order
+    context_object_name = 'orders'
+    template_name = ''
 
 
 #37: Transferi p/ 'class DispatchLoginRequiredMixin(View)' para poder utilizar este recurso em 'Details()' e 'List()';
+#38: Ao herdar de 'DispatchLoginRequiredMixin' essa classe já vai restringir usuário não-logados, permitindo apenas usuários logados na sua conta;
 # ------------------------------------------------------------------
 #29: Essa linha define o método dispatch na classe DispatchLoginRequired. Ele garante que qualquer requisição que utilize essa classe requer autenticação. Se o usuário não estiver autenticado, ele é redirecionado para a página de criação de perfil (client_profile:create). Este método é importante para proteger as rotas da aplicação.
 #30: Aqui, dispatch chama o método da classe pai para processar a requisição se o usuário estiver autenticado. Este é um ponto central de verificação de autenticação antes do acesso às visualizações de pagamento e listagem.
