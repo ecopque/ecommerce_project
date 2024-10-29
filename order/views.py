@@ -127,6 +127,7 @@ class List(View):
         return HttpResponse('List')
 
 
+# ------------------------------------------------------------------
 #29: Essa linha define o método dispatch na classe DispatchLoginRequired. Ele garante que qualquer requisição que utilize essa classe requer autenticação. Se o usuário não estiver autenticado, ele é redirecionado para a página de criação de perfil (client_profile:create). Este método é importante para proteger as rotas da aplicação.
 #30: Aqui, dispatch chama o método da classe pai para processar a requisição se o usuário estiver autenticado. Este é um ponto central de verificação de autenticação antes do acesso às visualizações de pagamento e listagem.
 #31: A classe Pay, que herda DispatchLoginRequired e DetailView, representa a visualização do pagamento de um pedido específico. A classe base DetailView facilita o uso de dados detalhados de um único pedido.
