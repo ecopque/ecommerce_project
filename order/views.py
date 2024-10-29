@@ -133,7 +133,8 @@ class Details(View):
 class List(DispatchLoginRequiredMixin, ListView): #38:
     model = Order
     context_object_name = 'orders'
-    template_name = ''
+    template_name = 'order/list.html'
+    paginate_by = 15 ##
 
 
 #37: Transferi p/ 'class DispatchLoginRequiredMixin(View)' para poder utilizar este recurso em 'Details()' e 'List()';

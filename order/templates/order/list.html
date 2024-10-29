@@ -1,5 +1,44 @@
 <!-- # FILE: /order/templates/order/list.html -->
 
+{% extends 'base.html' %}
 
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h3 class="mb-4">Orders from '{{user}}'</h3> <!-- # -->
+            <p>Abaixo todos os seus pedidos realizados na loja.</p>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Qtd. Itens</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Mais detalhes</th>
+                    </tr>
+                    
+                    <!-- # IMPORT: /order/models.py -->
+                    {% for order in orders %} <!-- # -->
+                    <tr>
+                        <th scope="row">{{order}}</td> <!-- # -->
+                        <td>{{order.total_qtd}}</td> <!-- # -->
+                        <td>Criado</td>
+                        <td>
+                            <a href="/pedido/detalhe/15">
+                                Ver <i class="fas fa-search-plus ml-2"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 <!-- # https://linktr.ee/edsoncopque -->
