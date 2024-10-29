@@ -9,13 +9,20 @@ from utils import utils
 from .models import Order, OrderItem
 from django.http import HttpResponse
 
-class DispatchLoginRequired(View):
+# class DispatchLoginRequired(View):
+class DispatchLoginRequiredMixin(View):
     def dispatch(self, *args, **kwargs): #29:
         if not self.request.user.is_authenticated:
             return redirect('client_profile:create')
         return super().dispatch(*args, **kwargs) #30:
+    
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(user=self.request.user)
+        return qs
 
-class Pay(DispatchLoginRequired, DetailView): #31:
+# class Pay(DispatchLoginRequired, DetailView): #31:
+class Pay(DispatchLoginRequiredMixin, DetailView): ##
     template_name = 'order/pay.html'
     
     # IMPORT⬇: /order/models.py
@@ -23,10 +30,11 @@ class Pay(DispatchLoginRequired, DetailView): #31:
     pk_url_kwarg = 'pk' #32:
     context_object_name = 'order'
 
-    def get_queryset(self, *args, **kwargs): #33:
-        qs = super().get_queryset(*args, **kwargs) #34:
-        qs = qs.filter(user=self.request.user) #35:
-        return qs
+    # ATTENTION: transferred to 'class DispatchLoginRequiredMixin(View)'
+    # def get_queryset(self, *args, **kwargs): #33: #37:
+    #     qs = super().get_queryset(*args, **kwargs) #34:
+    #     qs = qs.filter(user=self.request.user) #35:
+    #     return qs
     
 class SaveOrder(View):
     # IMPORT⬇: /order/templates/order/pay.html
@@ -122,11 +130,12 @@ class SaveOrder(View):
 class Details(View):
     ...
 
-class List(View):
+class List(DispatchLoginRequiredMixin, ListView):
     def get(self, *args, **kwargs):
         return HttpResponse('List')
 
 
+#37: Transferi p/ 'class DispatchLoginRequiredMixin(View)' para poder utilizar este recurso em 'Details()' e 'List()';
 # ------------------------------------------------------------------
 #29: Essa linha define o método dispatch na classe DispatchLoginRequired. Ele garante que qualquer requisição que utilize essa classe requer autenticação. Se o usuário não estiver autenticado, ele é redirecionado para a página de criação de perfil (client_profile:create). Este método é importante para proteger as rotas da aplicação.
 #30: Aqui, dispatch chama o método da classe pai para processar a requisição se o usuário estiver autenticado. Este é um ponto central de verificação de autenticação antes do acesso às visualizações de pagamento e listagem.
