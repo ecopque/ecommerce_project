@@ -10,22 +10,22 @@ from .models import Order, OrderItem
 from django.http import HttpResponse
 
 class DispatchLoginRequired(View):
-    def dispatch(self, *args, **kwargs): ##
-        if not self.request.user.is_authenticated: ##
+    def dispatch(self, *args, **kwargs): #29:
+        if not self.request.user.is_authenticated:
             return redirect('client_profile:create')
-        return super().dispatch(*args, **kwargs) ##
+        return super().dispatch(*args, **kwargs) #30:
 
-class Pay(DispatchLoginRequired, DetailView): ##
+class Pay(DispatchLoginRequired, DetailView): #31:
     template_name = 'order/pay.html'
     
     # IMPORT⬇: /order/models.py
     model = Order
-    pk_url_kwarg = 'pk' ##
+    pk_url_kwarg = 'pk' #32:
     context_object_name = 'order'
 
-    def get_queryset(self, *args, **kwargs): ##
-        qs = super().get_queryset(*args, **kwargs) ##
-        qs = qs.filter(user=self.request.user) ## AAA:
+    def get_queryset(self, *args, **kwargs): #33:
+        qs = super().get_queryset(*args, **kwargs) #34:
+        qs = qs.filter(user=self.request.user) #35:
         return qs
     
 class SaveOrder(View):
@@ -116,7 +116,7 @@ class SaveOrder(View):
         # return redirect('order:list')
 
         # order = /order/views.py
-        return redirect(reverse('order:pay', kwargs={'pk': order.pk})) ##
+        return redirect(reverse('order:pay', kwargs={'pk': order.pk})) #36:
 
 
 class Details(View):
@@ -127,7 +127,14 @@ class List(View):
         return HttpResponse('List')
 
 
-#AAA: Agora sim, estamos filtrando a queryset pelo usuário!
+#29: Essa linha define o método dispatch na classe DispatchLoginRequired. Ele garante que qualquer requisição que utilize essa classe requer autenticação. Se o usuário não estiver autenticado, ele é redirecionado para a página de criação de perfil (client_profile:create). Este método é importante para proteger as rotas da aplicação.
+#30: Aqui, dispatch chama o método da classe pai para processar a requisição se o usuário estiver autenticado. Este é um ponto central de verificação de autenticação antes do acesso às visualizações de pagamento e listagem.
+#31: A classe Pay, que herda DispatchLoginRequired e DetailView, representa a visualização do pagamento de um pedido específico. A classe base DetailView facilita o uso de dados detalhados de um único pedido.
+#32: Esse atributo indica que o parâmetro pk será utilizado na URL para identificar um pedido específico (Order). Isso permite a busca e manipulação do pedido correto na visualização.
+#33: O método get_queryset redefine o conjunto de dados para incluir apenas os pedidos do usuário logado, garantindo que cada usuário visualize apenas seus próprios pedidos.
+#34: Chama o método get_queryset da classe pai, que retorna o conjunto de dados básico de Order. Este conjunto de dados é modificado na próxima linha para filtrar apenas pedidos do usuário autenticado.
+#35: Agora sim, estamos filtrando a queryset pelo usuário!
+#36: Após criar um pedido com SaveOrder, essa linha redireciona o usuário para a página de pagamento, usando a pk do pedido recém-criado. Esse redirecionamento fornece uma experiência sequencial ao usuário após salvar o pedido.
 # ------------------------------------------------------------------
 #5: Essa linha define o caminho do template HTML (order/pay.html) que será utilizado para renderizar a página de pagamento. É necessário para que a view Pay saiba qual arquivo de template exibir quando a requisição for feita.
 #6: Verifica se o usuário não está autenticado. Caso o usuário não esteja logado, uma mensagem de erro é enviada e o usuário é redirecionado para a página de criação de perfil (client_profile:create). Isso assegura que apenas usuários autenticados possam acessar essa view.
