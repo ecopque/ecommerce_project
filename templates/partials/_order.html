@@ -1,6 +1,59 @@
 <!-- # FILE: /templates/partials/_order.html -->
 
+<div class="row">
+    <div class="col">
+        <h3>{{order}}</h3> #1:
 
+        <div class="row mt-4">
+            # IMPORT⬇: /order/models.py
+            <div class="col-lg-2 font-weight-bold">Order number:</div>
+            <div class="col-lg-4">{{order.id}}</div> #2:
+            <div class="col-lg-2 font-weight-bold">Total to pay:</div>
+            <div class="col-lg-4">{{order.total|format_price}}</div>  #
+            <div class="col-lg-2 font-weight-bold">Number of items:</div>
+            <div class="col-lg-4">{{order.total_qtd}}</div> #
+            <div class="col-lg-2 font-weight-bold">Status:</div>
+            <div class="col-lg-4">{{order.get_status_display}}</div> #3:
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <h3>Products</h3>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-3">
+            <table class="table">
+                <tr>
+                    <th class="d-none d-lg-block">Image</th>
+                    <th>Product</th>
+                    <th>Variation</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+
+                # IMPORT⬇: /order/models.py | class OrderItem(models.Model)
+                {% for line in order.orderitem_set.all %} #4:
+                    <tr>
+                        <td class="d-none d-lg-block">
+                            <img class="cart-img" src="{% get_media_prefix %}{{line.image}}"> #5:
+                        </td>
+                        <td>{{line.product_name}}</td> #
+                        <td>{{line.variation}}</td> #
+                        <td>{{line.quantitative}}</td> #
+                        <td>
+                            {% if line.price_promotional %} #
+                                {{line.price_promotional|format_price}} #
+                            {% else %}
+                                {{line.price|format_price}} #
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 
 
 <!-- # https://linktr.ee/edsoncopque -->
