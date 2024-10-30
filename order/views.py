@@ -129,14 +129,14 @@ class SaveOrder(View):
 
 class Details(DispatchLoginRequiredMixin, DetailView):
     model = Order
-    context_object_name = 'orders'
+    context_object_name = 'order' ##
     template_name = 'order/detail.html'
     pk_url_kwarg = 'pk'
     
 
 class List(DispatchLoginRequiredMixin, ListView): #38:
     model = Order
-    context_object_name = 'orders'
+    context_object_name = 'orders' ##
     template_name = 'order/list.html'
     paginate_by = 15 ##
     ordering = ['-id'] ##
