@@ -127,9 +127,12 @@ class SaveOrder(View):
         return redirect(reverse('order:pay', kwargs={'pk': order.pk})) #36:
 
 
-class Details(View):
-    def get(self, *args, **kwargs):
-        return HttpResponse('Details')
+class Details(DispatchLoginRequiredMixin, DetailView):
+    model = Order
+    context_object_name = 'orders'
+    template_name = 'order/detail.html'
+    pk_url_kwarg = 'pk'
+    
 
 class List(DispatchLoginRequiredMixin, ListView): #38:
     model = Order
