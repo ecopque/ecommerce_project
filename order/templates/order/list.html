@@ -24,9 +24,10 @@
                         <th scope="row">{{order}}</td> <!-- # -->
                         <td>{{order.total}}</td> <!-- # -->
                         <td>{{order.total_qtd}}</td> <!-- # -->
-                        <td>Created</td>
+                        <td>{{order.get_status_display}}</td> <!-- ## -->
                         <td>
-                            <a href="/pedido/detalhe/15">
+                            <!-- #IMPORT⬇: /order/urls.py -->
+                            <a href="{% url 'order:details' order.pk %}"> <!-- ## -->
                                 See <i class="fas fa-search-plus ml-2"></i>
                             </a>
                         </td>
@@ -38,5 +39,6 @@
         </div>
     </div>
 {% endblock %}
+
 
 <!-- # https://linktr.ee/edsoncopque -->
