@@ -22,7 +22,7 @@ class DispatchLoginRequiredMixin(View):
         return qs
 
 # class Pay(DispatchLoginRequired, DetailView): #31:
-class Pay(DispatchLoginRequiredMixin, DetailView): ##
+class Pay(DispatchLoginRequiredMixin, DetailView): #39:
     template_name = 'order/pay.html'
     
     # IMPORT⬇: /order/models.py
@@ -127,25 +127,28 @@ class SaveOrder(View):
         return redirect(reverse('order:pay', kwargs={'pk': order.pk})) #36:
 
 
-class Details(DispatchLoginRequiredMixin, DetailView):
+class Details(DispatchLoginRequiredMixin, DetailView): #40:
     model = Order
-    context_object_name = 'order' ##
+    context_object_name = 'order'
     template_name = 'order/detail.html'
     pk_url_kwarg = 'pk'
     
 
-class List(DispatchLoginRequiredMixin, ListView): #38:
+class List(DispatchLoginRequiredMixin, ListView): #38: #41:
     model = Order
-    context_object_name = 'orders' ##
+    context_object_name = 'orders'
     template_name = 'order/list.html'
-    paginate_by = 15 ##
-    ordering = ['-id'] ##
+    paginate_by = 15 #42: 
+    ordering = ['-id'] #43:
 
 
 #37: Transferi p/ 'class DispatchLoginRequiredMixin(View)' para poder utilizar este recurso em 'Details()' e 'List()';
 #38: Ao herdar de 'DispatchLoginRequiredMixin' essa classe já vai restringir usuário não-logados, permitindo apenas usuários logados na sua conta;
-#39:
-
+#39: Esta classe Pay herda de DispatchLoginRequiredMixin, exigindo que o usuário esteja autenticado para acessar a página de pagamento. É uma DetailView, logo, exibe detalhes de um pedido específico com base no pk fornecido na URL. O template definido (order/pay.html) é responsável pela interface de pagamento.
+#40: Define a Details como uma DetailView para exibir informações detalhadas de um pedido. Aqui, context_object_name = 'order' permite acessar o pedido diretamente no template order/detail.html como {{ order }}, simplificando o uso dos dados no template.
+#41: Define a List como uma ListView, que exibe uma lista de pedidos (Order). context_object_name = 'orders' facilita o acesso aos dados no template, permitindo iterar sobre os pedidos com {{ orders }} em order/list.html.
+#42: Exibe 15 pedidos por página, implementando paginação no template.
+#43: Organiza os pedidos em ordem decrescente com base no id do pedido, exibindo os mais recentes primeiro.
 # ------------------------------------------------------------------
 #29: Essa linha define o método dispatch na classe DispatchLoginRequired. Ele garante que qualquer requisição que utilize essa classe requer autenticação. Se o usuário não estiver autenticado, ele é redirecionado para a página de criação de perfil (client_profile:create). Este método é importante para proteger as rotas da aplicação.
 #30: Aqui, dispatch chama o método da classe pai para processar a requisição se o usuário estiver autenticado. Este é um ponto central de verificação de autenticação antes do acesso às visualizações de pagamento e listagem.
