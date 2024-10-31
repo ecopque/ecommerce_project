@@ -60,6 +60,16 @@ class Client_Profile(models.Model):
     
     def clean(self): #2:
         error_messages = {} #2:
+
+        cpf_sent = self.cpf or None ##
+        cpf_saved = None ##
+        client_profile = Client_Profile.objects.filter(cpf=cpf_sent).first() ##
+
+        if client_profile: ##
+            cpf_saved = client_profile.cpf ##
+
+            if cpf_saved is not None and self.pk != client_profile.pk: ## AAA:
+                error_messages['cpf'] = 'CPF already exists.'
         
         # Refazer essa validação no 'validator_cpf.py':
         # if not validator_cpf(self.cpf): ##
@@ -76,6 +86,7 @@ class Client_Profile(models.Model):
         verbose_name_plural = 'Client Profiles'
 
 
+# AAA: 'self.pk != client_profile.pk' entenda como alguém que está atualizando o perfil. Os ID's precisam ser iguais, concorda? Se a 'pk' for igual, significa que o peão está atualizando seu perfil.
 # ------------------------------------------------------------------
 #1: Quando você usa o Django Admin para adicionar ou editar instâncias do seu modelo, você verá os valores legíveis (neste caso, "Acre" e "Alagoas"). Isso é fornecido pela tupla que você definiu, onde o primeiro elemento (ex: 'AC') é o valor que será armazenado no banco de dados e o segundo elemento (ex: 'Acre') é o texto que será exibido na interface. O Django armazenará o valor da primeira parte da tupla (ou seja, 'AC' para Acre e 'AL' para Alagoas) no banco de dados. Portanto, na tabela correspondente ao modelo Client_Profile, você verá os códigos de estado ('AC', 'AL', etc.) armazenados no campo state.
 #2: O método clean é chamado automaticamente pelo Django quando o objeto está sendo validado. Serve para realizar validações personalizadas, além das já feitas pelos campos padrão. Indica o início do método e a criação do dicionário error_messages, que armazenará quaisquer mensagens de erro relacionadas à validação do CPF, CEP ou outros campos.
