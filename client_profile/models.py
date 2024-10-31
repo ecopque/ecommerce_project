@@ -86,6 +86,7 @@ class Client_Profile(models.Model):
         verbose_name_plural = 'Client Profiles'
 
 
+# ------------------------------------------------------------------
 #5: Aqui, a variável cpf_sent recebe o valor do CPF (self.cpf) do perfil atual do cliente (do próprio objeto Client_Profile sendo validado). Caso self.cpf esteja vazio, cpf_sent recebe None. Essa linha é importante para preparar o valor que será comparado ao CPF de outros perfis no banco de dados (usado para evitar CPFs duplicados).
 #6: A variável cpf_saved é inicializada como None para mais tarde armazenar o CPF de outro perfil de cliente, caso seja encontrado algum perfil com o mesmo CPF no banco de dados. Essa inicialização facilita a comparação, pois permite o uso do valor None como referência caso não haja um CPF salvo com o valor enviado.
 #7: Essa linha realiza uma busca no banco de dados usando cpf_sent como critério de filtragem. O método filter(cpf=cpf_sent) encontra todos os perfis onde o CPF é igual ao CPF enviado (cpf_sent). O uso de .first() pega o primeiro resultado encontrado, retornando None caso não exista nenhum perfil com esse CPF.
