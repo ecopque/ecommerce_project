@@ -18,7 +18,7 @@ class ProductList(ListView): #3:
     template_name = 'product/list.html' #5:
     context_object_name = 'products' #6:
     paginate_by = 3 #7:
-    ordering = ['-id'] ##
+    ordering = ['-id'] #58:
 
 class ProductDetail(DetailView): #9:
     model = models.Product
@@ -150,6 +150,7 @@ class PurchaseSummary(View):
         return render(self.request, 'product/purchasesummary.html', context) #51:
 
 
+#58: Organiza a lista de produtos em ProductList em ordem decrescente de id, mostrando os produtos mais recentes primeiro na lista.
 # ------------------------------------------------------------------
 #52: Criamos esta variável pois ela identifica ou filtra o 'perfil' do usuário. É com ela que vamos fazer a verificação p/ saber se o usuário tem 'perfil' para então poder chegar no resuma da compra;
 #53: Se dentro do resumo você excluir os itens do carrinho, quando zerar automaticamente vocẽ será redirecionado para 'list', ou seja, para a página inicial do e-commerce.
