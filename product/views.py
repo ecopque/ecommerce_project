@@ -150,6 +150,7 @@ class PurchaseSummary(View):
         return render(self.request, 'product/purchasesummary.html', context) #51:
 
 
+# ------------------------------------------------------------------
 #58: Organiza a lista de produtos em ProductList em ordem decrescente de id, mostrando os produtos mais recentes primeiro na lista.
 # ------------------------------------------------------------------
 #52: Criamos esta variável pois ela identifica ou filtra o 'perfil' do usuário. É com ela que vamos fazer a verificação p/ saber se o usuário tem 'perfil' para então poder chegar no resuma da compra;
