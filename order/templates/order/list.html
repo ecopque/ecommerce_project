@@ -25,10 +25,10 @@
                         <th scope="row">{{order}}</td> <!-- # -->
                         <td>{{order.total|format_price}}</td> <!-- # -->
                         <td>{{order.total_qtd}}</td> <!-- # -->
-                        <td>{{order.get_status_display}}</td> <!-- ## -->
+                        <td>{{order.get_status_display}}</td> <!-- #1: -->
                         <td>
                             <!-- #IMPORT⬇: /order/urls.py -->
-                            <a href="{% url 'order:details' order.pk %}"> <!-- ## -->
+                            <a href="{% url 'order:details' order.pk %}"> <!-- #2: -->
                                 See <i class="fas fa-search-plus ml-2"></i>
                             </a>
                         </td>
@@ -44,5 +44,8 @@
 
 {% endblock %}
 
+
+<!-- #1: get_status_display é uma função do Django que exibe a escolha textual correspondente ao valor do campo status do modelo Order. Assim, o status exibido no template será a versão legível do valor armazenado (ex.: “Concluído” em vez de “C”). -->
+ <!-- #2: Este link direciona para a Details view de um pedido específico, passando order.pk como parâmetro da URL. Isso permite que o usuário visualize detalhes de um pedido específico, levando-o para order/detail.html. -->
 
 <!-- # https://linktr.ee/edsoncopque -->
