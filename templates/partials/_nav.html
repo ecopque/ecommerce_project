@@ -67,14 +67,16 @@
             {% endif %}
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'product:search' %}"> <!-- #11: ## -->
+            <input name="termo" value="{{request.GET.termo}}"class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> <!-- #10: ## -->
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </nav>
 
 
+<!-- #10: Incluímos 'name="termo" value="{{request.GET.termo}}"'. -->
+<!-- #11: Incluímos 'method="GET" action="{% url 'product:search' %}'. -->
 <!-- ########################################################### -->
 <!-- #5: Se o usuário estiver autenticado, vai aparecer este menu. -->
 <!-- #6: Quando o usuário não estiver logado, vai aparecer na barra a opção de 'Enter Login' e 'Create Account', ou seja, entrar ou registrar; -->

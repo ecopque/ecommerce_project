@@ -148,6 +148,9 @@ class PurchaseSummary(View):
 
         # context = {'user': self.request.user, 'cart': self.request.session['cart'],} #50:
         return render(self.request, 'product/purchasesummary.html', context) #51:
+    
+class Search():
+    ...
 
 
 # ------------------------------------------------------------------
