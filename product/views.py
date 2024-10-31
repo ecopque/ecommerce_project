@@ -9,6 +9,7 @@ from django.contrib import messages #11:
 from django.http import HttpResponse #12:
 from django.urls import reverse #13:
 from client_profile.models import Client_Profile
+from django.db.models import Q
 
 
 class ProductList(ListView): #3:
@@ -19,6 +20,23 @@ class ProductList(ListView): #3:
     context_object_name = 'products' #6:
     paginate_by = 3 #7:
     ordering = ['-id'] #58:
+
+class Search(ProductList):
+    def get_queryset(self, *args, **kwargs):
+        term = self.request.GET.get('term') ##
+        qs = super().get_queryset(*args, **kwargs) ##
+
+        if not term:
+            return qs
+        
+        # IMPORT⬇: /product/models.py
+        qs = qs.filter( ##
+            Q(name__icontains=term) | ##
+            Q(short_description__icontains=term) |
+            Q(long_description__icontains=term)
+        )
+        
+        return qs
 
 class ProductDetail(DetailView): #9:
     model = models.Product
@@ -149,8 +167,7 @@ class PurchaseSummary(View):
         # context = {'user': self.request.user, 'cart': self.request.session['cart'],} #50:
         return render(self.request, 'product/purchasesummary.html', context) #51:
     
-class Search():
-    ...
+
 
 
 # ------------------------------------------------------------------
