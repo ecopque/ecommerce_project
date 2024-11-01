@@ -3,13 +3,13 @@
 
 ## Overview
 
-Welcome to the **E-commerce Project**. This project is currently under construction, and it aims to deliver a complete e-commerce solution built with Django. The development process is ongoing, and updates will be made daily to improve and expand the functionalities.
+Welcome to the **E-commerce Project**. This project is a complete e-commerce solution built with Django, designed to provide a robust platform for buying and selling products, managing inventory, and handling orders. The project is now nearly completed, with all core features implemented, and is undergoing final validation steps.
 
-## Current Status
+## Project Status
 
-This project is still in its early stages, and many features are yet to be implemented. However, work is progressing steadily, and I am committed to pushing updates regularly.
+The project is fully functional, with core features developed and tested. Only CPF validation is pending completion, with progress being made toward its final implementation.
 
-## Features (Planned)
+## Implemented Features
 
 - User authentication and profile management
 - Product listing and categorization
@@ -18,7 +18,7 @@ This project is still in its early stages, and many features are yet to be imple
 - Shopping cart functionality
 - Admin panel for managing users, products, and orders
 
-## Technologies
+## Technologies Used
 
 - **Django** (Web framework)
 - **PostgreSQL** (Database)
@@ -31,19 +31,20 @@ This project is still in its early stages, and many features are yet to be imple
 3. Product management system
 4. Order and checkout system
 5. Payment integration
+6. CPF validation (in progress)
 
 ## Note
 To validate the CPF (Cadastro de Pessoa Física), I will use these programs from my repositories: https://github.com/ecopque/cpf_generator and https://github.com/ecopque/cpf_validator
 
 ## How to Contribute
 
-Since the project is still being developed, contributions are welcome once the core structure is established. Stay tuned for future updates on how to contribute.
+Although the project is almost complete, improvements and optimizations are welcome! Feel free to open a pull request if you have any suggestions or feature ideas.
 
 ## Contact
 
-Feel free to reach out if you have any suggestions or questions regarding this project:
+If you have questions or suggestions, feel free to reach out:
 
 - Link: https://linktr.ee/edsoncopque
 - GitHub: [ecopque](https://github.com/ecopque)
 
-Thank you for checking out this project! Stay tuned for daily updates as the E-commerce Project evolves.
+Thank you for checking out this project!
