@@ -15,7 +15,8 @@
             <div class="card">
                 
                 {% if product.image %} <!-- #5: -->
-                <a href ="{{product.slug}}"> <!-- #6: -->
+                {% comment %} <!-- <a href ="{{product.slug}}"> #6: --> {% endcomment %}
+                <a href="{% url 'product:detail' product.slug %}"> <!-- ## -->
                     <img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}"> <!-- #7: -->
                 </a>
                 {% endif %}
@@ -41,7 +42,8 @@
                 </div>
 
                 <div class="card-footer bg-transparent border-top-light-custom text-center">
-                    <a href="{{product.slug}}" class="btn btn-primary btn-sm m-1 btn-block"> <!-- #13: -->
+                    {% comment %} <!-- <a href="{{product.slug}}" class="btn btn-primary btn-sm m-1 btn-block"> #13: --> {% endcomment %}
+                    <a href="{% url 'product:detail' product.slug %}" class="btn btn-primary btn-sm m-1 btn-block"> <!-- ## -->
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Buy
                     </a>
