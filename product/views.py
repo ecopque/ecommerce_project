@@ -173,7 +173,7 @@ class PurchaseSummary(View):
         return render(self.request, 'product/purchasesummary.html', context) #51:
     
 
-
+# ------------------------------------------------------------------
 #59: Esta linha obtém o termo de busca (term) da URL (se fornecido) ou da sessão do usuário. Se não houver term na URL, o código tenta recuperar o último termo de busca armazenado na sessão. A sessão armazena o termo de busca para permitir que ele seja usado em uma consulta persistente, mesmo que o usuário navegue por outras páginas. Este termo é configurado a partir da entrada no formulário de busca no template _nav.html.
 #60: Este código chama o método get_queryset da classe ProductList herdada. Essa chamada inicializa qs como o conjunto de produtos disponíveis antes do filtro de busca ser aplicado. Interação: A linha ajuda a manter a lógica básica de listagem de produtos, permitindo, em seguida, que o filtro de busca seja aplicado a qs apenas quando necessário.
 #61: Armazena o termo de busca atual na sessão do usuário. Isso permite que o termo persista nas próximas requisições enquanto a sessão estiver ativa. Interação: Quando o usuário realiza uma busca no site, esse valor é salvo na sessão e pode ser recuperado posteriormente, o que possibilita o uso contínuo da busca e melhora a experiência do usuário.
