@@ -48,3 +48,23 @@ If you have questions or suggestions, feel free to reach out:
 - GitHub: [ecopque](https://github.com/ecopque)
 
 Thank you for checking out this project!
+
+## Images of the E-commerce Project
+![readme]Screenshot from 2024-11-01 15-32-18)
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
+![readme]()
