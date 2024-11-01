@@ -25,12 +25,14 @@ class Search(ProductList):
     def get_queryset(self, *args, **kwargs):
         
         # EXPORT⬆: /templates/partials/_nav.html
-        term = self.request.GET.get('term') ##
+        term = self.request.GET.get('term') or self.request.session['term'] ##
         qs = super().get_queryset(*args, **kwargs) ##
 
         if not term:
             return qs
         
+        self.request.session['term'] = term ##
+
         # IMPORT⬇: /product/models.py
         qs = qs.filter( ##
             Q(name__icontains=term) | ##
@@ -38,6 +40,7 @@ class Search(ProductList):
             Q(long_description__icontains=term)
         )
         
+        self.request.session.save()
         return qs
 
 class ProductDetail(DetailView): #9:
