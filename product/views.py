@@ -23,6 +23,8 @@ class ProductList(ListView): #3:
 
 class Search(ProductList):
     def get_queryset(self, *args, **kwargs):
+        
+        # EXPORT⬆: /templates/partials/_nav.html
         term = self.request.GET.get('term') ##
         qs = super().get_queryset(*args, **kwargs) ##
 
