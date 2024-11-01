@@ -67,8 +67,8 @@
             {% endif %}
 
         </ul>
-        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'product:search' %}"> <!-- #11: ## -->
-            <input name="term" value="{{request.GET.term}}"class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> <!-- #10: ## -->
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'product:search' %}"> <!-- #11: #12: -->
+            <input name="term" value="{{request.GET.term}}"class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> <!-- #10: #13: -->
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -77,6 +77,10 @@
 
 <!-- #10: Incluímos 'name="term" value="{{request.GET.term}}"'. -->
 <!-- #11: Incluímos 'method="GET" action="{% url 'product:search' %}'. -->
+<!-- #12: Esta linha define o formulário de busca no menu de navegação, configurado para enviar requisições de busca (GET) para a URL product:search.
+Interação: A busca é enviada para o método get_queryset da view Search (definida em views.py), que lida com o termo da busca e executa o filtro apropriado no queryset de produtos. -->
+<!-- #13: Este campo de entrada coleta o termo de busca inserido pelo usuário. Através do atributo value="{{request.GET.term}}", o termo da última busca permanece no campo de pesquisa após a submissão.
+Interação: O valor de term é enviado para a view Search em views.py, onde é processado e filtrado para apresentar resultados de busca refinados ao usuário. -->
 <!-- ########################################################### -->
 <!-- #5: Se o usuário estiver autenticado, vai aparecer este menu. -->
 <!-- #6: Quando o usuário não estiver logado, vai aparecer na barra a opção de 'Enter Login' e 'Create Account', ou seja, entrar ou registrar; -->
