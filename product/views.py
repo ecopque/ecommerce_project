@@ -25,17 +25,17 @@ class Search(ProductList):
     def get_queryset(self, *args, **kwargs):
         
         # EXPORT⬆: /templates/partials/_nav.html
-        term = self.request.GET.get('term') or self.request.session['term'] ##
-        qs = super().get_queryset(*args, **kwargs) ##
+        term = self.request.GET.get('term') or self.request.session['term'] #59:
+        qs = super().get_queryset(*args, **kwargs) #60:
 
         if not term:
             return qs
         
-        self.request.session['term'] = term ##
+        self.request.session['term'] = term #61:
 
         # IMPORT⬇: /product/models.py
-        qs = qs.filter( ##
-            Q(name__icontains=term) | ##
+        qs = qs.filter( #62:
+            Q(name__icontains=term) |
             Q(short_description__icontains=term) |
             Q(long_description__icontains=term)
         )
@@ -174,7 +174,10 @@ class PurchaseSummary(View):
     
 
 
-
+#59: Esta linha obtém o termo de busca (term) da URL (se fornecido) ou da sessão do usuário. Se não houver term na URL, o código tenta recuperar o último termo de busca armazenado na sessão. A sessão armazena o termo de busca para permitir que ele seja usado em uma consulta persistente, mesmo que o usuário navegue por outras páginas. Este termo é configurado a partir da entrada no formulário de busca no template _nav.html.
+#60: Este código chama o método get_queryset da classe ProductList herdada. Essa chamada inicializa qs como o conjunto de produtos disponíveis antes do filtro de busca ser aplicado. Interação: A linha ajuda a manter a lógica básica de listagem de produtos, permitindo, em seguida, que o filtro de busca seja aplicado a qs apenas quando necessário.
+#61: Armazena o termo de busca atual na sessão do usuário. Isso permite que o termo persista nas próximas requisições enquanto a sessão estiver ativa. Interação: Quando o usuário realiza uma busca no site, esse valor é salvo na sessão e pode ser recuperado posteriormente, o que possibilita o uso contínuo da busca e melhora a experiência do usuário.
+#62: Esta linha aplica um filtro ao conjunto de dados qs para retornar apenas os produtos cujo name, short_description, ou long_description contenham o term da busca, independentemente de maiúsculas ou minúsculas. Interação: Utiliza o módulo Q do Django para criar uma busca complexa, que permite múltiplas condições OR, resultando em uma experiência de pesquisa mais completa para o usuário.
 # ------------------------------------------------------------------
 #58: Organiza a lista de produtos em ProductList em ordem decrescente de id, mostrando os produtos mais recentes primeiro na lista.
 # ------------------------------------------------------------------
